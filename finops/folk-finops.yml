@@ -1,0 +1,118 @@
+name: Folk FinOps
+description: >
+  FinOps Framework 1.0 FOCUS-aligned cost and usage model for the Folk CRM
+  API. Folk charges per seat (user/member) per month on a subscription basis.
+  API access is gated to Premium and Enterprise plans. Usage-based consumable
+  limits (enrichments, AI magic fields, messages) vary by plan and reset
+  monthly.
+specificationVersion: "1.0"
+provider: Folk
+serviceCategory: CRM / Contact Management
+billingModel: per-seat subscription
+currency: USD
+costAllocation:
+  - dimension: Plan tier
+    values:
+      - Standard
+      - Premium
+      - Enterprise
+  - dimension: Billing period
+    values:
+      - monthly
+      - annual
+  - dimension: Members (seats)
+    description: Unlimited members on all plans; each seat billed at the plan rate.
+skus:
+  - id: folk-standard-monthly
+    name: Folk Standard (Monthly)
+    unitPrice: 30.00
+    unit: user/month
+    billingPeriod: monthly
+    apiAccess: false
+  - id: folk-standard-annual
+    name: Folk Standard (Annual)
+    unitPrice: 24.00
+    unit: user/month
+    billingPeriod: annual
+    apiAccess: false
+  - id: folk-premium-monthly
+    name: Folk Premium (Monthly)
+    unitPrice: 60.00
+    unit: user/month
+    billingPeriod: monthly
+    apiAccess: true
+  - id: folk-premium-annual
+    name: Folk Premium (Annual)
+    unitPrice: 48.00
+    unit: user/month
+    billingPeriod: annual
+    apiAccess: true
+  - id: folk-enterprise-monthly
+    name: Folk Enterprise (Monthly)
+    unitPrice: 100.00
+    unit: user/month
+    billingPeriod: monthly
+    note: Starting price; custom billing available
+    apiAccess: true
+  - id: folk-enterprise-annual
+    name: Folk Enterprise (Annual)
+    unitPrice: 80.00
+    unit: user/month
+    billingPeriod: annual
+    note: Starting price; custom billing available
+    apiAccess: true
+consumables:
+  - name: Email Enrichment Credits
+    description: Monthly credits for enriching contact email addresses.
+    resetPeriod: monthly
+    limits:
+      Standard: 500
+      Premium: 1000
+      Enterprise: custom
+  - name: Magic Fields (AI)
+    description: AI-powered field auto-fill operations per month.
+    resetPeriod: monthly
+    limits:
+      Standard: 2000
+      Premium: 5000
+      Enterprise: custom
+  - name: Messages
+    description: Outbound messages (email campaigns/sequences) per member per month.
+    resetPeriod: monthly
+    limits:
+      Standard: 2000
+      Premium: 5000
+      Enterprise: custom
+  - name: Account Sync
+    description: Number of external account/inbox connections per member.
+    limits:
+      Standard: 1
+      Premium: 5
+      Enterprise: custom
+  - name: Custom Domains
+    description: Number of custom sending domains for email.
+    limits:
+      Standard: 1
+      Premium: 3
+      Enterprise: custom
+costOptimization:
+  - recommendation: Choose annual billing to save 20% over monthly rates on all plan tiers.
+  - recommendation: >
+      API access requires the Premium plan ($48/user/month annual). Teams that
+      only need API integrations should count only the users who need workspace
+      access, not all developers.
+  - recommendation: >
+      Monitor consumable usage (enrichments, magic fields, messages) against
+      plan limits monthly to avoid hitting caps that would block automation
+      workflows mid-cycle. Upgrade to Enterprise for custom limits if regularly
+      hitting Premium caps.
+  - recommendation: >
+      For large workspaces, negotiate Enterprise custom billing to get volume
+      discounts on per-seat pricing.
+observability:
+  rateLimitHeaders:
+    - X-RateLimit-Limit
+    - X-RateLimit-Remaining
+    - X-RateLimit-Reset
+  retryAfterHeader: Retry-After
+  rateLimitPerMinute: 600

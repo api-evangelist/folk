@@ -1,0 +1,76 @@
+aid: folk
+name: Folk
+description: >
+  Folk is a collaborative CRM platform designed for agencies, investors, and
+  sales teams who need to manage relationships at scale. It provides a REST API
+  organized around predictable resource-oriented URLs, accepting and returning
+  JSON-encoded payloads with standard HTTP response codes. The API enables
+  developers to manage contacts (people and companies), pipelines and deals,
+  notes, reminders, interactions, and custom fields programmatically. Webhooks
+  are supported for real-time event notifications, and the platform integrates
+  with 5,000+ tools including Gmail, Outlook, LinkedIn, WhatsApp, and Zapier.
+  API access is available on the Premium and Enterprise plans.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/folk/refs/heads/main/apis.yml
+created: "2026-06-12"
+modified: "2026-06-12"
+specificationVersion: "0.19"
+tags:
+  - CRM
+  - Contacts
+  - Pipelines
+  - Sales
+  - Relationships
+  - Notes
+  - Deals
+  - Webhooks
+apis:
+  - name: Folk API
+    description: >
+      The Folk REST API provides full CRUD access to workspace data including
+      people, companies, deals, notes, reminders, interactions, groups, custom
+      fields, users, and webhooks. Authentication uses API key Bearer tokens
+      generated in workspace settings. Rate limits are set at 600 requests per
+      minute per user, with standard rate-limit response headers provided.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developer.folk.app/
+    baseURL: https://api.folk.app
+    tags:
+      - CRM
+      - Contacts
+      - Deals
+      - Pipelines
+      - Notes
+      - Webhooks
+    properties:
+      - type: Documentation
+        url: https://developer.folk.app/
+      - type: OpenAPI
+        url: https://developer.folk.app/api-reference/openapi.json
+common:
+  - type: Website
+    url: https://www.folk.app/
+  - type: Documentation
+    url: https://developer.folk.app/
+  - type: GitHubOrg
+    url: https://github.com/folk-js
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/folkhq/
+  - type: Blog
+    url: https://www.folk.app/blog
+  - type: Pricing
+    url: https://www.folk.app/pricing
+  - type: StatusPage
+    url: https://status.folk.app/
+  - type: X
+    url: https://twitter.com/FolkHQ
+  - type: Plans
+    url: plans/folk-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/folk-rate-limits.yml
+  - type: FinOps
+    url: finops/folk-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

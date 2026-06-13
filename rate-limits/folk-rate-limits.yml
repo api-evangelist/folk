@@ -1,0 +1,37 @@
+name: Folk API Rate Limits
+description: Rate limit policy for the Folk REST API as documented at developer.folk.app.
+specificationVersion: "0.1"
+url: https://developer.folk.app/api-reference/rate-limits
+rateLimits:
+  - name: Global Request Limit
+    description: >
+      600 requests per minute applied globally across all API endpoints.
+      Limits are applied per user — multiple API keys belonging to the same
+      user share the same limit and reset window. Folk reserves the right to
+      change this limit at any time; use response headers rather than
+      hardcoding assumptions.
+    limit: 600
+    unit: requests
+    period: minute
+    scope: per user
+    headers:
+      - name: X-RateLimit-Limit
+        description: Maximum number of requests allowed per minute.
+      - name: X-RateLimit-Remaining
+        description: Number of requests remaining in the current window.
+      - name: X-RateLimit-Reset
+        description: Epoch timestamp (seconds) when the current window resets.
+    exceeded:
+      status: 429
+      description: >
+        When the rate limit is exceeded the API returns HTTP 429 Too Many
+        Requests. The response includes a Retry-After header indicating the
+        number of seconds to wait before retrying.
+      headers:
+        - name: Retry-After
+          description: Seconds to wait before the next request will be accepted.
+notes: >
+  Rate limits are not differentiated by subscription plan (Standard, Premium,
+  Enterprise). All authenticated users on plans with API access share the same
+  600 req/min cap. Folk may adjust limits at any time; always read the
+  X-RateLimit-* response headers dynamically.

@@ -1,0 +1,120 @@
+name: Folk Plans and Pricing
+description: Pricing plans for the Folk CRM platform as of June 2026.
+specificationVersion: "0.1"
+url: https://www.folk.app/pricing
+plans:
+  - name: Standard
+    description: >
+      Core CRM features for individuals and small teams. Includes pipeline
+      management, email campaigns, contact enrichment, AI assistants, magic
+      fields, LinkedIn Chrome extension, email/calendar/WhatsApp sync, and
+      5,000+ integrations. No API access on this plan.
+    url: https://www.folk.app/pricing
+    type: paid
+    pricing:
+      - unit: user/month
+        amount: 30
+        currency: USD
+        period: monthly
+      - unit: user/month
+        amount: 24
+        currency: USD
+        period: annual
+    limits:
+      - name: Email enrichment
+        amount: 500
+        unit: per month
+      - name: Magic fields (AI)
+        amount: 2000
+        unit: per month
+      - name: Messages
+        amount: 2000
+        unit: member/month
+      - name: Account sync
+        amount: 1
+        unit: per member
+      - name: Custom domains
+        amount: 1
+        unit: total
+      - name: Members
+        amount: unlimited
+        unit: total
+  - name: Premium
+    description: >
+      Advanced CRM features for growing teams. Everything in Standard plus
+      custom objects and deals, email sequences, advanced roles and permissions,
+      dashboards, full interaction history, and REST API access.
+    url: https://www.folk.app/pricing
+    type: paid
+    pricing:
+      - unit: user/month
+        amount: 60
+        currency: USD
+        period: monthly
+      - unit: user/month
+        amount: 48
+        currency: USD
+        period: annual
+    limits:
+      - name: Email enrichment
+        amount: 1000
+        unit: per month
+      - name: Magic fields (AI)
+        amount: 5000
+        unit: per month
+      - name: Messages
+        amount: 5000
+        unit: member/month
+      - name: Account sync
+        amount: 5
+        unit: per member
+      - name: Custom domains
+        amount: 3
+        unit: total
+      - name: Members
+        amount: unlimited
+        unit: total
+      - name: API access
+        amount: true
+        unit: included
+  - name: Enterprise
+    description: >
+      Custom CRM solution for large organizations. Everything in Premium plus
+      custom limits for enrichments, messages, account sync, and AI fields.
+      Includes dedicated support, a dedicated point of contact, and custom
+      billing options.
+    url: https://www.folk.app/pricing
+    type: enterprise
+    pricing:
+      - unit: user/month
+        amount: 100
+        currency: USD
+        period: monthly
+        note: Starting price; custom billing available
+      - unit: user/month
+        amount: 80
+        currency: USD
+        period: annual
+        note: Starting price; custom billing available
+    limits:
+      - name: Email enrichment
+        amount: custom
+        unit: per month
+      - name: Magic fields (AI)
+        amount: custom
+        unit: per month
+      - name: Messages
+        amount: custom
+        unit: member/month
+      - name: Account sync
+        amount: custom
+        unit: per member
+      - name: Custom domains
+        amount: custom
+        unit: total
+      - name: Members
+        amount: unlimited
+        unit: total
+      - name: API access
+        amount: true
+        unit: included
