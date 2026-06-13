@@ -1,0 +1,159 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "folk": "https://developer.folk.app/schemas/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Person": {
+      "@id": "folk:Person",
+      "@type": "@id"
+    },
+    "Company": {
+      "@id": "folk:Company",
+      "@type": "@id"
+    },
+    "Deal": {
+      "@id": "folk:Deal",
+      "@type": "@id"
+    },
+    "Group": {
+      "@id": "folk:Group",
+      "@type": "@id"
+    },
+    "Note": {
+      "@id": "folk:Note",
+      "@type": "@id"
+    },
+    "Reminder": {
+      "@id": "folk:Reminder",
+      "@type": "@id"
+    },
+    "LoggedInteraction": {
+      "@id": "folk:LoggedInteraction",
+      "@type": "@id"
+    },
+    "Webhook": {
+      "@id": "folk:Webhook",
+      "@type": "@id"
+    },
+    "User": {
+      "@id": "folk:User",
+      "@type": "@id"
+    },
+    "GroupCustomField": {
+      "@id": "folk:GroupCustomField",
+      "@type": "@id"
+    },
+
+    "id": "@id",
+    "type": "@type",
+
+    "name": "schema:name",
+    "fullName": "schema:name",
+    "email": "schema:email",
+    "jobTitle": "schema:jobTitle",
+    "description": "schema:description",
+    "url": "schema:url",
+    "telephone": "schema:telephone",
+
+    "addresses": {
+      "@id": "schema:address",
+      "@container": "@set"
+    },
+    "emails": {
+      "@id": "schema:email",
+      "@container": "@set"
+    },
+    "phones": {
+      "@id": "schema:telephone",
+      "@container": "@set"
+    },
+    "urls": {
+      "@id": "schema:url",
+      "@container": "@set"
+    },
+
+    "companies": {
+      "@id": "folk:companies",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "people": {
+      "@id": "folk:people",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "deals": {
+      "@id": "folk:deals",
+      "@type": "@id",
+      "@container": "@set"
+    },
+
+    "createdAt": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "updatedAt": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "dueAt": {
+      "@id": "schema:dueDate",
+      "@type": "xsd:dateTime"
+    },
+
+    "customFields": {
+      "@id": "folk:customFields",
+      "@container": "@set"
+    },
+    "customFieldValues": {
+      "@id": "folk:customFieldValues",
+      "@container": "@set"
+    },
+
+    "groups": {
+      "@id": "folk:groups",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "notes": {
+      "@id": "folk:notes",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "reminders": {
+      "@id": "folk:reminders",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "webhooks": {
+      "@id": "folk:webhooks",
+      "@type": "@id",
+      "@container": "@set"
+    },
+
+    "content": "schema:text",
+    "title": "schema:name",
+    "industry": "schema:industry",
+
+    "objectType": "folk:objectType",
+    "objectId": "folk:objectId",
+    "groupId": "folk:groupId",
+    "assignedTo": "folk:assignedTo",
+    "recurrenceRule": "folk:recurrenceRule",
+    "interactionType": "folk:interactionType",
+    "signingSecret": "folk:signingSecret",
+    "deliveryUrl": "folk:deliveryUrl",
+
+    "pagination": "folk:pagination",
+    "nextCursor": "folk:nextCursor",
+    "hasMore": "folk:hasMore",
+    "limit": "folk:limit",
+
+    "employeeRange": "folk:employeeRange",
+    "fundingData": "folk:fundingData",
+    "lastInteractionAt": "folk:lastInteractionAt",
+    "interactionCount": "folk:interactionCount"
+  }
+}

@@ -1,0 +1,79 @@
+vocabulary:
+  - term: Person
+    definition: >
+      An individual contact in Folk representing a human relationship. Contains
+      name, job title, company associations, email addresses, phone numbers,
+      URLs, custom fields, and interaction metadata.
+
+  - term: Company
+    definition: >
+      An organizational entity in Folk representing a business or institution.
+      Contains funding data, industry classification, employee range, addresses,
+      and custom fields.
+
+  - term: Deal
+    definition: >
+      A named opportunity or transaction linking companies and people within
+      Folk, supporting custom field values to track sales pipeline stages.
+
+  - term: Group
+    definition: >
+      An organizational container in Folk used to segment contacts (people or
+      companies) with configurable custom field definitions per group.
+
+  - term: Note
+    definition: >
+      Entity-linked commentary in Folk supporting markdown formatting, visibility
+      controls, threading, and multiple author types. Attachable to people,
+      companies, or deals.
+
+  - term: Reminder
+    definition: >
+      A recurring or one-time notification in Folk with iCalendar (RFC 5545)
+      recurrence rules, assignable to specific workspace users.
+
+  - term: LoggedInteraction
+    definition: >
+      A timestamped engagement record in Folk tracking touch points with contacts.
+      Supports interaction types such as emoji reactions, predefined types, and
+      messaging app interactions.
+
+  - term: Webhook
+    definition: >
+      An event subscription in Folk that delivers real-time HTTP POST callbacks
+      when workspace data changes. Supports filtering by groupId, objectType,
+      path, and value.
+
+  - term: User
+    definition: >
+      A workspace member in Folk identified by id, fullName, and email address.
+
+  - term: GroupCustomField
+    definition: >
+      A configurable metadata field definition attached to a Group in Folk,
+      allowing custom data attributes to be collected for contacts within that group.
+
+  - term: bearerApiKeyAuth
+    definition: >
+      Folk's authentication mechanism requiring an API key passed as a Bearer
+      token in the Authorization header. Keys are generated in workspace settings.
+
+  - term: Workspace
+    definition: >
+      The top-level organizational unit in Folk containing all contacts, deals,
+      groups, notes, users, and configuration for a team or organization.
+
+  - term: Pipeline
+    definition: >
+      A structured workflow in Folk represented as a Group with deal stages,
+      used by sales teams to track opportunities through defined stages.
+
+  - term: CustomField
+    definition: >
+      User-defined metadata fields attached to contacts or deals in Folk,
+      enabling teams to capture information specific to their business processes.
+
+  - term: Interaction
+    definition: >
+      Any recorded touch point between a Folk user and a contact (person or
+      company), stored as a LoggedInteraction with timestamp and type metadata.

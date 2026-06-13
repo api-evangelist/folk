@@ -48,6 +48,12 @@ apis:
         url: https://developer.folk.app/
       - type: OpenAPI
         url: https://developer.folk.app/api-reference/openapi.json
+      - type: OpenAPI
+        url: openapi/folk-openapi.yml
+      - type: JSONSchema
+        url: json-schema/folk-schemas.json
+      - type: Examples
+        url: examples/folk-examples.json
 common:
   - type: Website
     url: https://www.folk.app/
@@ -65,6 +71,10 @@ common:
     url: https://status.folk.app/
   - type: X
     url: https://twitter.com/FolkHQ
+  - type: Vocabulary
+    url: vocabulary/folk-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/folk-context.jsonld
   - type: Plans
     url: plans/folk-plans-pricing.yml
   - type: RateLimits

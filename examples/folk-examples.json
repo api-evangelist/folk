@@ -1,0 +1,1867 @@
+{
+  "examples": {
+    "listPeople": {
+      "path": "/v1/people",
+      "method": "GET",
+      "summary": "List people",
+      "response_examples": {
+        "200": {
+          "data": {
+            "items": [
+              {
+                "id": "per_183ed5cc-3182-45de-84d1-d520f2604810",
+                "firstName": "John",
+                "lastName": "Doe",
+                "fullName": "John Doe",
+                "description": "John Doe is a software engineer at Tech Corp.",
+                "birthday": "1980-06-15",
+                "jobTitle": "Software Engineer",
+                "createdAt": "2021-01-01T00:00:00.000Z",
+                "createdBy": {
+                  "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                  "fullName": "John Doe",
+                  "email": "john.doe@example.com"
+                },
+                "groups": [
+                  {
+                    "id": "grp_5fa60242-0756-4e31-8cca-30c2c5ff1ac2",
+                    "name": "Engineering"
+                  }
+                ],
+                "companies": [
+                  {
+                    "id": "com_92346499-30bf-4278-ae8e-4aa3ae2ace2c",
+                    "name": "Tech Corp"
+                  }
+                ],
+                "addresses": [
+                  "123 Main St, Springfield, USA",
+                  "456 Main St, Springfield, USA"
+                ],
+                "emails": [
+                  "john@example.com",
+                  "john@techcorp.com"
+                ],
+                "phones": [
+                  "+1234567890",
+                  "+0987654321"
+                ],
+                "urls": [
+                  "https://example.com"
+                ],
+                "customFieldValues": {
+                  "grp_5fa60242-0756-4e31-8cca-30c2c5ff1ac2": {
+                    "Status": "Active",
+                    "Programming languages": [
+                      "Javascript",
+                      "Python"
+                    ],
+                    "Join date": "2021-01-01",
+                    "Relationships": [
+                      {
+                        "id": "per_ed110a47-5d09-43bf-b2e2-791d8231eb5f",
+                        "fullName": "Bob Smith",
+                        "entityType": "person"
+                      },
+                      {
+                        "id": "com_9a03f575-8a85-40b0-ba2e-16d8e29e3b03",
+                        "fullName": "HR services",
+                        "entityType": "company"
+                      }
+                    ]
+                  },
+                  "grp_acdf2ad9-6a66-4d32-8594-9694913ac717": {
+                    "Favorite color": "Blue",
+                    "Favorite number": "42",
+                    "Assignee": [
+                      {
+                        "id": "usr_c3606e3b-0a92-4849-90e5-88a8d3f388d6",
+                        "fullName": "Jane Doe",
+                        "email": "jane@example.com"
+                      }
+                    ]
+                  }
+                },
+                "interactionMetadata": {
+                  "user": {
+                    "approximateCount": 21,
+                    "lastInteractedAt": "2025-05-01T00:00:00Z"
+                  },
+                  "workspace": {
+                    "approximateCount": 21,
+                    "lastInteractedAt": "2025-05-01T00:00:00Z",
+                    "lastInteractedBy": [
+                      {
+                        "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                        "fullName": "John Doe",
+                        "email": "john.doe@example.com"
+                      }
+                    ]
+                  }
+                },
+                "strongestConnection": {
+                  "grp_acdf2ad9-6a66-4d32-8594-9694913ac717": {
+                    "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                    "fullName": "John Doe",
+                    "email": "john.doe@example.com"
+                  }
+                }
+              }
+            ],
+            "pagination": {
+              "nextLink": "https://api.folk.app/v1/people?limit=20&cursor=eyJvZmZzZXQiOjIwfQ%3D%3D"
+            }
+          }
+        }
+      }
+    },
+    "createPerson": {
+      "path": "/v1/people",
+      "method": "POST",
+      "summary": "Create a person",
+      "response_examples": {
+        "200": {
+          "data": {
+            "id": "per_183ed5cc-3182-45de-84d1-d520f2604810",
+            "firstName": "John",
+            "lastName": "Doe",
+            "fullName": "John Doe",
+            "description": "John Doe is a software engineer at Tech Corp.",
+            "birthday": "1980-06-15",
+            "jobTitle": "Software Engineer",
+            "createdAt": "2021-01-01T00:00:00.000Z",
+            "createdBy": {
+              "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+              "fullName": "John Doe",
+              "email": "john.doe@example.com"
+            },
+            "groups": [
+              {
+                "id": "grp_5fa60242-0756-4e31-8cca-30c2c5ff1ac2",
+                "name": "Engineering"
+              }
+            ],
+            "companies": [
+              {
+                "id": "com_92346499-30bf-4278-ae8e-4aa3ae2ace2c",
+                "name": "Tech Corp"
+              }
+            ],
+            "addresses": [
+              "123 Main St, Springfield, USA",
+              "456 Main St, Springfield, USA"
+            ],
+            "emails": [
+              "john@example.com",
+              "john@techcorp.com"
+            ],
+            "phones": [
+              "+1234567890",
+              "+0987654321"
+            ],
+            "urls": [
+              "https://example.com"
+            ],
+            "customFieldValues": {
+              "grp_5fa60242-0756-4e31-8cca-30c2c5ff1ac2": {
+                "Status": "Active",
+                "Programming languages": [
+                  "Javascript",
+                  "Python"
+                ],
+                "Join date": "2021-01-01",
+                "Relationships": [
+                  {
+                    "id": "per_ed110a47-5d09-43bf-b2e2-791d8231eb5f",
+                    "fullName": "Bob Smith",
+                    "entityType": "person"
+                  },
+                  {
+                    "id": "com_9a03f575-8a85-40b0-ba2e-16d8e29e3b03",
+                    "fullName": "HR services",
+                    "entityType": "company"
+                  }
+                ]
+              },
+              "grp_acdf2ad9-6a66-4d32-8594-9694913ac717": {
+                "Favorite color": "Blue",
+                "Favorite number": "42",
+                "Assignee": [
+                  {
+                    "id": "usr_c3606e3b-0a92-4849-90e5-88a8d3f388d6",
+                    "fullName": "Jane Doe",
+                    "email": "jane@example.com"
+                  }
+                ]
+              }
+            },
+            "interactionMetadata": {
+              "user": {
+                "approximateCount": 21,
+                "lastInteractedAt": "2025-05-01T00:00:00Z"
+              },
+              "workspace": {
+                "approximateCount": 21,
+                "lastInteractedAt": "2025-05-01T00:00:00Z",
+                "lastInteractedBy": [
+                  {
+                    "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                    "fullName": "John Doe",
+                    "email": "john.doe@example.com"
+                  }
+                ]
+              }
+            },
+            "strongestConnection": {
+              "grp_acdf2ad9-6a66-4d32-8594-9694913ac717": {
+                "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                "fullName": "John Doe",
+                "email": "john.doe@example.com"
+              }
+            }
+          }
+        }
+      }
+    },
+    "getPerson": {
+      "path": "/v1/people/{personId}",
+      "method": "GET",
+      "summary": "Get a person",
+      "response_examples": {
+        "200": {
+          "data": {
+            "id": "per_183ed5cc-3182-45de-84d1-d520f2604810",
+            "firstName": "John",
+            "lastName": "Doe",
+            "fullName": "John Doe",
+            "description": "John Doe is a software engineer at Tech Corp.",
+            "birthday": "1980-06-15",
+            "jobTitle": "Software Engineer",
+            "createdAt": "2021-01-01T00:00:00.000Z",
+            "createdBy": {
+              "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+              "fullName": "John Doe",
+              "email": "john.doe@example.com"
+            },
+            "groups": [
+              {
+                "id": "grp_5fa60242-0756-4e31-8cca-30c2c5ff1ac2",
+                "name": "Engineering"
+              }
+            ],
+            "companies": [
+              {
+                "id": "com_92346499-30bf-4278-ae8e-4aa3ae2ace2c",
+                "name": "Tech Corp"
+              }
+            ],
+            "addresses": [
+              "123 Main St, Springfield, USA",
+              "456 Main St, Springfield, USA"
+            ],
+            "emails": [
+              "john@example.com",
+              "john@techcorp.com"
+            ],
+            "phones": [
+              "+1234567890",
+              "+0987654321"
+            ],
+            "urls": [
+              "https://example.com"
+            ],
+            "customFieldValues": {
+              "grp_5fa60242-0756-4e31-8cca-30c2c5ff1ac2": {
+                "Status": "Active",
+                "Programming languages": [
+                  "Javascript",
+                  "Python"
+                ],
+                "Join date": "2021-01-01",
+                "Relationships": [
+                  {
+                    "id": "per_ed110a47-5d09-43bf-b2e2-791d8231eb5f",
+                    "fullName": "Bob Smith",
+                    "entityType": "person"
+                  },
+                  {
+                    "id": "com_9a03f575-8a85-40b0-ba2e-16d8e29e3b03",
+                    "fullName": "HR services",
+                    "entityType": "company"
+                  }
+                ]
+              },
+              "grp_acdf2ad9-6a66-4d32-8594-9694913ac717": {
+                "Favorite color": "Blue",
+                "Favorite number": "42",
+                "Assignee": [
+                  {
+                    "id": "usr_c3606e3b-0a92-4849-90e5-88a8d3f388d6",
+                    "fullName": "Jane Doe",
+                    "email": "jane@example.com"
+                  }
+                ]
+              }
+            },
+            "interactionMetadata": {
+              "user": {
+                "approximateCount": 21,
+                "lastInteractedAt": "2025-05-01T00:00:00Z"
+              },
+              "workspace": {
+                "approximateCount": 21,
+                "lastInteractedAt": "2025-05-01T00:00:00Z",
+                "lastInteractedBy": [
+                  {
+                    "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                    "fullName": "John Doe",
+                    "email": "john.doe@example.com"
+                  }
+                ]
+              }
+            },
+            "strongestConnection": {
+              "grp_acdf2ad9-6a66-4d32-8594-9694913ac717": {
+                "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                "fullName": "John Doe",
+                "email": "john.doe@example.com"
+              }
+            }
+          }
+        }
+      }
+    },
+    "updatePerson": {
+      "path": "/v1/people/{personId}",
+      "method": "PATCH",
+      "summary": "Update a person",
+      "response_examples": {
+        "200": {
+          "data": {
+            "id": "per_183ed5cc-3182-45de-84d1-d520f2604810",
+            "firstName": "John",
+            "lastName": "Doe",
+            "fullName": "John Doe",
+            "description": "John Doe is a software engineer at Tech Corp.",
+            "birthday": "1980-06-15",
+            "jobTitle": "Software Engineer",
+            "createdAt": "2021-01-01T00:00:00.000Z",
+            "createdBy": {
+              "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+              "fullName": "John Doe",
+              "email": "john.doe@example.com"
+            },
+            "groups": [
+              {
+                "id": "grp_5fa60242-0756-4e31-8cca-30c2c5ff1ac2",
+                "name": "Engineering"
+              }
+            ],
+            "companies": [
+              {
+                "id": "com_92346499-30bf-4278-ae8e-4aa3ae2ace2c",
+                "name": "Tech Corp"
+              }
+            ],
+            "addresses": [
+              "123 Main St, Springfield, USA",
+              "456 Main St, Springfield, USA"
+            ],
+            "emails": [
+              "john@example.com",
+              "john@techcorp.com"
+            ],
+            "phones": [
+              "+1234567890",
+              "+0987654321"
+            ],
+            "urls": [
+              "https://example.com"
+            ],
+            "customFieldValues": {
+              "grp_5fa60242-0756-4e31-8cca-30c2c5ff1ac2": {
+                "Status": "Active",
+                "Programming languages": [
+                  "Javascript",
+                  "Python"
+                ],
+                "Join date": "2021-01-01",
+                "Relationships": [
+                  {
+                    "id": "per_ed110a47-5d09-43bf-b2e2-791d8231eb5f",
+                    "fullName": "Bob Smith",
+                    "entityType": "person"
+                  },
+                  {
+                    "id": "com_9a03f575-8a85-40b0-ba2e-16d8e29e3b03",
+                    "fullName": "HR services",
+                    "entityType": "company"
+                  }
+                ]
+              },
+              "grp_acdf2ad9-6a66-4d32-8594-9694913ac717": {
+                "Favorite color": "Blue",
+                "Favorite number": "42",
+                "Assignee": [
+                  {
+                    "id": "usr_c3606e3b-0a92-4849-90e5-88a8d3f388d6",
+                    "fullName": "Jane Doe",
+                    "email": "jane@example.com"
+                  }
+                ]
+              }
+            },
+            "interactionMetadata": {
+              "user": {
+                "approximateCount": 21,
+                "lastInteractedAt": "2025-05-01T00:00:00Z"
+              },
+              "workspace": {
+                "approximateCount": 21,
+                "lastInteractedAt": "2025-05-01T00:00:00Z",
+                "lastInteractedBy": [
+                  {
+                    "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                    "fullName": "John Doe",
+                    "email": "john.doe@example.com"
+                  }
+                ]
+              }
+            },
+            "strongestConnection": {
+              "grp_acdf2ad9-6a66-4d32-8594-9694913ac717": {
+                "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                "fullName": "John Doe",
+                "email": "john.doe@example.com"
+              }
+            }
+          }
+        }
+      }
+    },
+    "deletePerson": {
+      "path": "/v1/people/{personId}",
+      "method": "DELETE",
+      "summary": "Delete a person",
+      "response_examples": {
+        "200": {
+          "data": {
+            "id": "per_183ed5cc-3182-45de-84d1-d520f2604810"
+          }
+        }
+      }
+    },
+    "internal_searchPeople": {
+      "path": "/v1/people/search",
+      "method": "POST",
+      "summary": "Search for people",
+      "response_examples": {
+        "200": {
+          "data": {
+            "items": [
+              {
+                "id": "per_183ed5cc-3182-45de-84d1-d520f2604810",
+                "firstName": "John",
+                "lastName": "Doe",
+                "fullName": "John Doe",
+                "description": "John Doe is a software engineer at Tech Corp.",
+                "birthday": "1980-06-15",
+                "jobTitle": "Software Engineer",
+                "createdAt": "2021-01-01T00:00:00.000Z",
+                "createdBy": {
+                  "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                  "fullName": "John Doe",
+                  "email": "john.doe@example.com"
+                },
+                "groups": [
+                  {
+                    "id": "grp_5fa60242-0756-4e31-8cca-30c2c5ff1ac2",
+                    "name": "Engineering"
+                  }
+                ],
+                "companies": [
+                  {
+                    "id": "com_92346499-30bf-4278-ae8e-4aa3ae2ace2c",
+                    "name": "Tech Corp"
+                  }
+                ],
+                "addresses": [
+                  "123 Main St, Springfield, USA",
+                  "456 Main St, Springfield, USA"
+                ],
+                "emails": [
+                  "john@example.com",
+                  "john@techcorp.com"
+                ],
+                "phones": [
+                  "+1234567890",
+                  "+0987654321"
+                ],
+                "urls": [
+                  "https://example.com"
+                ],
+                "customFieldValues": {
+                  "grp_5fa60242-0756-4e31-8cca-30c2c5ff1ac2": {
+                    "Status": "Active",
+                    "Programming languages": [
+                      "Javascript",
+                      "Python"
+                    ],
+                    "Join date": "2021-01-01",
+                    "Relationships": [
+                      {
+                        "id": "per_ed110a47-5d09-43bf-b2e2-791d8231eb5f",
+                        "fullName": "Bob Smith",
+                        "entityType": "person"
+                      },
+                      {
+                        "id": "com_9a03f575-8a85-40b0-ba2e-16d8e29e3b03",
+                        "fullName": "HR services",
+                        "entityType": "company"
+                      }
+                    ]
+                  },
+                  "grp_acdf2ad9-6a66-4d32-8594-9694913ac717": {
+                    "Favorite color": "Blue",
+                    "Favorite number": "42",
+                    "Assignee": [
+                      {
+                        "id": "usr_c3606e3b-0a92-4849-90e5-88a8d3f388d6",
+                        "fullName": "Jane Doe",
+                        "email": "jane@example.com"
+                      }
+                    ]
+                  }
+                },
+                "interactionMetadata": {
+                  "user": {
+                    "approximateCount": 21,
+                    "lastInteractedAt": "2025-05-01T00:00:00Z"
+                  },
+                  "workspace": {
+                    "approximateCount": 21,
+                    "lastInteractedAt": "2025-05-01T00:00:00Z",
+                    "lastInteractedBy": [
+                      {
+                        "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                        "fullName": "John Doe",
+                        "email": "john.doe@example.com"
+                      }
+                    ]
+                  }
+                },
+                "strongestConnection": {
+                  "grp_acdf2ad9-6a66-4d32-8594-9694913ac717": {
+                    "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                    "fullName": "John Doe",
+                    "email": "john.doe@example.com"
+                  }
+                }
+              }
+            ],
+            "pagination": {
+              "nextLink": "https://api.folk.app/v1/people?limit=20&cursor=eyJvZmZzZXQiOjIwfQ%3D%3D"
+            }
+          }
+        }
+      }
+    },
+    "listCompanies": {
+      "path": "/v1/companies",
+      "method": "GET",
+      "summary": "List companies",
+      "response_examples": {
+        "200": {
+          "data": {
+            "items": [
+              {
+                "id": "com_183ed5cc-3182-45de-84d1-d520f2604810",
+                "name": "Tech Corp",
+                "description": "A leading technology company.",
+                "fundingRaised": "5000000",
+                "lastFundingDate": "1990-01-01",
+                "industry": "Technology",
+                "foundationYear": "1990",
+                "employeeRange": "51-200",
+                "groups": [
+                  {
+                    "id": "grp_5fa60242-0756-4e31-8cca-30c2c5ff1ac2",
+                    "name": "Engineering"
+                  }
+                ],
+                "addresses": [
+                  "123 Main St, Springfield, USA",
+                  "456 Main St, Springfield, USA"
+                ],
+                "emails": [
+                  "john@example.com",
+                  "john@techcorp.com"
+                ],
+                "phones": [
+                  "+1234567890",
+                  "+0987654321"
+                ],
+                "urls": [
+                  "https://example.com"
+                ],
+                "createdAt": "2021-01-01T00:00:00.000Z",
+                "createdBy": {
+                  "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                  "fullName": "John Doe",
+                  "email": "john.doe@example.com"
+                },
+                "customFieldValues": {
+                  "grp_5fa60242-0756-4e31-8cca-30c2c5ff1ac2": {
+                    "Status": "Active",
+                    "Business type": [
+                      "B2B",
+                      "B2C"
+                    ],
+                    "Join date": "2021-01-01",
+                    "Relationships": [
+                      {
+                        "id": "per_ed110a47-5d09-43bf-b2e2-791d8231eb5f",
+                        "fullName": "Bob Smith",
+                        "entityType": "person"
+                      },
+                      {
+                        "id": "com_9a03f575-8a85-40b0-ba2e-16d8e29e3b03",
+                        "fullName": "HR services",
+                        "entityType": "company"
+                      }
+                    ]
+                  },
+                  "grp_acdf2ad9-6a66-4d32-8594-9694913ac717": {
+                    "Custom Notes": "Important client, handle with care.",
+                    "ARR": "42000000",
+                    "Assignee": [
+                      {
+                        "id": "usr_c3606e3b-0a92-4849-90e5-88a8d3f388d6",
+                        "fullName": "Jane Doe",
+                        "email": "jane@example.com"
+                      }
+                    ]
+                  }
+                }
+              }
+            ],
+            "pagination": {
+              "nextLink": "https://api.folk.app/v1/companies?limit=20&cursor=eyJvZmZzZXQiOjIwfQ%3D%3D"
+            }
+          }
+        }
+      }
+    },
+    "createCompany": {
+      "path": "/v1/companies",
+      "method": "POST",
+      "summary": "Create a company",
+      "response_examples": {
+        "200": {
+          "data": {
+            "id": "com_183ed5cc-3182-45de-84d1-d520f2604810",
+            "name": "Tech Corp",
+            "description": "A leading technology company.",
+            "fundingRaised": "5000000",
+            "lastFundingDate": "1990-01-01",
+            "industry": "Technology",
+            "foundationYear": "1990",
+            "employeeRange": "51-200",
+            "groups": [
+              {
+                "id": "grp_5fa60242-0756-4e31-8cca-30c2c5ff1ac2",
+                "name": "Engineering"
+              }
+            ],
+            "addresses": [
+              "123 Main St, Springfield, USA",
+              "456 Main St, Springfield, USA"
+            ],
+            "emails": [
+              "john@example.com",
+              "john@techcorp.com"
+            ],
+            "phones": [
+              "+1234567890",
+              "+0987654321"
+            ],
+            "urls": [
+              "https://example.com"
+            ],
+            "createdAt": "2021-01-01T00:00:00.000Z",
+            "createdBy": {
+              "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+              "fullName": "John Doe",
+              "email": "john.doe@example.com"
+            },
+            "customFieldValues": {
+              "grp_5fa60242-0756-4e31-8cca-30c2c5ff1ac2": {
+                "Status": "Active",
+                "Business type": [
+                  "B2B",
+                  "B2C"
+                ],
+                "Join date": "2021-01-01",
+                "Relationships": [
+                  {
+                    "id": "per_ed110a47-5d09-43bf-b2e2-791d8231eb5f",
+                    "fullName": "Bob Smith",
+                    "entityType": "person"
+                  },
+                  {
+                    "id": "com_9a03f575-8a85-40b0-ba2e-16d8e29e3b03",
+                    "fullName": "HR services",
+                    "entityType": "company"
+                  }
+                ]
+              },
+              "grp_acdf2ad9-6a66-4d32-8594-9694913ac717": {
+                "Custom Notes": "Important client, handle with care.",
+                "ARR": "42000000",
+                "Assignee": [
+                  {
+                    "id": "usr_c3606e3b-0a92-4849-90e5-88a8d3f388d6",
+                    "fullName": "Jane Doe",
+                    "email": "jane@example.com"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "getCompany": {
+      "path": "/v1/companies/{companyId}",
+      "method": "GET",
+      "summary": "Get a company",
+      "response_examples": {
+        "200": {
+          "data": {
+            "id": "com_183ed5cc-3182-45de-84d1-d520f2604810",
+            "name": "Tech Corp",
+            "description": "A leading technology company.",
+            "fundingRaised": "5000000",
+            "lastFundingDate": "1990-01-01",
+            "industry": "Technology",
+            "foundationYear": "1990",
+            "employeeRange": "51-200",
+            "groups": [
+              {
+                "id": "grp_5fa60242-0756-4e31-8cca-30c2c5ff1ac2",
+                "name": "Engineering"
+              }
+            ],
+            "addresses": [
+              "123 Main St, Springfield, USA",
+              "456 Main St, Springfield, USA"
+            ],
+            "emails": [
+              "john@example.com",
+              "john@techcorp.com"
+            ],
+            "phones": [
+              "+1234567890",
+              "+0987654321"
+            ],
+            "urls": [
+              "https://example.com"
+            ],
+            "createdAt": "2021-01-01T00:00:00.000Z",
+            "createdBy": {
+              "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+              "fullName": "John Doe",
+              "email": "john.doe@example.com"
+            },
+            "customFieldValues": {
+              "grp_5fa60242-0756-4e31-8cca-30c2c5ff1ac2": {
+                "Status": "Active",
+                "Business type": [
+                  "B2B",
+                  "B2C"
+                ],
+                "Join date": "2021-01-01",
+                "Relationships": [
+                  {
+                    "id": "per_ed110a47-5d09-43bf-b2e2-791d8231eb5f",
+                    "fullName": "Bob Smith",
+                    "entityType": "person"
+                  },
+                  {
+                    "id": "com_9a03f575-8a85-40b0-ba2e-16d8e29e3b03",
+                    "fullName": "HR services",
+                    "entityType": "company"
+                  }
+                ]
+              },
+              "grp_acdf2ad9-6a66-4d32-8594-9694913ac717": {
+                "Custom Notes": "Important client, handle with care.",
+                "ARR": "42000000",
+                "Assignee": [
+                  {
+                    "id": "usr_c3606e3b-0a92-4849-90e5-88a8d3f388d6",
+                    "fullName": "Jane Doe",
+                    "email": "jane@example.com"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "updateCompany": {
+      "path": "/v1/companies/{companyId}",
+      "method": "PATCH",
+      "summary": "Update a company",
+      "response_examples": {
+        "200": {
+          "data": {
+            "id": "com_183ed5cc-3182-45de-84d1-d520f2604810",
+            "name": "Tech Corp",
+            "description": "A leading technology company.",
+            "fundingRaised": "5000000",
+            "lastFundingDate": "1990-01-01",
+            "industry": "Technology",
+            "foundationYear": "1990",
+            "employeeRange": "51-200",
+            "groups": [
+              {
+                "id": "grp_5fa60242-0756-4e31-8cca-30c2c5ff1ac2",
+                "name": "Engineering"
+              }
+            ],
+            "addresses": [
+              "123 Main St, Springfield, USA",
+              "456 Main St, Springfield, USA"
+            ],
+            "emails": [
+              "john@example.com",
+              "john@techcorp.com"
+            ],
+            "phones": [
+              "+1234567890",
+              "+0987654321"
+            ],
+            "urls": [
+              "https://example.com"
+            ],
+            "createdAt": "2021-01-01T00:00:00.000Z",
+            "createdBy": {
+              "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+              "fullName": "John Doe",
+              "email": "john.doe@example.com"
+            },
+            "customFieldValues": {
+              "grp_5fa60242-0756-4e31-8cca-30c2c5ff1ac2": {
+                "Status": "Active",
+                "Business type": [
+                  "B2B",
+                  "B2C"
+                ],
+                "Join date": "2021-01-01",
+                "Relationships": [
+                  {
+                    "id": "per_ed110a47-5d09-43bf-b2e2-791d8231eb5f",
+                    "fullName": "Bob Smith",
+                    "entityType": "person"
+                  },
+                  {
+                    "id": "com_9a03f575-8a85-40b0-ba2e-16d8e29e3b03",
+                    "fullName": "HR services",
+                    "entityType": "company"
+                  }
+                ]
+              },
+              "grp_acdf2ad9-6a66-4d32-8594-9694913ac717": {
+                "Custom Notes": "Important client, handle with care.",
+                "ARR": "42000000",
+                "Assignee": [
+                  {
+                    "id": "usr_c3606e3b-0a92-4849-90e5-88a8d3f388d6",
+                    "fullName": "Jane Doe",
+                    "email": "jane@example.com"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "deleteCompany": {
+      "path": "/v1/companies/{companyId}",
+      "method": "DELETE",
+      "summary": "Delete a company",
+      "response_examples": {
+        "200": {
+          "data": {
+            "id": "com_183ed5cc-3182-45de-84d1-d520f2604810"
+          }
+        }
+      }
+    },
+    "internal_searchCompanies": {
+      "path": "/v1/companies/search",
+      "method": "POST",
+      "summary": "Search for companies",
+      "response_examples": {
+        "200": {
+          "data": {
+            "items": [
+              {
+                "id": "com_183ed5cc-3182-45de-84d1-d520f2604810",
+                "name": "Tech Corp",
+                "description": "A leading technology company.",
+                "fundingRaised": "5000000",
+                "lastFundingDate": "1990-01-01",
+                "industry": "Technology",
+                "foundationYear": "1990",
+                "employeeRange": "51-200",
+                "groups": [
+                  {
+                    "id": "grp_5fa60242-0756-4e31-8cca-30c2c5ff1ac2",
+                    "name": "Engineering"
+                  }
+                ],
+                "addresses": [
+                  "123 Main St, Springfield, USA",
+                  "456 Main St, Springfield, USA"
+                ],
+                "emails": [
+                  "john@example.com",
+                  "john@techcorp.com"
+                ],
+                "phones": [
+                  "+1234567890",
+                  "+0987654321"
+                ],
+                "urls": [
+                  "https://example.com"
+                ],
+                "createdAt": "2021-01-01T00:00:00.000Z",
+                "createdBy": {
+                  "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                  "fullName": "John Doe",
+                  "email": "john.doe@example.com"
+                },
+                "customFieldValues": {
+                  "grp_5fa60242-0756-4e31-8cca-30c2c5ff1ac2": {
+                    "Status": "Active",
+                    "Business type": [
+                      "B2B",
+                      "B2C"
+                    ],
+                    "Join date": "2021-01-01",
+                    "Relationships": [
+                      {
+                        "id": "per_ed110a47-5d09-43bf-b2e2-791d8231eb5f",
+                        "fullName": "Bob Smith",
+                        "entityType": "person"
+                      },
+                      {
+                        "id": "com_9a03f575-8a85-40b0-ba2e-16d8e29e3b03",
+                        "fullName": "HR services",
+                        "entityType": "company"
+                      }
+                    ]
+                  },
+                  "grp_acdf2ad9-6a66-4d32-8594-9694913ac717": {
+                    "Custom Notes": "Important client, handle with care.",
+                    "ARR": "42000000",
+                    "Assignee": [
+                      {
+                        "id": "usr_c3606e3b-0a92-4849-90e5-88a8d3f388d6",
+                        "fullName": "Jane Doe",
+                        "email": "jane@example.com"
+                      }
+                    ]
+                  }
+                }
+              }
+            ],
+            "pagination": {
+              "nextLink": "https://api.folk.app/v1/companies?limit=20&cursor=eyJvZmZzZXQiOjIwfQ%3D%3D"
+            }
+          }
+        }
+      }
+    },
+    "listDeals": {
+      "path": "/v1/groups/{groupId}/{objectType}",
+      "method": "GET",
+      "summary": "List deals",
+      "response_examples": {
+        "200": {
+          "data": {
+            "items": [
+              {
+                "id": "obj_183ed5cc-3182-45de-84d1-d520f2604810",
+                "name": "Project Alpha",
+                "companies": [
+                  {
+                    "id": "com_92346499-30bf-4278-ae8e-4aa3ae2ace2c",
+                    "name": "Tech Corp"
+                  }
+                ],
+                "people": [
+                  {
+                    "id": "per_5fa60242-0756-4e31-8cca-30c2c5ff1ac2",
+                    "fullName": "John Doe"
+                  }
+                ],
+                "createdAt": "2021-01-01T00:00:00.000Z",
+                "createdBy": {
+                  "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                  "fullName": "John Doe",
+                  "email": "john.doe@example.com"
+                },
+                "customFieldValues": {
+                  "Status": "Active",
+                  "Deal value": "42000",
+                  "Close date": "2021-01-01",
+                  "Assignee": [
+                    {
+                      "id": "usr_c3606e3b-0a92-4849-90e5-88a8d3f388d6",
+                      "fullName": "Jane Doe",
+                      "email": "jane@example.com"
+                    }
+                  ]
+                }
+              }
+            ],
+            "pagination": {
+              "nextLink": "https://api.folk.app/v1/groups/grp_bc984b3f-0386-434d-82d7-a91eb6badd71/Deals?limit=20&cursor=eyJvZmZzZXQiOjIwfQ%3D%3D"
+            }
+          }
+        }
+      }
+    },
+    "createDeal": {
+      "path": "/v1/groups/{groupId}/{objectType}",
+      "method": "POST",
+      "summary": "Create a deal",
+      "response_examples": {
+        "200": {
+          "data": {
+            "id": "obj_183ed5cc-3182-45de-84d1-d520f2604810",
+            "name": "Project Alpha",
+            "companies": [
+              {
+                "id": "com_92346499-30bf-4278-ae8e-4aa3ae2ace2c",
+                "name": "Tech Corp"
+              }
+            ],
+            "people": [
+              {
+                "id": "per_5fa60242-0756-4e31-8cca-30c2c5ff1ac2",
+                "fullName": "John Doe"
+              }
+            ],
+            "createdAt": "2021-01-01T00:00:00.000Z",
+            "createdBy": {
+              "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+              "fullName": "John Doe",
+              "email": "john.doe@example.com"
+            },
+            "customFieldValues": {
+              "Status": "Active",
+              "Deal value": "42000",
+              "Close date": "2021-01-01",
+              "Assignee": [
+                {
+                  "id": "usr_c3606e3b-0a92-4849-90e5-88a8d3f388d6",
+                  "fullName": "Jane Doe",
+                  "email": "jane@example.com"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "getDeal": {
+      "path": "/v1/groups/{groupId}/{objectType}/{objectId}",
+      "method": "GET",
+      "summary": "Get a deal",
+      "response_examples": {
+        "200": {
+          "data": {
+            "id": "obj_183ed5cc-3182-45de-84d1-d520f2604810",
+            "name": "Project Alpha",
+            "companies": [
+              {
+                "id": "com_92346499-30bf-4278-ae8e-4aa3ae2ace2c",
+                "name": "Tech Corp"
+              }
+            ],
+            "people": [
+              {
+                "id": "per_5fa60242-0756-4e31-8cca-30c2c5ff1ac2",
+                "fullName": "John Doe"
+              }
+            ],
+            "createdAt": "2021-01-01T00:00:00.000Z",
+            "createdBy": {
+              "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+              "fullName": "John Doe",
+              "email": "john.doe@example.com"
+            },
+            "customFieldValues": {
+              "Status": "Active",
+              "Deal value": "42000",
+              "Close date": "2021-01-01",
+              "Assignee": [
+                {
+                  "id": "usr_c3606e3b-0a92-4849-90e5-88a8d3f388d6",
+                  "fullName": "Jane Doe",
+                  "email": "jane@example.com"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "updateDeal": {
+      "path": "/v1/groups/{groupId}/{objectType}/{objectId}",
+      "method": "PATCH",
+      "summary": "Update a deal",
+      "response_examples": {
+        "200": {
+          "data": {
+            "id": "obj_183ed5cc-3182-45de-84d1-d520f2604810",
+            "name": "Project Alpha",
+            "companies": [
+              {
+                "id": "com_92346499-30bf-4278-ae8e-4aa3ae2ace2c",
+                "name": "Tech Corp"
+              }
+            ],
+            "people": [
+              {
+                "id": "per_5fa60242-0756-4e31-8cca-30c2c5ff1ac2",
+                "fullName": "John Doe"
+              }
+            ],
+            "createdAt": "2021-01-01T00:00:00.000Z",
+            "createdBy": {
+              "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+              "fullName": "John Doe",
+              "email": "john.doe@example.com"
+            },
+            "customFieldValues": {
+              "Status": "Active",
+              "Deal value": "42000",
+              "Close date": "2021-01-01",
+              "Assignee": [
+                {
+                  "id": "usr_c3606e3b-0a92-4849-90e5-88a8d3f388d6",
+                  "fullName": "Jane Doe",
+                  "email": "jane@example.com"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "deleteDeal": {
+      "path": "/v1/groups/{groupId}/{objectType}/{objectId}",
+      "method": "DELETE",
+      "summary": "Delete a deal",
+      "response_examples": {
+        "200": {
+          "data": {
+            "id": "obj_183ed5cc-3182-45de-84d1-d520f2604810"
+          }
+        }
+      }
+    },
+    "internal_searchDeals": {
+      "path": "/v1/groups/{groupId}/{objectType}/search",
+      "method": "POST",
+      "summary": "Search deals",
+      "response_examples": {
+        "200": {
+          "data": {
+            "items": [
+              {
+                "id": "obj_183ed5cc-3182-45de-84d1-d520f2604810",
+                "name": "Project Alpha",
+                "companies": [
+                  {
+                    "id": "com_92346499-30bf-4278-ae8e-4aa3ae2ace2c",
+                    "name": "Tech Corp"
+                  }
+                ],
+                "people": [
+                  {
+                    "id": "per_5fa60242-0756-4e31-8cca-30c2c5ff1ac2",
+                    "fullName": "John Doe"
+                  }
+                ],
+                "createdAt": "2021-01-01T00:00:00.000Z",
+                "createdBy": {
+                  "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                  "fullName": "John Doe",
+                  "email": "john.doe@example.com"
+                },
+                "customFieldValues": {
+                  "Status": "Active",
+                  "Deal value": "42000",
+                  "Close date": "2021-01-01",
+                  "Assignee": [
+                    {
+                      "id": "usr_c3606e3b-0a92-4849-90e5-88a8d3f388d6",
+                      "fullName": "Jane Doe",
+                      "email": "jane@example.com"
+                    }
+                  ]
+                }
+              }
+            ],
+            "pagination": {
+              "nextLink": "https://api.folk.app/v1/groups/grp_bc984b3f-0386-434d-82d7-a91eb6badd71/Deals?limit=20&cursor=eyJvZmZzZXQiOjIwfQ%3D%3D"
+            }
+          }
+        }
+      }
+    },
+    "listGroups": {
+      "path": "/v1/groups",
+      "method": "GET",
+      "summary": "List groups",
+      "response_examples": {
+        "200": {
+          "data": {
+            "items": [
+              {
+                "id": "grp_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                "name": "Group Name"
+              }
+            ],
+            "pagination": {
+              "nextLink": "https://api.folk.app/v1/groups?limit=20&cursor=eyJvZmZzZXQiOjIwfQ%3D%3D"
+            }
+          }
+        }
+      }
+    },
+    "listGroupCustomFields": {
+      "path": "/v1/groups/{groupId}/custom-fields/{entityType}",
+      "method": "GET",
+      "summary": "List group custom fields",
+      "response_examples": {
+        "200": {
+          "data": {
+            "items": [
+              {
+                "name": "Status",
+                "type": "singleSelect",
+                "options": [
+                  {
+                    "label": "Active",
+                    "color": "#ffffff"
+                  },
+                  {
+                    "label": "Inactive",
+                    "color": "#000000"
+                  }
+                ]
+              },
+              {
+                "name": "Total Revenue",
+                "type": "numericField",
+                "config": {
+                  "format": "currency",
+                  "currency": "USD"
+                }
+              },
+              {
+                "name": "Details",
+                "type": "textField"
+              },
+              {
+                "name": "Tags",
+                "type": "multipleSelect",
+                "options": [
+                  {
+                    "label": "Tag 1",
+                    "color": "#ffffff"
+                  },
+                  {
+                    "label": "Tag 2",
+                    "color": "#000000"
+                  }
+                ]
+              },
+              {
+                "name": "Relationships",
+                "type": "contactField"
+              },
+              {
+                "name": "Date",
+                "type": "dateField"
+              },
+              {
+                "name": "Assigned to",
+                "type": "userField"
+              },
+              {
+                "name": "Deals",
+                "type": "objectField"
+              }
+            ],
+            "pagination": {
+              "nextLink": "https://api.folk.app/v1/groups/grp_bc984b3f-0386-434d-82d7-a91eb6badd71/custom-fields/person?limit=20&cursor=eyJvZmZzZXQiOjIwfQ%3D%3D"
+            }
+          }
+        }
+      }
+    },
+    "listUsers": {
+      "path": "/v1/users",
+      "method": "GET",
+      "summary": "List users",
+      "response_examples": {
+        "200": {
+          "data": {
+            "items": [
+              {
+                "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                "fullName": "John Doe",
+                "email": "john.doe@example.com"
+              }
+            ],
+            "pagination": {
+              "nextLink": "https://api.folk.app/v1/users?limit=20&cursor=eyJvZmZzZXQiOjIwfQ%3D%3D"
+            }
+          }
+        }
+      }
+    },
+    "getCurrentUser": {
+      "path": "/v1/users/me",
+      "method": "GET",
+      "summary": "Get the current user",
+      "response_examples": {
+        "200": {
+          "data": {
+            "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+            "fullName": "John Doe",
+            "email": "john.doe@example.com"
+          }
+        }
+      }
+    },
+    "getUser": {
+      "path": "/v1/users/{userId}",
+      "method": "GET",
+      "summary": "Get a user",
+      "response_examples": {
+        "200": {
+          "data": {
+            "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+            "fullName": "John Doe",
+            "email": "john.doe@example.com"
+          }
+        }
+      }
+    },
+    "listNotes": {
+      "path": "/v1/notes",
+      "method": "GET",
+      "summary": "List notes",
+      "response_examples": {
+        "200": {
+          "data": {
+            "items": [
+              {
+                "id": "nte_91118b73-5a75-480b-b8e3-a33671c35cdc",
+                "entity": {
+                  "id": "per_55175e81-9a52-4ac3-930e-82792c23499b",
+                  "entityType": "person",
+                  "fullName": "John Doe"
+                },
+                "visibility": "public",
+                "content": "This is a note about John Doe",
+                "author": {
+                  "type": "user",
+                  "id": "usr_14c18444-a0c7-459a-86b0-ccd70ebcd65c",
+                  "fullName": "John Doe",
+                  "email": "john.doe@example.com",
+                  "deleted": false
+                },
+                "createdAt": "2021-01-01T00:00:00.000Z",
+                "parentNote": {
+                  "id": "nte_14c18444-a0c7-459a-86b0-ccd70ebcd65c",
+                  "entity": {
+                    "id": "per_55175e81-9a52-4ac3-930e-82792c23499b",
+                    "entityType": "person",
+                    "fullName": "John Doe"
+                  },
+                  "content": "This is a parent note about John Doe",
+                  "visibility": "public",
+                  "author": {
+                    "type": "user",
+                    "id": "usr_14c18444-a0c7-459a-86b0-ccd70ebcd65c",
+                    "fullName": "John Doe",
+                    "email": "john.doe@example.com",
+                    "deleted": false
+                  },
+                  "createdAt": "2021-01-01T00:00:00.000Z",
+                  "deleted": false
+                }
+              }
+            ],
+            "pagination": {
+              "nextLink": "https://api.folk.app/v1/notes?limit=20&cursor=eyJvZmZzZXQiOjIwfQ%3D%3D"
+            }
+          }
+        }
+      }
+    },
+    "createNote": {
+      "path": "/v1/notes",
+      "method": "POST",
+      "summary": "Create a note",
+      "response_examples": {
+        "200": {
+          "data": {
+            "id": "nte_91118b73-5a75-480b-b8e3-a33671c35cdc",
+            "entity": {
+              "id": "per_55175e81-9a52-4ac3-930e-82792c23499b",
+              "entityType": "person",
+              "fullName": "John Doe"
+            },
+            "visibility": "public",
+            "content": "This is a note about John Doe",
+            "author": {
+              "type": "user",
+              "id": "usr_14c18444-a0c7-459a-86b0-ccd70ebcd65c",
+              "fullName": "John Doe",
+              "email": "john.doe@example.com",
+              "deleted": false
+            },
+            "createdAt": "2021-01-01T00:00:00.000Z",
+            "parentNote": {
+              "id": "nte_14c18444-a0c7-459a-86b0-ccd70ebcd65c",
+              "entity": {
+                "id": "per_55175e81-9a52-4ac3-930e-82792c23499b",
+                "entityType": "person",
+                "fullName": "John Doe"
+              },
+              "content": "This is a parent note about John Doe",
+              "visibility": "public",
+              "author": {
+                "type": "user",
+                "id": "usr_14c18444-a0c7-459a-86b0-ccd70ebcd65c",
+                "fullName": "John Doe",
+                "email": "john.doe@example.com",
+                "deleted": false
+              },
+              "createdAt": "2021-01-01T00:00:00.000Z",
+              "deleted": false
+            }
+          }
+        }
+      }
+    },
+    "getNote": {
+      "path": "/v1/notes/{noteId}",
+      "method": "GET",
+      "summary": "Get a note",
+      "response_examples": {
+        "200": {
+          "data": {
+            "id": "nte_91118b73-5a75-480b-b8e3-a33671c35cdc",
+            "entity": {
+              "id": "per_55175e81-9a52-4ac3-930e-82792c23499b",
+              "entityType": "person",
+              "fullName": "John Doe"
+            },
+            "visibility": "public",
+            "content": "This is a note about John Doe",
+            "author": {
+              "type": "user",
+              "id": "usr_14c18444-a0c7-459a-86b0-ccd70ebcd65c",
+              "fullName": "John Doe",
+              "email": "john.doe@example.com",
+              "deleted": false
+            },
+            "createdAt": "2021-01-01T00:00:00.000Z",
+            "parentNote": {
+              "id": "nte_14c18444-a0c7-459a-86b0-ccd70ebcd65c",
+              "entity": {
+                "id": "per_55175e81-9a52-4ac3-930e-82792c23499b",
+                "entityType": "person",
+                "fullName": "John Doe"
+              },
+              "content": "This is a parent note about John Doe",
+              "visibility": "public",
+              "author": {
+                "type": "user",
+                "id": "usr_14c18444-a0c7-459a-86b0-ccd70ebcd65c",
+                "fullName": "John Doe",
+                "email": "john.doe@example.com",
+                "deleted": false
+              },
+              "createdAt": "2021-01-01T00:00:00.000Z",
+              "deleted": false
+            }
+          }
+        }
+      }
+    },
+    "updateNote": {
+      "path": "/v1/notes/{noteId}",
+      "method": "PATCH",
+      "summary": "Update a note",
+      "response_examples": {
+        "200": {
+          "data": {
+            "id": "nte_91118b73-5a75-480b-b8e3-a33671c35cdc",
+            "entity": {
+              "id": "per_55175e81-9a52-4ac3-930e-82792c23499b",
+              "entityType": "person",
+              "fullName": "John Doe"
+            },
+            "visibility": "public",
+            "content": "This is a note about John Doe",
+            "author": {
+              "type": "user",
+              "id": "usr_14c18444-a0c7-459a-86b0-ccd70ebcd65c",
+              "fullName": "John Doe",
+              "email": "john.doe@example.com",
+              "deleted": false
+            },
+            "createdAt": "2021-01-01T00:00:00.000Z",
+            "parentNote": {
+              "id": "nte_14c18444-a0c7-459a-86b0-ccd70ebcd65c",
+              "entity": {
+                "id": "per_55175e81-9a52-4ac3-930e-82792c23499b",
+                "entityType": "person",
+                "fullName": "John Doe"
+              },
+              "content": "This is a parent note about John Doe",
+              "visibility": "public",
+              "author": {
+                "type": "user",
+                "id": "usr_14c18444-a0c7-459a-86b0-ccd70ebcd65c",
+                "fullName": "John Doe",
+                "email": "john.doe@example.com",
+                "deleted": false
+              },
+              "createdAt": "2021-01-01T00:00:00.000Z",
+              "deleted": false
+            }
+          }
+        }
+      }
+    },
+    "deleteNote": {
+      "path": "/v1/notes/{noteId}",
+      "method": "DELETE",
+      "summary": "Delete a note",
+      "response_examples": {
+        "200": {
+          "data": {
+            "id": "nte_91118b73-5a75-480b-b8e3-a33671c35cdc"
+          }
+        }
+      }
+    },
+    "listReminders": {
+      "path": "/v1/reminders",
+      "method": "GET",
+      "summary": "List reminders",
+      "response_examples": {
+        "200": {
+          "data": {
+            "items": [
+              {
+                "id": "rmd_91118b73-5a75-480b-b8e3-a33671c35cdc",
+                "name": "Reminder on John Doe",
+                "entity": {
+                  "id": "per_55175e81-9a52-4ac3-930e-82792c23499b",
+                  "entityType": "person",
+                  "fullName": "John Doe"
+                },
+                "recurrenceRule": "DTSTART;TZID=Europe/Paris:20250717T090000\nRRULE:FREQ=WEEKLY;INTERVAL=1",
+                "visibility": "public",
+                "assignedUsers": [
+                  {
+                    "id": "usr_a45c30d8-19fc-4939-94c7-17dc5e46f476",
+                    "fullName": "John Doe",
+                    "email": "john.doe@example.com"
+                  }
+                ],
+                "nextTriggerTime": "2025-07-17T09:00:00.000Z",
+                "lastTriggerTime": "2025-05-17T09:00:00.000Z",
+                "createdBy": {
+                  "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                  "fullName": "John Doe",
+                  "email": "john.doe@example.com"
+                },
+                "createdAt": "2021-01-01T00:00:00.000Z"
+              }
+            ],
+            "pagination": {
+              "nextLink": "https://api.folk.app/v1/reminders?limit=20&cursor=eyJvZmZzZXQiOjIwfQ%3D%3D"
+            }
+          }
+        }
+      }
+    },
+    "createReminder": {
+      "path": "/v1/reminders",
+      "method": "POST",
+      "summary": "Create a reminder",
+      "response_examples": {
+        "200": {
+          "data": {
+            "id": "rmd_91118b73-5a75-480b-b8e3-a33671c35cdc",
+            "name": "Reminder on John Doe",
+            "entity": {
+              "id": "per_55175e81-9a52-4ac3-930e-82792c23499b",
+              "entityType": "person",
+              "fullName": "John Doe"
+            },
+            "recurrenceRule": "DTSTART;TZID=Europe/Paris:20250717T090000\nRRULE:FREQ=WEEKLY;INTERVAL=1",
+            "visibility": "public",
+            "assignedUsers": [
+              {
+                "id": "usr_a45c30d8-19fc-4939-94c7-17dc5e46f476",
+                "fullName": "John Doe",
+                "email": "john.doe@example.com"
+              }
+            ],
+            "nextTriggerTime": "2025-07-17T09:00:00.000Z",
+            "lastTriggerTime": "2025-05-17T09:00:00.000Z",
+            "createdBy": {
+              "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+              "fullName": "John Doe",
+              "email": "john.doe@example.com"
+            },
+            "createdAt": "2021-01-01T00:00:00.000Z"
+          }
+        }
+      }
+    },
+    "getReminder": {
+      "path": "/v1/reminders/{reminderId}",
+      "method": "GET",
+      "summary": "Get a reminder",
+      "response_examples": {
+        "200": {
+          "data": {
+            "id": "rmd_91118b73-5a75-480b-b8e3-a33671c35cdc",
+            "name": "Reminder on John Doe",
+            "entity": {
+              "id": "per_55175e81-9a52-4ac3-930e-82792c23499b",
+              "entityType": "person",
+              "fullName": "John Doe"
+            },
+            "recurrenceRule": "DTSTART;TZID=Europe/Paris:20250717T090000\nRRULE:FREQ=WEEKLY;INTERVAL=1",
+            "visibility": "public",
+            "assignedUsers": [
+              {
+                "id": "usr_a45c30d8-19fc-4939-94c7-17dc5e46f476",
+                "fullName": "John Doe",
+                "email": "john.doe@example.com"
+              }
+            ],
+            "nextTriggerTime": "2025-07-17T09:00:00.000Z",
+            "lastTriggerTime": "2025-05-17T09:00:00.000Z",
+            "createdBy": {
+              "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+              "fullName": "John Doe",
+              "email": "john.doe@example.com"
+            },
+            "createdAt": "2021-01-01T00:00:00.000Z"
+          }
+        }
+      }
+    },
+    "updateReminder": {
+      "path": "/v1/reminders/{reminderId}",
+      "method": "PATCH",
+      "summary": "Update a reminder",
+      "response_examples": {
+        "200": {
+          "data": {
+            "id": "rmd_91118b73-5a75-480b-b8e3-a33671c35cdc",
+            "name": "Reminder on John Doe",
+            "entity": {
+              "id": "per_55175e81-9a52-4ac3-930e-82792c23499b",
+              "entityType": "person",
+              "fullName": "John Doe"
+            },
+            "recurrenceRule": "DTSTART;TZID=Europe/Paris:20250717T090000\nRRULE:FREQ=WEEKLY;INTERVAL=1",
+            "visibility": "public",
+            "assignedUsers": [
+              {
+                "id": "usr_a45c30d8-19fc-4939-94c7-17dc5e46f476",
+                "fullName": "John Doe",
+                "email": "john.doe@example.com"
+              }
+            ],
+            "nextTriggerTime": "2025-07-17T09:00:00.000Z",
+            "lastTriggerTime": "2025-05-17T09:00:00.000Z",
+            "createdBy": {
+              "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+              "fullName": "John Doe",
+              "email": "john.doe@example.com"
+            },
+            "createdAt": "2021-01-01T00:00:00.000Z"
+          }
+        }
+      }
+    },
+    "deleteReminder": {
+      "path": "/v1/reminders/{reminderId}",
+      "method": "DELETE",
+      "summary": "Delete a reminder",
+      "response_examples": {
+        "200": {
+          "data": {
+            "id": "rmd_91118b73-5a75-480b-b8e3-a33671c35cdc"
+          }
+        }
+      }
+    },
+    "createInteraction": {
+      "path": "/v1/interactions",
+      "method": "POST",
+      "summary": "Create an interaction",
+      "response_examples": {
+        "200": {
+          "data": {
+            "id": "lit_b049db09-c03d-4f32-96d6-d314760add5d",
+            "title": "Coffee with John Doe",
+            "content": "Had a coffee with John Doe\nDiscussed the new project.",
+            "entity": {
+              "id": "per_55175e81-9a52-4ac3-930e-82792c23499b",
+              "entityType": "person",
+              "fullName": "John Doe"
+            },
+            "dateTime": "2025-07-17T09:00:00.000Z",
+            "type": "coffee"
+          }
+        }
+      }
+    },
+    "listWebhooks": {
+      "path": "/v1/webhooks",
+      "method": "GET",
+      "summary": "List webhooks",
+      "response_examples": {
+        "200": {
+          "data": {
+            "items": [
+              {
+                "id": "wbk_8c18c158-d49e-4ad4-90d4-2b197688bac7",
+                "name": "My app integration",
+                "targetUrl": "https://my-app.com/webhook",
+                "subscribedEvents": [
+                  {
+                    "eventType": "person.created",
+                    "filter": {}
+                  }
+                ],
+                "redactedSigningSecret": "whs_fx**********************oVMa",
+                "status": "active",
+                "createdAt": "2025-07-17T09:00:00.000Z"
+              }
+            ],
+            "pagination": {
+              "nextLink": "https://api.folk.app/v1/webhooks?limit=20&cursor=eyJvZmZzZXQiOjIwfQ%3D%3D"
+            }
+          }
+        }
+      }
+    },
+    "createWebhook": {
+      "path": "/v1/webhooks",
+      "method": "POST",
+      "summary": "Create a webhook",
+      "response_examples": {
+        "200": {
+          "data": {
+            "id": "wbk_8c18c158-d49e-4ad4-90d4-2b197688bac7",
+            "name": "My app integration",
+            "targetUrl": "https://my-app.com/webhook",
+            "subscribedEvents": [
+              {
+                "eventType": "person.created",
+                "filter": {}
+              }
+            ],
+            "signingSecret": "whsec_QWFSUzl1QUVoQW1kdWtpTnJRTUFpbXNlZmxLTg==",
+            "status": "active",
+            "createdAt": "2025-07-17T09:00:00.000Z"
+          }
+        }
+      }
+    },
+    "getWebhook": {
+      "path": "/v1/webhooks/{webhookId}",
+      "method": "GET",
+      "summary": "Get a webhook",
+      "response_examples": {
+        "200": {
+          "data": {
+            "id": "wbk_8c18c158-d49e-4ad4-90d4-2b197688bac7",
+            "name": "My app integration",
+            "targetUrl": "https://my-app.com/webhook",
+            "subscribedEvents": [
+              {
+                "eventType": "person.created",
+                "filter": {}
+              }
+            ],
+            "redactedSigningSecret": "whs_fx**********************oVMa",
+            "status": "active",
+            "createdAt": "2025-07-17T09:00:00.000Z"
+          }
+        }
+      }
+    },
+    "updateWebhook": {
+      "path": "/v1/webhooks/{webhookId}",
+      "method": "PATCH",
+      "summary": "Update a webhook",
+      "response_examples": {
+        "200": {
+          "data": {
+            "id": "wbk_8c18c158-d49e-4ad4-90d4-2b197688bac7",
+            "name": "My app integration",
+            "targetUrl": "https://my-app.com/webhook",
+            "subscribedEvents": [
+              {
+                "eventType": "person.created",
+                "filter": {}
+              }
+            ],
+            "redactedSigningSecret": "whs_fx**********************oVMa",
+            "status": "active",
+            "createdAt": "2025-07-17T09:00:00.000Z"
+          }
+        }
+      }
+    },
+    "deleteWebhook": {
+      "path": "/v1/webhooks/{webhookId}",
+      "method": "DELETE",
+      "summary": "Delete a webhook",
+      "response_examples": {
+        "200": {
+          "data": {
+            "id": "wbk_8c18c158-d49e-4ad4-90d4-2b197688bac7"
+          }
+        }
+      }
+    }
+  }
+}

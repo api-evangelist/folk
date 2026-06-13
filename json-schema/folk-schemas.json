@@ -1,0 +1,2227 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Folk API Schemas",
+  "description": "JSON Schema definitions for the Folk REST API resources",
+  "definitions": {
+    "Error": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string",
+              "example": "RATE_LIMIT_EXCEEDED"
+            },
+            "message": {
+              "type": "string",
+              "example": "You have exceeded your rate limit."
+            },
+            "documentationUrl": {
+              "type": "string",
+              "format": "uri",
+              "example": "https://developer.folk.app/api-reference/errors#rate-limiting"
+            },
+            "requestId": {
+              "type": "string",
+              "format": "uuid",
+              "example": "123e4567-e89b-12d3-a456-426614174000"
+            },
+            "timestamp": {
+              "type": "string",
+              "format": "date-time",
+              "example": "2025-10-01T12:00:00Z"
+            },
+            "details": {
+              "type": "object",
+              "additionalProperties": true,
+              "example": {
+                "limit": 1000,
+                "remaining": 0,
+                "retryAfter": "2025-10-01T12:00:00Z"
+              }
+            }
+          },
+          "required": [
+            "code",
+            "message",
+            "documentationUrl",
+            "requestId",
+            "timestamp"
+          ]
+        }
+      },
+      "required": [
+        "error"
+      ],
+      "description": "Error response containing error details."
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "fullName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "fullName",
+        "email"
+      ],
+      "description": "A user in the workspace.",
+      "example": {
+        "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+        "fullName": "John Doe",
+        "email": "john.doe@example.com"
+      }
+    },
+    "InteractionMetadata": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "type": "object",
+          "properties": {
+            "approximateCount": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "The approximate number of interactions between the current user and the contact.",
+              "example": 21
+            },
+            "lastInteractedAt": {
+              "type": "string",
+              "format": "date-time",
+              "description": "The last interaction date between the current user and the contact.",
+              "example": "2025-05-01T00:00:00Z",
+              "nullable": true
+            }
+          },
+          "required": [
+            "approximateCount",
+            "lastInteractedAt"
+          ]
+        },
+        "workspace": {
+          "type": "object",
+          "properties": {
+            "approximateCount": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "The approximate number of interactions of your workspace with the contact.",
+              "example": 42
+            },
+            "lastInteractedAt": {
+              "type": "string",
+              "format": "date-time",
+              "description": "The last interaction date of your workspace with the contact.",
+              "example": "2025-05-01T00:00:00Z",
+              "nullable": true
+            },
+            "lastInteractedBy": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/User"
+              },
+              "description": "List of users in your workspace who last interacted with the contact.",
+              "example": [
+                {
+                  "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                  "fullName": "John Doe",
+                  "email": "john.doe@example.com"
+                }
+              ]
+            }
+          },
+          "required": [
+            "approximateCount",
+            "lastInteractedAt",
+            "lastInteractedBy"
+          ]
+        }
+      },
+      "required": [
+        "user",
+        "workspace"
+      ],
+      "description": "Metadata about interactions with the user and workspace.",
+      "example": {
+        "user": {
+          "approximateCount": 21,
+          "lastInteractedAt": "2025-05-01T00:00:00Z"
+        },
+        "workspace": {
+          "approximateCount": 21,
+          "lastInteractedAt": "2025-05-01T00:00:00Z",
+          "lastInteractedBy": [
+            {
+              "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+              "fullName": "John Doe",
+              "email": "john.doe@example.com"
+            }
+          ]
+        }
+      }
+    },
+    "Person": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string",
+          "description": "The first name of the person.",
+          "example": "John"
+        },
+        "lastName": {
+          "type": "string",
+          "description": "The last name of the person.",
+          "example": "Doe"
+        },
+        "fullName": {
+          "type": "string",
+          "description": "The full name of the person.",
+          "example": "John Doe"
+        },
+        "description": {
+          "type": "string",
+          "description": "A short description of the person.",
+          "example": "A brief description of the person."
+        },
+        "birthday": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 10,
+          "format": "date",
+          "description": "The birthday of the person, in ISO format.",
+          "example": "1990-01-01",
+          "nullable": true
+        },
+        "jobTitle": {
+          "type": "string",
+          "description": "The job title of the person.",
+          "example": "Software Engineer"
+        },
+        "createdAt": {
+          "type": "string",
+          "minLength": 20,
+          "maxLength": 40,
+          "description": "The date and time the person was created, in ISO format.",
+          "example": "2021-01-01T00:00:00.000Z",
+          "nullable": true
+        },
+        "createdBy": {
+          "$ref": "#/components/schemas/User"
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "name"
+            ]
+          },
+          "description": "The groups associated with the person.",
+          "example": [
+            {
+              "id": "grp_5fa60242-0756-4e31-8cca-30c2c5ff1ac2",
+              "name": "Engineering"
+            }
+          ]
+        },
+        "companies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The id of the company.",
+                "example": "com_92346499-30bf-4278-ae8e-4aa3ae2ace2c"
+              },
+              "name": {
+                "type": "string",
+                "description": "The name of the company.",
+                "example": "Tech Corp"
+              }
+            },
+            "required": [
+              "id",
+              "name"
+            ]
+          },
+          "description": "The companies associated with the person. The first company in the list is the person's primary company.",
+          "example": [
+            {
+              "id": "com_92346499-30bf-4278-ae8e-4aa3ae2ace2c",
+              "name": "Tech Corp"
+            }
+          ]
+        },
+        "addresses": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "An address associated with the person. The first address in the list is the person's primary address.",
+            "example": "123 Main St, Springfield, USA"
+          }
+        },
+        "emails": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "An email address associated with the person. The first email address in the list is the person's primary email address.",
+            "example": "john@example.com"
+          }
+        },
+        "phones": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "A phone number associated with the person. The first phone number in the list is the person's primary phone number.",
+            "example": "+1234567890"
+          }
+        },
+        "urls": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "A URL associated with the person. The first URL in the list is the person's primary URL.",
+            "example": "https://example.com"
+          }
+        },
+        "customFieldValues": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "string",
+                  "description": "A custom field value as a string.",
+                  "example": "Value 1"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "An array of values for the custom field.",
+                  "example": [
+                    "Value 1",
+                    "Value 2"
+                  ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  },
+                  "description": "An array of users associated with the custom field.",
+                  "example": [
+                    {
+                      "id": "usr_44b85098-441b-4d7f-9d72-c079b1caec45",
+                      "fullName": "Jane Doe",
+                      "email": "jane@example.com"
+                    },
+                    {
+                      "id": "usr_a95a1b90-8e88-4855-bc29-d47b8e2704e1",
+                      "fullName": "John Doe",
+                      "email": "john@example.com"
+                    }
+                  ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "fullName": {
+                            "type": "string"
+                          },
+                          "entityType": {
+                            "type": "string",
+                            "enum": [
+                              "person"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "fullName",
+                          "entityType"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "fullName": {
+                            "type": "string"
+                          },
+                          "entityType": {
+                            "type": "string",
+                            "enum": [
+                              "company"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "fullName",
+                          "entityType"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "fullName": {
+                            "type": "string"
+                          },
+                          "entityType": {
+                            "type": "string",
+                            "enum": [
+                              "object"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "fullName",
+                          "entityType"
+                        ]
+                      }
+                    ]
+                  },
+                  "description": "An array of relationships associated with the custom field.",
+                  "example": [
+                    {
+                      "id": "per_183ed5cc-3182-45de-84d1-d520f2604810",
+                      "fullName": "John Doe",
+                      "entityType": "person"
+                    },
+                    {
+                      "id": "com_92346499-30bf-4278-ae8e-4aa3ae2ace2c",
+                      "fullName": "Tech Corp",
+                      "entityType": "company"
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "interactionMetadata": {
+          "$ref": "#/components/schemas/InteractionMetadata"
+        },
+        "strongestConnection": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/components/schemas/User"
+          },
+          "description": "For each group the person is in, the workspace member with the strongest connection to the person. If the person has no strongest connection, this will be an empty object. Only the groups for which the person has a strongest connection will be included.",
+          "example": {
+            "grp_92346499-30bf-4278-ae8e-4aa3ae2ace2c": {
+              "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+              "fullName": "John Doe",
+              "email": "john.doe@example.com"
+            }
+          }
+        }
+      },
+      "required": [
+        "id",
+        "firstName",
+        "lastName",
+        "fullName",
+        "description",
+        "birthday",
+        "jobTitle",
+        "createdAt",
+        "createdBy",
+        "groups",
+        "companies",
+        "addresses",
+        "emails",
+        "phones",
+        "urls",
+        "customFieldValues",
+        "interactionMetadata"
+      ],
+      "description": "A person in the workspace.",
+      "example": {
+        "id": "per_183ed5cc-3182-45de-84d1-d520f2604810",
+        "firstName": "John",
+        "lastName": "Doe",
+        "fullName": "John Doe",
+        "description": "John Doe is a software engineer at Tech Corp.",
+        "birthday": "1980-06-15",
+        "jobTitle": "Software Engineer",
+        "createdAt": "2021-01-01T00:00:00.000Z",
+        "createdBy": {
+          "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+          "fullName": "John Doe",
+          "email": "john.doe@example.com"
+        },
+        "groups": [
+          {
+            "id": "grp_5fa60242-0756-4e31-8cca-30c2c5ff1ac2",
+            "name": "Engineering"
+          }
+        ],
+        "companies": [
+          {
+            "id": "com_92346499-30bf-4278-ae8e-4aa3ae2ace2c",
+            "name": "Tech Corp"
+          }
+        ],
+        "addresses": [
+          "123 Main St, Springfield, USA",
+          "456 Main St, Springfield, USA"
+        ],
+        "emails": [
+          "john@example.com",
+          "john@techcorp.com"
+        ],
+        "phones": [
+          "+1234567890",
+          "+0987654321"
+        ],
+        "urls": [
+          "https://example.com"
+        ],
+        "customFieldValues": {
+          "grp_5fa60242-0756-4e31-8cca-30c2c5ff1ac2": {
+            "Status": "Active",
+            "Programming languages": [
+              "Javascript",
+              "Python"
+            ],
+            "Join date": "2021-01-01",
+            "Relationships": [
+              {
+                "id": "per_ed110a47-5d09-43bf-b2e2-791d8231eb5f",
+                "fullName": "Bob Smith",
+                "entityType": "person"
+              },
+              {
+                "id": "com_9a03f575-8a85-40b0-ba2e-16d8e29e3b03",
+                "fullName": "HR services",
+                "entityType": "company"
+              }
+            ]
+          },
+          "grp_acdf2ad9-6a66-4d32-8594-9694913ac717": {
+            "Favorite color": "Blue",
+            "Favorite number": "42",
+            "Assignee": [
+              {
+                "id": "usr_c3606e3b-0a92-4849-90e5-88a8d3f388d6",
+                "fullName": "Jane Doe",
+                "email": "jane@example.com"
+              }
+            ]
+          }
+        },
+        "interactionMetadata": {
+          "user": {
+            "approximateCount": 21,
+            "lastInteractedAt": "2025-05-01T00:00:00Z"
+          },
+          "workspace": {
+            "approximateCount": 21,
+            "lastInteractedAt": "2025-05-01T00:00:00Z",
+            "lastInteractedBy": [
+              {
+                "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                "fullName": "John Doe",
+                "email": "john.doe@example.com"
+              }
+            ]
+          }
+        },
+        "strongestConnection": {
+          "grp_acdf2ad9-6a66-4d32-8594-9694913ac717": {
+            "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+            "fullName": "John Doe",
+            "email": "john.doe@example.com"
+          }
+        }
+      }
+    },
+    "Company": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the company.",
+          "example": "Tech Corp"
+        },
+        "description": {
+          "type": "string",
+          "description": "A short description of the company.",
+          "example": "A brief description of the company."
+        },
+        "fundingRaised": {
+          "type": "string",
+          "description": "The amount in USD of funding raised by the company.",
+          "example": "5000000",
+          "nullable": true
+        },
+        "lastFundingDate": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 10,
+          "format": "date",
+          "description": "The date of the last funding round for the company, in YYYY-MM-DD format.",
+          "example": "1990-01-01",
+          "nullable": true
+        },
+        "industry": {
+          "type": "string",
+          "description": "The industry the company operates in.",
+          "example": "Technology",
+          "nullable": true
+        },
+        "foundationYear": {
+          "type": "string",
+          "description": "The foundation year of the company, in YYYY format.",
+          "example": "1990",
+          "nullable": true
+        },
+        "employeeRange": {
+          "type": "string",
+          "description": "The employee range of the company. Possible values are: \"1-10\", \"11-50\", \"51-200\", \"201-500\", \"501-1000\", \"1001-5000\", \"5001-10000\", \"10000+\".",
+          "example": "51-200",
+          "nullable": true
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "name"
+            ]
+          },
+          "description": "The groups associated with the company.",
+          "example": [
+            {
+              "id": "grp_5fa60242-0756-4e31-8cca-30c2c5ff1ac2",
+              "name": "Engineering"
+            }
+          ]
+        },
+        "addresses": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "An address associated with the company. The first address in the list is the company's primary address.",
+            "example": "123 Main St, Springfield, USA"
+          }
+        },
+        "emails": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "An email address associated with the company. The first email address in the list is the company's primary email address.",
+            "example": "john@example.com"
+          }
+        },
+        "phones": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "A phone number associated with the company. The first phone number in the list is the company's primary phone number.",
+            "example": "+1234567890"
+          }
+        },
+        "urls": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "A URL associated with the company. The first URL in the list is the company's primary URL.",
+            "example": "https://example.com"
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "minLength": 20,
+          "maxLength": 40,
+          "description": "The date and time the company was created, in ISO format.",
+          "example": "2021-01-01T00:00:00.000Z",
+          "nullable": true
+        },
+        "createdBy": {
+          "$ref": "#/components/schemas/User"
+        },
+        "customFieldValues": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "string",
+                  "description": "A custom field value as a string.",
+                  "example": "Value 1"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "An array of values for the custom field.",
+                  "example": [
+                    "Value 1",
+                    "Value 2"
+                  ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  },
+                  "description": "An array of users associated with the custom field.",
+                  "example": [
+                    {
+                      "id": "usr_44b85098-441b-4d7f-9d72-c079b1caec45",
+                      "fullName": "Jane Doe",
+                      "email": "jane@example.com"
+                    },
+                    {
+                      "id": "usr_a95a1b90-8e88-4855-bc29-d47b8e2704e1",
+                      "fullName": "John Doe",
+                      "email": "john@example.com"
+                    }
+                  ]
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "fullName": {
+                            "type": "string"
+                          },
+                          "entityType": {
+                            "type": "string",
+                            "enum": [
+                              "person"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "fullName",
+                          "entityType"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "fullName": {
+                            "type": "string"
+                          },
+                          "entityType": {
+                            "type": "string",
+                            "enum": [
+                              "company"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "fullName",
+                          "entityType"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "fullName": {
+                            "type": "string"
+                          },
+                          "entityType": {
+                            "type": "string",
+                            "enum": [
+                              "object"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "fullName",
+                          "entityType"
+                        ]
+                      }
+                    ]
+                  },
+                  "description": "An array of relationships associated with the custom field.",
+                  "example": [
+                    {
+                      "id": "per_183ed5cc-3182-45de-84d1-d520f2604810",
+                      "fullName": "John Doe",
+                      "entityType": "person"
+                    },
+                    {
+                      "id": "com_92346499-30bf-4278-ae8e-4aa3ae2ace2c",
+                      "fullName": "Tech Corp",
+                      "entityType": "company"
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description",
+        "fundingRaised",
+        "lastFundingDate",
+        "industry",
+        "foundationYear",
+        "employeeRange",
+        "groups",
+        "addresses",
+        "emails",
+        "phones",
+        "urls",
+        "createdAt",
+        "createdBy",
+        "customFieldValues"
+      ],
+      "description": "A company in the workspace.",
+      "example": {
+        "id": "com_183ed5cc-3182-45de-84d1-d520f2604810",
+        "name": "Tech Corp",
+        "description": "A leading technology company.",
+        "fundingRaised": "5000000",
+        "lastFundingDate": "1990-01-01",
+        "industry": "Technology",
+        "foundationYear": "1990",
+        "employeeRange": "51-200",
+        "groups": [
+          {
+            "id": "grp_5fa60242-0756-4e31-8cca-30c2c5ff1ac2",
+            "name": "Engineering"
+          }
+        ],
+        "addresses": [
+          "123 Main St, Springfield, USA",
+          "456 Main St, Springfield, USA"
+        ],
+        "emails": [
+          "john@example.com",
+          "john@techcorp.com"
+        ],
+        "phones": [
+          "+1234567890",
+          "+0987654321"
+        ],
+        "urls": [
+          "https://example.com"
+        ],
+        "createdAt": "2021-01-01T00:00:00.000Z",
+        "createdBy": {
+          "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+          "fullName": "John Doe",
+          "email": "john.doe@example.com"
+        },
+        "customFieldValues": {
+          "grp_5fa60242-0756-4e31-8cca-30c2c5ff1ac2": {
+            "Status": "Active",
+            "Business type": [
+              "B2B",
+              "B2C"
+            ],
+            "Join date": "2021-01-01",
+            "Relationships": [
+              {
+                "id": "per_ed110a47-5d09-43bf-b2e2-791d8231eb5f",
+                "fullName": "Bob Smith",
+                "entityType": "person"
+              },
+              {
+                "id": "com_9a03f575-8a85-40b0-ba2e-16d8e29e3b03",
+                "fullName": "HR services",
+                "entityType": "company"
+              }
+            ]
+          },
+          "grp_acdf2ad9-6a66-4d32-8594-9694913ac717": {
+            "Custom Notes": "Important client, handle with care.",
+            "ARR": "42000000",
+            "Assignee": [
+              {
+                "id": "usr_c3606e3b-0a92-4849-90e5-88a8d3f388d6",
+                "fullName": "Jane Doe",
+                "email": "jane@example.com"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "Deal": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the deal.",
+          "example": "Project Alpha"
+        },
+        "companies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string",
+                "description": "The name of the company.",
+                "example": "Tech Corp"
+              }
+            },
+            "required": [
+              "id",
+              "name"
+            ]
+          }
+        },
+        "people": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "fullName": {
+                "type": "string",
+                "description": "The name of the person.",
+                "example": "John Doe"
+              }
+            },
+            "required": [
+              "id",
+              "fullName"
+            ]
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "minLength": 20,
+          "maxLength": 40,
+          "description": "The date and time the deal was created, in ISO format.",
+          "example": "2021-01-01T00:00:00.000Z",
+          "nullable": true
+        },
+        "createdBy": {
+          "$ref": "#/components/schemas/User"
+        },
+        "customFieldValues": {
+          "type": "object",
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "description": "A custom field value as a string.",
+                "example": "Value 1"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "An array of values for the custom field.",
+                "example": [
+                  "Value 1",
+                  "Value 2"
+                ]
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "description": "An array of users associated with the custom field.",
+                "example": [
+                  {
+                    "id": "usr_44b85098-441b-4d7f-9d72-c079b1caec45",
+                    "fullName": "Jane Doe",
+                    "email": "jane@example.com"
+                  },
+                  {
+                    "id": "usr_a95a1b90-8e88-4855-bc29-d47b8e2704e1",
+                    "fullName": "John Doe",
+                    "email": "john@example.com"
+                  }
+                ]
+              },
+              {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "fullName": {
+                          "type": "string"
+                        },
+                        "entityType": {
+                          "type": "string",
+                          "enum": [
+                            "person"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "fullName",
+                        "entityType"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "fullName": {
+                          "type": "string"
+                        },
+                        "entityType": {
+                          "type": "string",
+                          "enum": [
+                            "company"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "fullName",
+                        "entityType"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "fullName": {
+                          "type": "string"
+                        },
+                        "entityType": {
+                          "type": "string",
+                          "enum": [
+                            "object"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "fullName",
+                        "entityType"
+                      ]
+                    }
+                  ]
+                },
+                "description": "An array of relationships associated with the custom field.",
+                "example": [
+                  {
+                    "id": "per_183ed5cc-3182-45de-84d1-d520f2604810",
+                    "fullName": "John Doe",
+                    "entityType": "person"
+                  },
+                  {
+                    "id": "com_92346499-30bf-4278-ae8e-4aa3ae2ace2c",
+                    "fullName": "Tech Corp",
+                    "entityType": "company"
+                  }
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "companies",
+        "people",
+        "createdAt",
+        "createdBy",
+        "customFieldValues"
+      ],
+      "description": "A deal in the workspace.",
+      "example": {
+        "id": "obj_183ed5cc-3182-45de-84d1-d520f2604810",
+        "name": "Project Alpha",
+        "companies": [
+          {
+            "id": "com_92346499-30bf-4278-ae8e-4aa3ae2ace2c",
+            "name": "Tech Corp"
+          }
+        ],
+        "people": [
+          {
+            "id": "per_5fa60242-0756-4e31-8cca-30c2c5ff1ac2",
+            "fullName": "John Doe"
+          }
+        ],
+        "createdAt": "2021-01-01T00:00:00.000Z",
+        "createdBy": {
+          "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+          "fullName": "John Doe",
+          "email": "john.doe@example.com"
+        },
+        "customFieldValues": {
+          "Status": "Active",
+          "Deal value": "42000",
+          "Close date": "2021-01-01",
+          "Assignee": [
+            {
+              "id": "usr_c3606e3b-0a92-4849-90e5-88a8d3f388d6",
+              "fullName": "Jane Doe",
+              "email": "jane@example.com"
+            }
+          ]
+        }
+      }
+    },
+    "Group": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ],
+      "description": "A group in the workspace.",
+      "example": {
+        "id": "grp_bc984b3f-0386-434d-82d7-a91eb6badd71",
+        "name": "Group Name"
+      }
+    },
+    "GroupCustomField": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "multipleSelect",
+            "userField",
+            "contactField",
+            "objectField",
+            "singleSelect",
+            "textField",
+            "dateField",
+            "numericField"
+          ]
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "color": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "label",
+              "color"
+            ]
+          }
+        },
+        "config": {
+          "type": "object",
+          "properties": {
+            "format": {
+              "type": "string",
+              "enum": [
+                "default",
+                "percent",
+                "currency",
+                "none",
+                "number"
+              ]
+            },
+            "currency": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": [
+        "name",
+        "type"
+      ],
+      "description": "A group custom field.",
+      "example": {
+        "name": "Status",
+        "type": "singleSelect",
+        "options": [
+          {
+            "label": "Active",
+            "color": "#ffffff"
+          },
+          {
+            "label": "Inactive",
+            "color": "#000000"
+          }
+        ]
+      }
+    },
+    "CurrentUser": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "fullName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "fullName",
+        "email"
+      ],
+      "description": "The current workspace user.",
+      "example": {
+        "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+        "fullName": "John Doe",
+        "email": "john.doe@example.com"
+      }
+    },
+    "Note": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "entity": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 40,
+              "maxLength": 40,
+              "description": "The ID of the entity connected to the note.",
+              "example": "per_55175e81-9a52-4ac3-930e-82792c23499b"
+            },
+            "entityType": {
+              "type": "string",
+              "enum": [
+                "person",
+                "company",
+                "object"
+              ],
+              "description": "The type of the entity connected to the note. Can be `person`, `company` or `object`.",
+              "example": "person"
+            },
+            "fullName": {
+              "type": "string",
+              "maxLength": 1000,
+              "description": "The full name of the entity connected to the note.",
+              "example": "John Doe"
+            }
+          },
+          "required": [
+            "id",
+            "entityType",
+            "fullName"
+          ]
+        },
+        "content": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100000,
+          "description": "The content of the note. Can be in plain text or in markdown format.",
+          "example": "This is a note about **John Doe**"
+        },
+        "visibility": {
+          "type": "string",
+          "enum": [
+            "public",
+            "private"
+          ],
+          "description": "The visibility of the note.\n\n- `public`: The note is visible to all users in the workspace.\n- `private`: The note is visible only to the current user.\n    "
+        },
+        "author": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "user"
+                  ],
+                  "description": "The type of the author of the note, it can be a user or a folk assistant.",
+                  "example": "user"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The ID of the author of the note.",
+                  "example": "usr_55175e81-9a52-4ac3-930e-82792c23499b"
+                },
+                "fullName": {
+                  "type": "string",
+                  "maxLength": 1000,
+                  "description": "The full name of the author of the note.",
+                  "example": "John Doe"
+                },
+                "email": {
+                  "type": "string",
+                  "maxLength": 254,
+                  "format": "email",
+                  "description": "The email of the author of the note.",
+                  "example": "john.doe@example.com"
+                },
+                "deleted": {
+                  "type": "boolean",
+                  "enum": [
+                    false
+                  ],
+                  "description": "Whether the author has been deleted and does not exist anymore.",
+                  "example": false
+                }
+              },
+              "required": [
+                "type",
+                "id",
+                "fullName",
+                "email",
+                "deleted"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "assistant"
+                  ],
+                  "description": "The type of the author of the note, it can be a user or a folk assistant.",
+                  "example": "assistant"
+                },
+                "fullName": {
+                  "type": "string",
+                  "maxLength": 1000,
+                  "description": "The name of the folk assistant that created the note.",
+                  "example": "Research assistant"
+                }
+              },
+              "required": [
+                "type",
+                "fullName"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "user"
+                  ],
+                  "description": "The type of the author of the note, it can be a user or a folk assistant.",
+                  "example": "user"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "deleted": {
+                  "type": "boolean",
+                  "enum": [
+                    true
+                  ],
+                  "description": "Whether the author has been deleted and does not exist anymore.",
+                  "example": true
+                }
+              },
+              "required": [
+                "type",
+                "id",
+                "deleted"
+              ]
+            }
+          ]
+        },
+        "createdAt": {
+          "type": "string",
+          "minLength": 20,
+          "maxLength": 40,
+          "description": "The date and time the note was created, in ISO format.",
+          "example": "2021-01-01T00:00:00.000Z",
+          "nullable": true
+        },
+        "parentNote": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "deleted": {
+                  "type": "boolean",
+                  "enum": [
+                    true
+                  ],
+                  "description": "Whether the parent note has been deleted and does not exist anymore.",
+                  "example": true
+                }
+              },
+              "required": [
+                "id",
+                "deleted"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "entity": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 40,
+                      "maxLength": 40,
+                      "description": "The ID of the entity connected to the note.",
+                      "example": "per_55175e81-9a52-4ac3-930e-82792c23499b"
+                    },
+                    "entityType": {
+                      "type": "string",
+                      "enum": [
+                        "person",
+                        "company",
+                        "object"
+                      ],
+                      "description": "The type of the entity connected to the note. Can be `person`, `company` or `object`.",
+                      "example": "person"
+                    },
+                    "fullName": {
+                      "type": "string",
+                      "maxLength": 1000,
+                      "description": "The full name of the entity connected to the note.",
+                      "example": "John Doe"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "entityType",
+                    "fullName"
+                  ]
+                },
+                "content": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 100000,
+                  "description": "The content of the parent note. If the parent note is not visible to the current user, this field will be null.",
+                  "example": "This is a parent note about John Doe",
+                  "nullable": true
+                },
+                "visibility": {
+                  "type": "string",
+                  "enum": [
+                    "public",
+                    "private"
+                  ],
+                  "description": "The visibility of the note.\n\n- `public`: The note is visible to all users in the workspace.\n- `private`: The note is visible only to the current user.\n    "
+                },
+                "author": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "user"
+                          ],
+                          "description": "The type of the author of the note, it can be a user or a folk assistant.",
+                          "example": "user"
+                        },
+                        "id": {
+                          "type": "string",
+                          "description": "The ID of the author of the note.",
+                          "example": "usr_55175e81-9a52-4ac3-930e-82792c23499b"
+                        },
+                        "fullName": {
+                          "type": "string",
+                          "maxLength": 1000,
+                          "description": "The full name of the author of the note.",
+                          "example": "John Doe"
+                        },
+                        "email": {
+                          "type": "string",
+                          "maxLength": 254,
+                          "format": "email",
+                          "description": "The email of the author of the note.",
+                          "example": "john.doe@example.com"
+                        },
+                        "deleted": {
+                          "type": "boolean",
+                          "enum": [
+                            false
+                          ],
+                          "description": "Whether the author has been deleted and does not exist anymore.",
+                          "example": false
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "id",
+                        "fullName",
+                        "email",
+                        "deleted"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "assistant"
+                          ],
+                          "description": "The type of the author of the note, it can be a user or a folk assistant.",
+                          "example": "assistant"
+                        },
+                        "fullName": {
+                          "type": "string",
+                          "maxLength": 1000,
+                          "description": "The name of the folk assistant that created the note.",
+                          "example": "Research assistant"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "fullName"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "user"
+                          ],
+                          "description": "The type of the author of the note, it can be a user or a folk assistant.",
+                          "example": "user"
+                        },
+                        "id": {
+                          "type": "string"
+                        },
+                        "deleted": {
+                          "type": "boolean",
+                          "enum": [
+                            true
+                          ],
+                          "description": "Whether the author has been deleted and does not exist anymore.",
+                          "example": true
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "id",
+                        "deleted"
+                      ]
+                    }
+                  ]
+                },
+                "createdAt": {
+                  "type": "string",
+                  "minLength": 20,
+                  "maxLength": 40,
+                  "description": "The date and time the parent note was created, in ISO format.",
+                  "example": "2021-01-01T00:00:00.000Z",
+                  "nullable": true
+                },
+                "deleted": {
+                  "type": "boolean",
+                  "enum": [
+                    false
+                  ],
+                  "description": "Whether the parent note has been deleted and does not exist anymore.",
+                  "example": false
+                }
+              },
+              "required": [
+                "id",
+                "entity",
+                "content",
+                "visibility",
+                "author",
+                "createdAt",
+                "deleted"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The parent note, if this note is a reply to another note.",
+          "example": {
+            "id": "nte_14c18444-a0c7-459a-86b0-ccd70ebcd65c",
+            "entity": {
+              "id": "per_55175e81-9a52-4ac3-930e-82792c23499b",
+              "entityType": "person",
+              "fullName": "John Doe"
+            },
+            "content": "This is a parent note about John Doe",
+            "visibility": "public",
+            "author": {
+              "type": "user",
+              "id": "usr_14c18444-a0c7-459a-86b0-ccd70ebcd65c",
+              "fullName": "John Doe",
+              "email": "john.doe@example.com",
+              "deleted": false
+            },
+            "createdAt": "2021-01-01T00:00:00.000Z",
+            "deleted": false
+          }
+        }
+      },
+      "required": [
+        "id",
+        "entity",
+        "content",
+        "visibility",
+        "author",
+        "createdAt",
+        "parentNote"
+      ],
+      "description": "A note linked to an entity.",
+      "example": {
+        "id": "nte_91118b73-5a75-480b-b8e3-a33671c35cdc",
+        "entity": {
+          "id": "per_55175e81-9a52-4ac3-930e-82792c23499b",
+          "entityType": "person",
+          "fullName": "John Doe"
+        },
+        "visibility": "public",
+        "content": "This is a note about John Doe",
+        "author": {
+          "type": "user",
+          "id": "usr_14c18444-a0c7-459a-86b0-ccd70ebcd65c",
+          "fullName": "John Doe",
+          "email": "john.doe@example.com",
+          "deleted": false
+        },
+        "createdAt": "2021-01-01T00:00:00.000Z",
+        "parentNote": {
+          "id": "nte_14c18444-a0c7-459a-86b0-ccd70ebcd65c",
+          "entity": {
+            "id": "per_55175e81-9a52-4ac3-930e-82792c23499b",
+            "entityType": "person",
+            "fullName": "John Doe"
+          },
+          "content": "This is a parent note about John Doe",
+          "visibility": "public",
+          "author": {
+            "type": "user",
+            "id": "usr_14c18444-a0c7-459a-86b0-ccd70ebcd65c",
+            "fullName": "John Doe",
+            "email": "john.doe@example.com",
+            "deleted": false
+          },
+          "createdAt": "2021-01-01T00:00:00.000Z",
+          "deleted": false
+        }
+      }
+    },
+    "Reminder": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 255
+        },
+        "entity": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 40,
+              "maxLength": 40,
+              "description": "The ID of the entity connected to the reminder.",
+              "example": "per_55175e81-9a52-4ac3-930e-82792c23499b"
+            },
+            "entityType": {
+              "type": "string",
+              "enum": [
+                "person",
+                "company",
+                "object"
+              ],
+              "description": "The type of the entity connected to the reminder. Can be `person`, `company` or `object`.",
+              "example": "person"
+            },
+            "fullName": {
+              "type": "string",
+              "maxLength": 1000,
+              "description": "The full name of the entity connected to the reminder.",
+              "example": "John Doe"
+            }
+          },
+          "required": [
+            "id",
+            "entityType",
+            "fullName"
+          ]
+        },
+        "recurrenceRule": {
+          "type": "string",
+          "description": "The recurrence rule of the reminder. The recurrence rule is a string that follows the iCalendar format specified in [RFC 5545](https://icalendar.org/iCalendar-RFC-5545/3-8-5-3-recurrence-rule.html).",
+          "example": "DTSTART;TZID=Europe/Paris:20250717T090000\nRRULE:FREQ=WEEKLY;INTERVAL=1"
+        },
+        "visibility": {
+          "type": "string",
+          "enum": [
+            "public",
+            "private"
+          ],
+          "description": "The visibility of the reminder.\n\n- `public`: The reminder is visible to all users in the workspace.\n- `private`: The reminder is visible only to the current user.\n    "
+        },
+        "assignedUsers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/User"
+          },
+          "description": "A list of workspace users to be notified when the reminder is triggered. For private reminders, only the current user is notified.",
+          "example": [
+            {
+              "id": "usr_a45c30d8-19fc-4939-94c7-17dc5e46f476",
+              "fullName": "John Doe",
+              "email": "john.doe@example.com"
+            }
+          ]
+        },
+        "nextTriggerTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The next trigger time of the reminder.",
+          "example": "2025-07-17T09:00:00.000Z",
+          "nullable": true
+        },
+        "lastTriggerTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The last trigger time of the reminder.",
+          "example": "2025-05-17T09:00:00.000Z",
+          "nullable": true
+        },
+        "createdBy": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/User"
+            },
+            {
+              "description": "The user who created the reminder."
+            }
+          ]
+        },
+        "createdAt": {
+          "type": "string",
+          "minLength": 20,
+          "maxLength": 40,
+          "description": "The date and time the reminder was created, in ISO format.",
+          "example": "2021-01-01T00:00:00.000Z",
+          "nullable": true
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "entity",
+        "recurrenceRule",
+        "visibility",
+        "assignedUsers",
+        "nextTriggerTime",
+        "lastTriggerTime",
+        "createdBy",
+        "createdAt"
+      ],
+      "description": "A reminder linked to an entity.",
+      "example": {
+        "id": "rmd_91118b73-5a75-480b-b8e3-a33671c35cdc",
+        "name": "Reminder on John Doe",
+        "entity": {
+          "id": "per_55175e81-9a52-4ac3-930e-82792c23499b",
+          "entityType": "person",
+          "fullName": "John Doe"
+        },
+        "recurrenceRule": "DTSTART;TZID=Europe/Paris:20250717T090000\nRRULE:FREQ=WEEKLY;INTERVAL=1",
+        "visibility": "public",
+        "assignedUsers": [
+          {
+            "id": "usr_a45c30d8-19fc-4939-94c7-17dc5e46f476",
+            "fullName": "John Doe",
+            "email": "john.doe@example.com"
+          }
+        ],
+        "nextTriggerTime": "2025-07-17T09:00:00.000Z",
+        "lastTriggerTime": "2025-05-17T09:00:00.000Z",
+        "createdBy": {
+          "id": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+          "fullName": "John Doe",
+          "email": "john.doe@example.com"
+        },
+        "createdAt": "2021-01-01T00:00:00.000Z"
+      }
+    },
+    "LoggedInteraction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "entity": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the entity connected to the interaction.",
+              "example": "per_55175e81-9a52-4ac3-930e-82792c23499b"
+            },
+            "entityType": {
+              "type": "string",
+              "enum": [
+                "person",
+                "company"
+              ],
+              "description": "The type of the entity connected to the interaction. Can be `person` or `company`.",
+              "example": "person"
+            },
+            "fullName": {
+              "type": "string",
+              "description": "The full name of the entity connected to the interaction.",
+              "example": "John Doe"
+            }
+          },
+          "required": [
+            "id",
+            "entityType",
+            "fullName"
+          ]
+        },
+        "dateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time of the interaction.",
+          "example": "2025-07-17T09:00:00.000Z"
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the interaction.",
+          "example": "Coffee with John Doe"
+        },
+        "content": {
+          "type": "string",
+          "description": "The multi-line content of the interaction.",
+          "example": "Had a coffee with John Doe\nDiscussed the new project."
+        },
+        "type": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 50,
+              "format": "emoji",
+              "description": "An emoji representing the interaction type.",
+              "example": "\u2615\ufe0f"
+            },
+            {
+              "type": "string",
+              "enum": [
+                "call",
+                "meeting",
+                "message",
+                "coffee",
+                "lunch",
+                "event",
+                "drink"
+              ],
+              "description": "A predefined interaction type.",
+              "example": "coffee"
+            },
+            {
+              "type": "string",
+              "enum": [
+                "whatsapp",
+                "twitter",
+                "linkedin",
+                "hangout",
+                "skype",
+                "slack",
+                "iMessage",
+                "fbMessenger",
+                "signal",
+                "discord",
+                "wechat",
+                "telegram",
+                "viber"
+              ],
+              "description": "A messaging app used for the interaction.",
+              "example": "slack"
+            }
+          ],
+          "description": "The type of the interaction. Can be a predefined type or an emoji.",
+          "example": "coffee"
+        }
+      },
+      "required": [
+        "id",
+        "entity",
+        "dateTime",
+        "title",
+        "content",
+        "type"
+      ],
+      "description": "An interaction linked to an entity.",
+      "example": {
+        "id": "lit_b049db09-c03d-4f32-96d6-d314760add5d",
+        "title": "Coffee with John Doe",
+        "content": "Had a coffee with John Doe\nDiscussed the new project.",
+        "entity": {
+          "id": "per_55175e81-9a52-4ac3-930e-82792c23499b",
+          "entityType": "person",
+          "fullName": "John Doe"
+        },
+        "dateTime": "2025-07-17T09:00:00.000Z",
+        "type": "coffee"
+      }
+    },
+    "Webhook": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 255,
+          "description": "A friendly name for the webhook.",
+          "example": "My app integration"
+        },
+        "targetUrl": {
+          "type": "string",
+          "maxLength": 2048,
+          "format": "uri",
+          "description": "The URL of the webhook.",
+          "example": "https://my-app.com/webhook"
+        },
+        "subscribedEvents": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "eventType": {
+                "type": "string"
+              },
+              "filter": {
+                "type": "object",
+                "properties": {
+                  "groupId": {
+                    "type": "string",
+                    "maxLength": 255
+                  },
+                  "objectType": {
+                    "type": "string",
+                    "maxLength": 255
+                  },
+                  "path": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 255
+                    },
+                    "maxItems": 3
+                  },
+                  "value": {
+                    "type": "string",
+                    "maxLength": 255
+                  }
+                },
+                "default": {}
+              }
+            },
+            "required": [
+              "eventType"
+            ]
+          },
+          "maxItems": 20,
+          "description": "The events the webhook is subscribed to, with optional filters. For more information on how to use filters, see the [create webhook documentation](/api-reference/webhooks/create-a-webhook).",
+          "example": [
+            {
+              "eventType": "person.created",
+              "filter": {}
+            }
+          ]
+        },
+        "redactedSigningSecret": {
+          "type": "string",
+          "maxLength": 255,
+          "description": "The signing secret of the webhook.",
+          "example": "whs_fx**********************oVMa"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "inactive"
+          ],
+          "description": "The status of the webhook.",
+          "example": "active"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time the webhook was created.",
+          "example": "2025-07-17T09:00:00.000Z"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "targetUrl",
+        "subscribedEvents",
+        "redactedSigningSecret",
+        "status",
+        "createdAt"
+      ],
+      "description": "A webhook listening to events from the workspace and sending them to a URL.",
+      "example": {
+        "id": "wbk_8c18c158-d49e-4ad4-90d4-2b197688bac7",
+        "name": "My app integration",
+        "targetUrl": "https://my-app.com/webhook",
+        "subscribedEvents": [
+          {
+            "eventType": "person.created",
+            "filter": {}
+          }
+        ],
+        "redactedSigningSecret": "whs_fx**********************oVMa",
+        "status": "active",
+        "createdAt": "2025-07-17T09:00:00.000Z"
+      }
+    },
+    "WebhookWithSigningSecret": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 255,
+          "description": "A friendly name for the webhook.",
+          "example": "My app integration"
+        },
+        "targetUrl": {
+          "type": "string",
+          "maxLength": 2048,
+          "format": "uri",
+          "description": "The URL of the webhook.",
+          "example": "https://my-app.com/webhook"
+        },
+        "subscribedEvents": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "eventType": {
+                "type": "string"
+              },
+              "filter": {
+                "type": "object",
+                "properties": {
+                  "groupId": {
+                    "type": "string",
+                    "maxLength": 255
+                  },
+                  "objectType": {
+                    "type": "string",
+                    "maxLength": 255
+                  },
+                  "path": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 255
+                    },
+                    "maxItems": 3
+                  },
+                  "value": {
+                    "type": "string",
+                    "maxLength": 255
+                  }
+                },
+                "default": {}
+              }
+            },
+            "required": [
+              "eventType"
+            ]
+          },
+          "maxItems": 20,
+          "description": "The events the webhook is subscribed to, with optional filters. For more information on how to use filters, see the [create webhook documentation](/api-reference/webhooks/create-a-webhook).",
+          "example": [
+            {
+              "eventType": "person.created",
+              "filter": {}
+            }
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "inactive"
+          ],
+          "description": "The status of the webhook.",
+          "example": "active"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time the webhook was created.",
+          "example": "2025-07-17T09:00:00.000Z"
+        },
+        "signingSecret": {
+          "type": "string",
+          "maxLength": 255,
+          "description": "The signing secret of the webhook.",
+          "example": "whsec_QWFSUzl1QUVoQW1kdWtpTnJRTUFpbXNlZmxLTg=="
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "targetUrl",
+        "subscribedEvents",
+        "status",
+        "createdAt",
+        "signingSecret"
+      ],
+      "description": "A webhook with a visible signing secret.",
+      "example": {
+        "id": "wbk_8c18c158-d49e-4ad4-90d4-2b197688bac7",
+        "name": "My app integration",
+        "targetUrl": "https://my-app.com/webhook",
+        "subscribedEvents": [
+          {
+            "eventType": "person.created",
+            "filter": {}
+          }
+        ],
+        "signingSecret": "whsec_QWFSUzl1QUVoQW1kdWtpTnJRTUFpbXNlZmxLTg==",
+        "status": "active",
+        "createdAt": "2025-07-17T09:00:00.000Z"
+      }
+    }
+  }
+}
