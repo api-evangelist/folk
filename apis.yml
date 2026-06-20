@@ -11,7 +11,7 @@ description: >
   with 5,000+ tools including Gmail, Outlook, LinkedIn, WhatsApp, and Zapier.
   API access is available on the Premium and Enterprise plans.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/folk/refs/heads/main/apis.yml
 created: "2026-06-12"
 modified: "2026-06-12"
@@ -33,7 +33,7 @@ apis:
       fields, users, and webhooks. Authentication uses API key Bearer tokens
       generated in workspace settings. Rate limits are set at 600 requests per
       minute per user, with standard rate-limit response headers provided.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developer.folk.app/
     baseURL: https://api.folk.app
     tags:
