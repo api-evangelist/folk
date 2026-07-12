@@ -55,6 +55,10 @@ apis:
       - type: Examples
         url: examples/folk-examples.json
 common:
+  - type: DomainSecurity
+    url: security/folk-domain-security.yml
+  - type: Authentication
+    url: authentication/folk-authentication.yml
   - type: Website
     url: https://www.folk.app/
   - type: Documentation
