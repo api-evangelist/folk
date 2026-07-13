@@ -2,13 +2,14 @@
   "repo": "folk",
   "feeds": [
     {
-      "source": "https://www.folk.app/blog",
-      "feed_url": "",
-      "saved": 4,
-      "method": "agent-scrape"
+      "source": "https://www.linkedin.com/company/folkhq/",
+      "feed_url": "https://www.linkedin.com/company/folkhq/",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "post_count": 8,
-  "fetched": "2026-06-27T12:42:36Z",
-  "agent_pulled": "2026-06-27"
+  "post_count": 12,
+  "fetched": "2026-07-11T11:50:51Z",
+  "agent_pulled": "2026-07-04"
 }
