@@ -55,6 +55,8 @@ apis:
       - type: Examples
         url: examples/folk-examples.json
 common:
+  - type: AgenticAccess
+    url: agentic-access/folk-agentic-access.yml
   - type: DomainSecurity
     url: security/folk-domain-security.yml
   - type: Authentication
