@@ -1,0 +1,1003 @@
+openapi: 3.0.3
+info:
+  title: Folk External Companies Reminders API
+  description: Folk's public REST API lets you manage workspaces, groups, contacts, and real-time triggers.
+  version: '2025-06-09'
+  contact:
+    name: folk
+    email: tech@folk.app
+    url: https://folk.app
+servers:
+- url: https://api.folk.app
+  description: Folk's public API production base URL.
+  x-internal: false
+tags:
+- name: Reminders
+  description: Operations related to reminders.
+paths:
+  /v1/reminders:
+    get:
+      security:
+      - bearerApiKeyAuth: []
+      x-stability-level: alpha
+      operationId: listReminders
+      summary: List reminders
+      description: Retrieve a list of reminders in the workspace.
+      tags:
+      - Reminders
+      parameters:
+      - schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+        required: false
+        description: The number of items to return.
+        example: 20
+        name: limit
+        in: query
+      - schema:
+          type: string
+          maxLength: 128
+        required: false
+        description: A cursor for pagination across multiple pages of results. Don’t include this parameter on the first call. Use the `pagination.nextLink` value returned in a previous response to request subsequent results.
+        example: eyJvZmZzZXQiOjN9
+        name: cursor
+        in: query
+      - schema:
+          type: string
+          minLength: 40
+          maxLength: 40
+        required: false
+        description: Filter reminders by entity. Only reminders linked to the specified entity will be returned.
+        example: per_55175e81-9a52-4ac3-930e-82792c23499b
+        name: entity.id
+        in: query
+      responses:
+        '200':
+          description: A paginated list of reminders in the workspace.
+          links:
+            updateReminder:
+              operationId: updateReminder
+              parameters:
+                companyId: $response.body#/data/items/0/id
+              description: The ids returned by the `GET /v1/reminders` operation can be used as an input to the `PATCH /v1/reminders/:reminderId` operation to update a reminder.
+            getReminder:
+              operationId: getReminder
+              parameters:
+                companyId: $response.body#/data/items/0/id
+              description: The ids returned by the `GET /v1/reminders` operation can be used as an input to the `GET /v1/reminders/:reminderId` operation to retrieve a reminder.
+            deleteReminder:
+              operationId: deleteReminder
+              parameters:
+                companyId: $response.body#/data/items/0/id
+              description: The ids returned by the `GET /v1/reminders` operation can be used as an input to the `DELETE /v1/reminders/:reminderId` operation to delete a reminder.
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            Retry-After:
+              $ref: '#/components/headers/Retry-After'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Reminder'
+                      pagination:
+                        type: object
+                        properties:
+                          nextLink:
+                            type: string
+                    required:
+                    - items
+                    - pagination
+                    example:
+                      items:
+                      - id: rmd_91118b73-5a75-480b-b8e3-a33671c35cdc
+                        name: Reminder on John Doe
+                        entity:
+                          id: per_55175e81-9a52-4ac3-930e-82792c23499b
+                          entityType: person
+                          fullName: John Doe
+                        recurrenceRule: 'DTSTART;TZID=Europe/Paris:20250717T090000
+
+                          RRULE:FREQ=WEEKLY;INTERVAL=1'
+                        visibility: public
+                        assignedUsers:
+                        - id: usr_a45c30d8-19fc-4939-94c7-17dc5e46f476
+                          fullName: John Doe
+                          email: john.doe@example.com
+                        nextTriggerTime: '2025-07-17T09:00:00.000Z'
+                        lastTriggerTime: '2025-05-17T09:00:00.000Z'
+                        createdBy:
+                          id: usr_bc984b3f-0386-434d-82d7-a91eb6badd71
+                          fullName: John Doe
+                          email: john.doe@example.com
+                        createdAt: '2021-01-01T00:00:00.000Z'
+                      pagination:
+                        nextLink: https://api.folk.app/v1/reminders?limit=20&cursor=eyJvZmZzZXQiOjIwfQ%3D%3D
+                  deprecations:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                    - This field is deprecated
+                required:
+                - data
+              example:
+                data:
+                  items:
+                  - id: rmd_91118b73-5a75-480b-b8e3-a33671c35cdc
+                    name: Reminder on John Doe
+                    entity:
+                      id: per_55175e81-9a52-4ac3-930e-82792c23499b
+                      entityType: person
+                      fullName: John Doe
+                    recurrenceRule: 'DTSTART;TZID=Europe/Paris:20250717T090000
+
+                      RRULE:FREQ=WEEKLY;INTERVAL=1'
+                    visibility: public
+                    assignedUsers:
+                    - id: usr_a45c30d8-19fc-4939-94c7-17dc5e46f476
+                      fullName: John Doe
+                      email: john.doe@example.com
+                    nextTriggerTime: '2025-07-17T09:00:00.000Z'
+                    lastTriggerTime: '2025-05-17T09:00:00.000Z'
+                    createdBy:
+                      id: usr_bc984b3f-0386-434d-82d7-a91eb6badd71
+                      fullName: John Doe
+                      email: john.doe@example.com
+                    createdAt: '2021-01-01T00:00:00.000Z'
+                  pagination:
+                    nextLink: https://api.folk.app/v1/reminders?limit=20&cursor=eyJvZmZzZXQiOjIwfQ%3D%3D
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    post:
+      security:
+      - bearerApiKeyAuth: []
+      x-stability-level: alpha
+      operationId: createReminder
+      summary: Create a reminder
+      description: Create a new reminder in the workspace.
+      tags:
+      - Reminders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                entity:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      minLength: 40
+                      maxLength: 40
+                  required:
+                  - id
+                  additionalProperties: false
+                  description: The entity connected to the reminder. You can link people, companies and deals.
+                  example:
+                    id: per_55175e81-9a52-4ac3-930e-82792c23499b
+                name:
+                  type: string
+                  maxLength: 255
+                  description: The name of the reminder.
+                  example: Reminder on John Doe
+                recurrenceRule:
+                  type: string
+                  maxLength: 150
+                  description: "The recurrence rule of the reminder. The recurrence rule is a string that follows the iCalendar format specified in [RFC 5545](https://icalendar.org/iCalendar-RFC-5545/3-8-5-3-recurrence-rule.html).\nWe support only a subset of the iCalendar format:\n\n```\nDTSTART;TZID=<timezone>:<date>T<time>\nRRULE:<recurrence parameters>\n```\n\nOnly the following recurrence parameters are supported:\n\n- No repeat: `RRULE:COUNT=1`\n- Every weekday: `RRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR;INTERVAL=1`\n- Every week: `RRULE:FREQ=WEEKLY;INTERVAL=1`\n- Every 2 weeks: `RRULE:FREQ=WEEKLY;INTERVAL=2`\n- Every month: `RRULE:FREQ=MONTHLY;INTERVAL=1`\n- Every quarter: `RRULE:FREQ=MONTHLY;INTERVAL=3`\n- Every year: `RRULE:FREQ=YEARLY;INTERVAL=1`\n\nSupplying any other type of recurrence will result in a validation error.\n      "
+                  example: 'DTSTART;TZID=Europe/Paris:20250717T090000
+
+                    RRULE:FREQ=WEEKLY;INTERVAL=1'
+                visibility:
+                  type: string
+                  enum:
+                  - public
+                  - private
+                  description: "The visibility of the reminder.\n\n- `public`: The reminder is visible to all users in the workspace.\n- `private`: The reminder is visible only to the current user.\n    "
+                assignedUsers:
+                  type: array
+                  items:
+                    anyOf:
+                    - type: object
+                      properties:
+                        id:
+                          type: string
+                          minLength: 40
+                          maxLength: 40
+                      required:
+                      - id
+                      additionalProperties: false
+                    - type: object
+                      properties:
+                        email:
+                          type: string
+                          maxLength: 254
+                      required:
+                      - email
+                      additionalProperties: false
+                  minItems: 1
+                  maxItems: 50
+                  description: A list of workspace users to be notified when the reminder is triggered. Only required for public reminders. For private reminders, this field must be omitted and the current user is automatically notified.
+                  example:
+                  - id: usr_a45c30d8-19fc-4939-94c7-17dc5e46f476
+                  - email: john.doe@example.com
+              required:
+              - entity
+              - name
+              - recurrenceRule
+              - visibility
+              additionalProperties: false
+      responses:
+        '200':
+          description: The reminder created in the workspace.
+          links:
+            updateReminder:
+              operationId: updateReminder
+              parameters:
+                reminderId: $response.body#/data/id
+              description: The id returned by the `POST /v1/reminders` operation can be used as an input to the `PATCH /v1/reminders/:reminderId` operation to update the reminder.
+            getReminder:
+              operationId: getReminder
+              parameters:
+                companyId: $response.body#/data/id
+              description: The id returned by the `POST /v1/reminders` operation can be used as an input to the `GET /v1/reminders/:reminderId` operation to retrieve the reminder.
+            deleteReminder:
+              operationId: deleteReminder
+              parameters:
+                reminderId: $response.body#/data/id
+              description: The id returned by the `POST /v1/reminders` operation can be used as an input to the `DELETE /v1/reminders/:reminderId` operation to delete the reminder.
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            Retry-After:
+              $ref: '#/components/headers/Retry-After'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Reminder'
+                  deprecations:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                    - This field is deprecated
+                required:
+                - data
+              example:
+                data:
+                  id: rmd_91118b73-5a75-480b-b8e3-a33671c35cdc
+                  name: Reminder on John Doe
+                  entity:
+                    id: per_55175e81-9a52-4ac3-930e-82792c23499b
+                    entityType: person
+                    fullName: John Doe
+                  recurrenceRule: 'DTSTART;TZID=Europe/Paris:20250717T090000
+
+                    RRULE:FREQ=WEEKLY;INTERVAL=1'
+                  visibility: public
+                  assignedUsers:
+                  - id: usr_a45c30d8-19fc-4939-94c7-17dc5e46f476
+                    fullName: John Doe
+                    email: john.doe@example.com
+                  nextTriggerTime: '2025-07-17T09:00:00.000Z'
+                  lastTriggerTime: '2025-05-17T09:00:00.000Z'
+                  createdBy:
+                    id: usr_bc984b3f-0386-434d-82d7-a91eb6badd71
+                    fullName: John Doe
+                    email: john.doe@example.com
+                  createdAt: '2021-01-01T00:00:00.000Z'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /v1/reminders/{reminderId}:
+    get:
+      security:
+      - bearerApiKeyAuth: []
+      x-stability-level: alpha
+      operationId: getReminder
+      summary: Get a reminder
+      description: Retrieve an existing reminder in the workspace.
+      tags:
+      - Reminders
+      parameters:
+      - schema:
+          type: string
+          minLength: 40
+          maxLength: 40
+        required: true
+        description: The ID of the reminder to retrieve.
+        name: reminderId
+        in: path
+      responses:
+        '200':
+          description: The retrieved reminder in the workspace.
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            Retry-After:
+              $ref: '#/components/headers/Retry-After'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Reminder'
+                  deprecations:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                    - This field is deprecated
+                required:
+                - data
+              example:
+                data:
+                  id: rmd_91118b73-5a75-480b-b8e3-a33671c35cdc
+                  name: Reminder on John Doe
+                  entity:
+                    id: per_55175e81-9a52-4ac3-930e-82792c23499b
+                    entityType: person
+                    fullName: John Doe
+                  recurrenceRule: 'DTSTART;TZID=Europe/Paris:20250717T090000
+
+                    RRULE:FREQ=WEEKLY;INTERVAL=1'
+                  visibility: public
+                  assignedUsers:
+                  - id: usr_a45c30d8-19fc-4939-94c7-17dc5e46f476
+                    fullName: John Doe
+                    email: john.doe@example.com
+                  nextTriggerTime: '2025-07-17T09:00:00.000Z'
+                  lastTriggerTime: '2025-05-17T09:00:00.000Z'
+                  createdBy:
+                    id: usr_bc984b3f-0386-434d-82d7-a91eb6badd71
+                    fullName: John Doe
+                    email: john.doe@example.com
+                  createdAt: '2021-01-01T00:00:00.000Z'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    patch:
+      security:
+      - bearerApiKeyAuth: []
+      x-stability-level: alpha
+      operationId: updateReminder
+      summary: Update a reminder
+      description: Update an existing reminder in the workspace.
+      tags:
+      - Reminders
+      parameters:
+      - schema:
+          type: string
+          minLength: 40
+          maxLength: 40
+        required: true
+        description: The ID of the reminder to update.
+        name: reminderId
+        in: path
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  maxLength: 255
+                  description: The name of the reminder.
+                  example: Reminder on John Doe
+                recurrenceRule:
+                  type: string
+                  maxLength: 150
+                  description: "The recurrence rule of the reminder. The recurrence rule is a string that follows the iCalendar format specified in [RFC 5545](https://icalendar.org/iCalendar-RFC-5545/3-8-5-3-recurrence-rule.html).\nWe support only a subset of the iCalendar format:\n\n```\nDTSTART;TZID=<timezone>:<date>T<time>\nRRULE:<recurrence parameters>\n```\n\nOnly the following recurrence parameters are supported:\n\n- No repeat: `RRULE:COUNT=1`\n- Every weekday: `RRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR;INTERVAL=1`\n- Every week: `RRULE:FREQ=WEEKLY;INTERVAL=1`\n- Every 2 weeks: `RRULE:FREQ=WEEKLY;INTERVAL=2`\n- Every month: `RRULE:FREQ=MONTHLY;INTERVAL=1`\n- Every quarter: `RRULE:FREQ=MONTHLY;INTERVAL=3`\n- Every year: `RRULE:FREQ=YEARLY;INTERVAL=1`\n\nSupplying any other type of recurrence will result in a validation error.\n      "
+                  example: 'DTSTART;TZID=Europe/Paris:20250717T090000
+
+                    RRULE:FREQ=WEEKLY;INTERVAL=1'
+                visibility:
+                  type: string
+                  enum:
+                  - public
+                  - private
+                  description: "The visibility of the reminder.\n\n- `public`: The reminder is visible to all users in the workspace.\n- `private`: The reminder is visible only to the current user.\n    "
+                assignedUsers:
+                  type: array
+                  items:
+                    anyOf:
+                    - type: object
+                      properties:
+                        id:
+                          type: string
+                          minLength: 40
+                          maxLength: 40
+                      required:
+                      - id
+                      additionalProperties: false
+                    - type: object
+                      properties:
+                        email:
+                          type: string
+                          maxLength: 254
+                      required:
+                      - email
+                      additionalProperties: false
+                  minItems: 1
+                  maxItems: 50
+                  description: A list of workspace users to be notified when the reminder is triggered. Only required for public reminders. For private reminders, this field must be omitted and the current user is automatically notified.
+                  example:
+                  - id: usr_a45c30d8-19fc-4939-94c7-17dc5e46f476
+                  - email: john.doe@example.com
+              additionalProperties: false
+      responses:
+        '200':
+          description: The updated reminder in the workspace.
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            Retry-After:
+              $ref: '#/components/headers/Retry-After'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Reminder'
+                  deprecations:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                    - This field is deprecated
+                required:
+                - data
+              example:
+                data:
+                  id: rmd_91118b73-5a75-480b-b8e3-a33671c35cdc
+                  name: Reminder on John Doe
+                  entity:
+                    id: per_55175e81-9a52-4ac3-930e-82792c23499b
+                    entityType: person
+                    fullName: John Doe
+                  recurrenceRule: 'DTSTART;TZID=Europe/Paris:20250717T090000
+
+                    RRULE:FREQ=WEEKLY;INTERVAL=1'
+                  visibility: public
+                  assignedUsers:
+                  - id: usr_a45c30d8-19fc-4939-94c7-17dc5e46f476
+                    fullName: John Doe
+                    email: john.doe@example.com
+                  nextTriggerTime: '2025-07-17T09:00:00.000Z'
+                  lastTriggerTime: '2025-05-17T09:00:00.000Z'
+                  createdBy:
+                    id: usr_bc984b3f-0386-434d-82d7-a91eb6badd71
+                    fullName: John Doe
+                    email: john.doe@example.com
+                  createdAt: '2021-01-01T00:00:00.000Z'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    delete:
+      security:
+      - bearerApiKeyAuth: []
+      operationId: deleteReminder
+      summary: Delete a reminder
+      description: Delete an existing reminder in the workspace.
+      tags:
+      - Reminders
+      parameters:
+      - schema:
+          type: string
+          minLength: 40
+          maxLength: 40
+        required: true
+        description: The ID of the reminder to delete.
+        name: reminderId
+        in: path
+      responses:
+        '200':
+          description: The ID of the deleted reminder.
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            Retry-After:
+              $ref: '#/components/headers/Retry-After'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                    required:
+                    - id
+                    example:
+                      id: rmd_91118b73-5a75-480b-b8e3-a33671c35cdc
+                  deprecations:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                    - This field is deprecated
+                required:
+                - data
+              example:
+                data:
+                  id: rmd_91118b73-5a75-480b-b8e3-a33671c35cdc
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+components:
+  responses:
+    Forbidden:
+      description: The API key doesn’t have permissions to perform the request.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: FORBIDDEN
+              message: The API key doesn’t have permissions to perform the request.
+              documentationUrl: https://developer.folk.app/api-reference/errors#forbidden
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    ServiceUnavailable:
+      description: The server is overloaded or down for maintenance.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: SERVICE_UNAVAILABLE
+              message: The service is currently unavailable.
+              documentationUrl: https://developer.folk.app/api-reference/errors#service-unavailable
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    NotFound:
+      description: The requested resource doesn’t exist.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: RESOURCE_NOT_FOUND
+              message: The requested resource was not found.
+              documentationUrl: https://developer.folk.app/api-reference/errors#not-found
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    InternalServerError:
+      description: Something went wrong on our end.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: INTERNAL_SERVER_ERROR
+              message: An internal server error occurred.
+              documentationUrl: https://developer.folk.app/api-reference/errors#internal-server-error
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    UnprocessableEntity:
+      description: The request was unacceptable, often due to missing or invalid parameters.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: UNPROCESSABLE_ENTITY
+              message: Invalid query parameters
+              documentationUrl: https://developer.folk.app/api-reference/errors#unprocessable-entity
+              details:
+                issues:
+                - code: too_small
+                  minimum: 1
+                  type: number
+                  inclusive: true
+                  exact: false
+                  message: Number must be greater than or equal to 1
+                  path:
+                  - limit
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    TooManyRequests:
+      description: Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: RATE_LIMIT_EXCEEDED
+              message: The rate limit has been exceeded.
+              documentationUrl: https://developer.folk.app/api-reference/errors#rate-limiting
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+              details:
+                limit: 1000
+                remaining: 0
+                retryAfter: '2025-10-01T12:00:00Z'
+    Unauthorized:
+      description: No valid API key provided.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: UNAUTHORIZED
+              message: No valid API key provided.
+              documentationUrl: https://developer.folk.app/api-reference/errors#unauthorized
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    BadRequest:
+      description: The request was unacceptable, often due to missing an invalid parameter.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: INVALID_REQUEST
+              message: The request was invalid.
+              documentationUrl: https://developer.folk.app/api-reference/errors#bad-request
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        fullName:
+          type: string
+        email:
+          type: string
+      required:
+      - id
+      - fullName
+      - email
+      description: A user in the workspace.
+      example:
+        id: usr_bc984b3f-0386-434d-82d7-a91eb6badd71
+        fullName: John Doe
+        email: john.doe@example.com
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              example: RATE_LIMIT_EXCEEDED
+            message:
+              type: string
+              example: You have exceeded your rate limit.
+            documentationUrl:
+              type: string
+              format: uri
+              example: https://developer.folk.app/api-reference/errors#rate-limiting
+            requestId:
+              type: string
+              format: uuid
+              example: 123e4567-e89b-12d3-a456-426614174000
+            timestamp:
+              type: string
+              format: date-time
+              example: '2025-10-01T12:00:00Z'
+            details:
+              type: object
+              additionalProperties: true
+              example:
+                limit: 1000
+                remaining: 0
+                retryAfter: '2025-10-01T12:00:00Z'
+          required:
+          - code
+          - message
+          - documentationUrl
+          - requestId
+          - timestamp
+      required:
+      - error
+      description: Error response containing error details.
+    Reminder:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          maxLength: 255
+        entity:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 40
+              maxLength: 40
+              description: The ID of the entity connected to the reminder.
+              example: per_55175e81-9a52-4ac3-930e-82792c23499b
+            entityType:
+              type: string
+              enum:
+              - person
+              - company
+              - object
+              description: The type of the entity connected to the reminder. Can be `person`, `company` or `object`.
+              example: person
+            fullName:
+              type: string
+              maxLength: 1000
+              description: The full name of the entity connected to the reminder.
+              example: John Doe
+          required:
+          - id
+          - entityType
+          - fullName
+        recurrenceRule:
+          type: string
+          description: The recurrence rule of the reminder. The recurrence rule is a string that follows the iCalendar format specified in [RFC 5545](https://icalendar.org/iCalendar-RFC-5545/3-8-5-3-recurrence-rule.html).
+          example: 'DTSTART;TZID=Europe/Paris:20250717T090000
+
+            RRULE:FREQ=WEEKLY;INTERVAL=1'
+        visibility:
+          type: string
+          enum:
+          - public
+          - private
+          description: "The visibility of the reminder.\n\n- `public`: The reminder is visible to all users in the workspace.\n- `private`: The reminder is visible only to the current user.\n    "
+        assignedUsers:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+          description: A list of workspace users to be notified when the reminder is triggered. For private reminders, only the current user is notified.
+          example:
+          - id: usr_a45c30d8-19fc-4939-94c7-17dc5e46f476
+            fullName: John Doe
+            email: john.doe@example.com
+        nextTriggerTime:
+          type: string
+          format: date-time
+          description: The next trigger time of the reminder.
+          example: '2025-07-17T09:00:00.000Z'
+          nullable: true
+        lastTriggerTime:
+          type: string
+          format: date-time
+          description: The last trigger time of the reminder.
+          example: '2025-05-17T09:00:00.000Z'
+          nullable: true
+        createdBy:
+          allOf:
+          - $ref: '#/components/schemas/User'
+          - description: The user who created the reminder.
+        createdAt:
+          type: string
+          minLength: 20
+          maxLength: 40
+          description: The date and time the reminder was created, in ISO format.
+          example: '2021-01-01T00:00:00.000Z'
+          nullable: true
+      required:
+      - id
+      - name
+      - entity
+      - recurrenceRule
+      - visibility
+      - assignedUsers
+      - nextTriggerTime
+      - lastTriggerTime
+      - createdBy
+      - createdAt
+      description: A reminder linked to an entity.
+      example:
+        id: rmd_91118b73-5a75-480b-b8e3-a33671c35cdc
+        name: Reminder on John Doe
+        entity:
+          id: per_55175e81-9a52-4ac3-930e-82792c23499b
+          entityType: person
+          fullName: John Doe
+        recurrenceRule: 'DTSTART;TZID=Europe/Paris:20250717T090000
+
+          RRULE:FREQ=WEEKLY;INTERVAL=1'
+        visibility: public
+        assignedUsers:
+        - id: usr_a45c30d8-19fc-4939-94c7-17dc5e46f476
+          fullName: John Doe
+          email: john.doe@example.com
+        nextTriggerTime: '2025-07-17T09:00:00.000Z'
+        lastTriggerTime: '2025-05-17T09:00:00.000Z'
+        createdBy:
+          id: usr_bc984b3f-0386-434d-82d7-a91eb6badd71
+          fullName: John Doe
+          email: john.doe@example.com
+        createdAt: '2021-01-01T00:00:00.000Z'
+  headers:
+    X-RateLimit-Limit:
+      schema:
+        type: integer
+        example: 1000
+      description: The maximum number of requests that you can make in the current rate limit window.
+    X-RateLimit-Remaining:
+      schema:
+        type: integer
+        example: 998
+      description: The number of requests remaining in the current rate limit window.
+    Retry-After:
+      schema:
+        type: integer
+        example: 60
+      description: The number of seconds to wait before making a new request after hitting the rate limit.
+    X-RateLimit-Reset:
+      schema:
+        type: integer
+        example: 1747322958
+      description: The time at which the current rate limit window resets, in UTC epoch seconds.
+  securitySchemes:
+    bearerApiKeyAuth:
+      type: http
+      scheme: bearer
+      description: API key for authentication

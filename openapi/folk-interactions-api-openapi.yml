@@ -1,0 +1,502 @@
+openapi: 3.0.3
+info:
+  title: Folk External Companies Interactions API
+  description: Folk's public REST API lets you manage workspaces, groups, contacts, and real-time triggers.
+  version: '2025-06-09'
+  contact:
+    name: folk
+    email: tech@folk.app
+    url: https://folk.app
+servers:
+- url: https://api.folk.app
+  description: Folk's public API production base URL.
+  x-internal: false
+tags:
+- name: Interactions
+  description: Operations related to interactions.
+paths:
+  /v1/interactions:
+    post:
+      security:
+      - bearerApiKeyAuth: []
+      operationId: createInteraction
+      summary: Create an interaction
+      description: Creates a new [interaction](https://help.folk.app/en/articles/7012167-log-a-new-interaction) with a person or a company.
+      tags:
+      - Interactions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                entity:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      minLength: 40
+                      maxLength: 40
+                  required:
+                  - id
+                  additionalProperties: false
+                  description: The entity connected to the interaction. You can link people or companies.
+                  example:
+                    id: per_55175e81-9a52-4ac3-930e-82792c23499b
+                dateTime:
+                  type: string
+                  maxLength: 24
+                  format: date-time
+                  description: The date and time of the interaction.
+                  example: '2025-07-17T09:00:00.000Z'
+                title:
+                  type: string
+                  maxLength: 255
+                  description: The title of the interaction.
+                  example: Coffee with John Doe
+                content:
+                  type: string
+                  maxLength: 100000
+                  description: The multi-line content of the interaction.
+                  example: 'Had a coffee with John Doe
+
+                    Discussed the new project.'
+                type:
+                  anyOf:
+                  - type: string
+                    maxLength: 50
+                    format: emoji
+                    description: An emoji representing the interaction type.
+                    example: ☕️
+                  - type: string
+                    enum:
+                    - call
+                    - meeting
+                    - message
+                    - coffee
+                    - lunch
+                    - event
+                    - drink
+                    description: A predefined interaction type.
+                    example: coffee
+                  - type: string
+                    enum:
+                    - whatsapp
+                    - twitter
+                    - linkedin
+                    - hangout
+                    - skype
+                    - slack
+                    - iMessage
+                    - fbMessenger
+                    - signal
+                    - discord
+                    - wechat
+                    - telegram
+                    - viber
+                    description: A messaging app used for the interaction.
+                    example: slack
+              required:
+              - entity
+              - dateTime
+              - title
+              - content
+              - type
+              additionalProperties: false
+      responses:
+        '200':
+          description: The created interaction.
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            Retry-After:
+              $ref: '#/components/headers/Retry-After'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/LoggedInteraction'
+                  deprecations:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                    - This field is deprecated
+                required:
+                - data
+              example:
+                data:
+                  id: lit_b049db09-c03d-4f32-96d6-d314760add5d
+                  title: Coffee with John Doe
+                  content: 'Had a coffee with John Doe
+
+                    Discussed the new project.'
+                  entity:
+                    id: per_55175e81-9a52-4ac3-930e-82792c23499b
+                    entityType: person
+                    fullName: John Doe
+                  dateTime: '2025-07-17T09:00:00.000Z'
+                  type: coffee
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+components:
+  responses:
+    Forbidden:
+      description: The API key doesn’t have permissions to perform the request.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: FORBIDDEN
+              message: The API key doesn’t have permissions to perform the request.
+              documentationUrl: https://developer.folk.app/api-reference/errors#forbidden
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    ServiceUnavailable:
+      description: The server is overloaded or down for maintenance.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: SERVICE_UNAVAILABLE
+              message: The service is currently unavailable.
+              documentationUrl: https://developer.folk.app/api-reference/errors#service-unavailable
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    NotFound:
+      description: The requested resource doesn’t exist.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: RESOURCE_NOT_FOUND
+              message: The requested resource was not found.
+              documentationUrl: https://developer.folk.app/api-reference/errors#not-found
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    InternalServerError:
+      description: Something went wrong on our end.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: INTERNAL_SERVER_ERROR
+              message: An internal server error occurred.
+              documentationUrl: https://developer.folk.app/api-reference/errors#internal-server-error
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    UnprocessableEntity:
+      description: The request was unacceptable, often due to missing or invalid parameters.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: UNPROCESSABLE_ENTITY
+              message: Invalid query parameters
+              documentationUrl: https://developer.folk.app/api-reference/errors#unprocessable-entity
+              details:
+                issues:
+                - code: too_small
+                  minimum: 1
+                  type: number
+                  inclusive: true
+                  exact: false
+                  message: Number must be greater than or equal to 1
+                  path:
+                  - limit
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    Unauthorized:
+      description: No valid API key provided.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: UNAUTHORIZED
+              message: No valid API key provided.
+              documentationUrl: https://developer.folk.app/api-reference/errors#unauthorized
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    TooManyRequests:
+      description: Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: RATE_LIMIT_EXCEEDED
+              message: The rate limit has been exceeded.
+              documentationUrl: https://developer.folk.app/api-reference/errors#rate-limiting
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+              details:
+                limit: 1000
+                remaining: 0
+                retryAfter: '2025-10-01T12:00:00Z'
+    BadRequest:
+      description: The request was unacceptable, often due to missing an invalid parameter.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: INVALID_REQUEST
+              message: The request was invalid.
+              documentationUrl: https://developer.folk.app/api-reference/errors#bad-request
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+  headers:
+    X-RateLimit-Limit:
+      schema:
+        type: integer
+        example: 1000
+      description: The maximum number of requests that you can make in the current rate limit window.
+    Retry-After:
+      schema:
+        type: integer
+        example: 60
+      description: The number of seconds to wait before making a new request after hitting the rate limit.
+    X-RateLimit-Reset:
+      schema:
+        type: integer
+        example: 1747322958
+      description: The time at which the current rate limit window resets, in UTC epoch seconds.
+    X-RateLimit-Remaining:
+      schema:
+        type: integer
+        example: 998
+      description: The number of requests remaining in the current rate limit window.
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              example: RATE_LIMIT_EXCEEDED
+            message:
+              type: string
+              example: You have exceeded your rate limit.
+            documentationUrl:
+              type: string
+              format: uri
+              example: https://developer.folk.app/api-reference/errors#rate-limiting
+            requestId:
+              type: string
+              format: uuid
+              example: 123e4567-e89b-12d3-a456-426614174000
+            timestamp:
+              type: string
+              format: date-time
+              example: '2025-10-01T12:00:00Z'
+            details:
+              type: object
+              additionalProperties: true
+              example:
+                limit: 1000
+                remaining: 0
+                retryAfter: '2025-10-01T12:00:00Z'
+          required:
+          - code
+          - message
+          - documentationUrl
+          - requestId
+          - timestamp
+      required:
+      - error
+      description: Error response containing error details.
+    LoggedInteraction:
+      type: object
+      properties:
+        id:
+          type: string
+        entity:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the entity connected to the interaction.
+              example: per_55175e81-9a52-4ac3-930e-82792c23499b
+            entityType:
+              type: string
+              enum:
+              - person
+              - company
+              description: The type of the entity connected to the interaction. Can be `person` or `company`.
+              example: person
+            fullName:
+              type: string
+              description: The full name of the entity connected to the interaction.
+              example: John Doe
+          required:
+          - id
+          - entityType
+          - fullName
+        dateTime:
+          type: string
+          format: date-time
+          description: The date and time of the interaction.
+          example: '2025-07-17T09:00:00.000Z'
+        title:
+          type: string
+          description: The title of the interaction.
+          example: Coffee with John Doe
+        content:
+          type: string
+          description: The multi-line content of the interaction.
+          example: 'Had a coffee with John Doe
+
+            Discussed the new project.'
+        type:
+          anyOf:
+          - type: string
+            maxLength: 50
+            format: emoji
+            description: An emoji representing the interaction type.
+            example: ☕️
+          - type: string
+            enum:
+            - call
+            - meeting
+            - message
+            - coffee
+            - lunch
+            - event
+            - drink
+            description: A predefined interaction type.
+            example: coffee
+          - type: string
+            enum:
+            - whatsapp
+            - twitter
+            - linkedin
+            - hangout
+            - skype
+            - slack
+            - iMessage
+            - fbMessenger
+            - signal
+            - discord
+            - wechat
+            - telegram
+            - viber
+            description: A messaging app used for the interaction.
+            example: slack
+          description: The type of the interaction. Can be a predefined type or an emoji.
+          example: coffee
+      required:
+      - id
+      - entity
+      - dateTime
+      - title
+      - content
+      - type
+      description: An interaction linked to an entity.
+      example:
+        id: lit_b049db09-c03d-4f32-96d6-d314760add5d
+        title: Coffee with John Doe
+        content: 'Had a coffee with John Doe
+
+          Discussed the new project.'
+        entity:
+          id: per_55175e81-9a52-4ac3-930e-82792c23499b
+          entityType: person
+          fullName: John Doe
+        dateTime: '2025-07-17T09:00:00.000Z'
+        type: coffee
+  securitySchemes:
+    bearerApiKeyAuth:
+      type: http
+      scheme: bearer
+      description: API key for authentication

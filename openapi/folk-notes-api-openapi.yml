@@ -1,0 +1,1197 @@
+openapi: 3.0.3
+info:
+  title: Folk External Companies Notes API
+  description: Folk's public REST API lets you manage workspaces, groups, contacts, and real-time triggers.
+  version: '2025-06-09'
+  contact:
+    name: folk
+    email: tech@folk.app
+    url: https://folk.app
+servers:
+- url: https://api.folk.app
+  description: Folk's public API production base URL.
+  x-internal: false
+tags:
+- name: Notes
+  description: Operations related to notes.
+paths:
+  /v1/notes:
+    get:
+      security:
+      - bearerApiKeyAuth: []
+      x-stability-level: alpha
+      operationId: listNotes
+      summary: List notes
+      description: Retrieve a list of notes in the workspace.
+      tags:
+      - Notes
+      parameters:
+      - schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+        required: false
+        description: The number of items to return.
+        example: 20
+        name: limit
+        in: query
+      - schema:
+          type: string
+          maxLength: 128
+        required: false
+        description: A cursor for pagination across multiple pages of results. Don’t include this parameter on the first call. Use the `pagination.nextLink` value returned in a previous response to request subsequent results.
+        example: eyJvZmZzZXQiOjN9
+        name: cursor
+        in: query
+      - schema:
+          type: string
+          minLength: 40
+          maxLength: 40
+        required: false
+        description: Filter notes by entity. Only notes linked to the specified entity will be returned.
+        example: per_55175e81-9a52-4ac3-930e-82792c23499b
+        name: entity.id
+        in: query
+      responses:
+        '200':
+          description: A paginated list of notes in the workspace.
+          links:
+            updateNote:
+              operationId: updateNote
+              parameters:
+                companyId: $response.body#/data/items/0/id
+              description: The ids returned by the `GET /v1/notes` operation can be used as an input to the `PATCH /v1/notes/:noteId` operation to update a note.
+            getNote:
+              operationId: getNote
+              parameters:
+                companyId: $response.body#/data/items/0/id
+              description: The ids returned by the `GET /v1/notes` operation can be used as an input to the `GET /v1/notes/:noteId` operation to retrieve a note.
+            deleteNote:
+              operationId: deleteNote
+              parameters:
+                companyId: $response.body#/data/items/0/id
+              description: The ids returned by the `GET /v1/notes` operation can be used as an input to the `DELETE /v1/notes/:noteId` operation to delete a note.
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            Retry-After:
+              $ref: '#/components/headers/Retry-After'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Note'
+                      pagination:
+                        type: object
+                        properties:
+                          nextLink:
+                            type: string
+                    required:
+                    - items
+                    - pagination
+                    example:
+                      items:
+                      - id: nte_91118b73-5a75-480b-b8e3-a33671c35cdc
+                        entity:
+                          id: per_55175e81-9a52-4ac3-930e-82792c23499b
+                          entityType: person
+                          fullName: John Doe
+                        visibility: public
+                        content: This is a note about John Doe
+                        author:
+                          type: user
+                          id: usr_14c18444-a0c7-459a-86b0-ccd70ebcd65c
+                          fullName: John Doe
+                          email: john.doe@example.com
+                          deleted: false
+                        createdAt: '2021-01-01T00:00:00.000Z'
+                        parentNote:
+                          id: nte_14c18444-a0c7-459a-86b0-ccd70ebcd65c
+                          entity:
+                            id: per_55175e81-9a52-4ac3-930e-82792c23499b
+                            entityType: person
+                            fullName: John Doe
+                          content: This is a parent note about John Doe
+                          visibility: public
+                          author:
+                            type: user
+                            id: usr_14c18444-a0c7-459a-86b0-ccd70ebcd65c
+                            fullName: John Doe
+                            email: john.doe@example.com
+                            deleted: false
+                          createdAt: '2021-01-01T00:00:00.000Z'
+                          deleted: false
+                      pagination:
+                        nextLink: https://api.folk.app/v1/notes?limit=20&cursor=eyJvZmZzZXQiOjIwfQ%3D%3D
+                  deprecations:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                    - This field is deprecated
+                required:
+                - data
+              example:
+                data:
+                  items:
+                  - id: nte_91118b73-5a75-480b-b8e3-a33671c35cdc
+                    entity:
+                      id: per_55175e81-9a52-4ac3-930e-82792c23499b
+                      entityType: person
+                      fullName: John Doe
+                    visibility: public
+                    content: This is a note about John Doe
+                    author:
+                      type: user
+                      id: usr_14c18444-a0c7-459a-86b0-ccd70ebcd65c
+                      fullName: John Doe
+                      email: john.doe@example.com
+                      deleted: false
+                    createdAt: '2021-01-01T00:00:00.000Z'
+                    parentNote:
+                      id: nte_14c18444-a0c7-459a-86b0-ccd70ebcd65c
+                      entity:
+                        id: per_55175e81-9a52-4ac3-930e-82792c23499b
+                        entityType: person
+                        fullName: John Doe
+                      content: This is a parent note about John Doe
+                      visibility: public
+                      author:
+                        type: user
+                        id: usr_14c18444-a0c7-459a-86b0-ccd70ebcd65c
+                        fullName: John Doe
+                        email: john.doe@example.com
+                        deleted: false
+                      createdAt: '2021-01-01T00:00:00.000Z'
+                      deleted: false
+                  pagination:
+                    nextLink: https://api.folk.app/v1/notes?limit=20&cursor=eyJvZmZzZXQiOjIwfQ%3D%3D
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    post:
+      security:
+      - bearerApiKeyAuth: []
+      x-stability-level: alpha
+      operationId: createNote
+      summary: Create a note
+      description: Create a new note in the workspace.
+      tags:
+      - Notes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                entity:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      minLength: 40
+                      maxLength: 40
+                  required:
+                  - id
+                  additionalProperties: false
+                  description: The entity connected to the note. You can link people, companies and deals.
+                  example:
+                    id: per_55175e81-9a52-4ac3-930e-82792c23499b
+                visibility:
+                  type: string
+                  enum:
+                  - public
+                  - private
+                  description: "The visibility of the note.\n\n- `public`: The note is visible to all users in the workspace.\n- `private`: The note is visible only to the current user.\n    "
+                content:
+                  type: string
+                  minLength: 1
+                  maxLength: 100000
+                  description: The content of the note. Can be in plain text or in markdown format.
+                  example: This is a note about **John Doe**
+                parentNote:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      minLength: 40
+                      maxLength: 40
+                  required:
+                  - id
+                  additionalProperties: false
+                  description: The parent note, if this note is a reply to another note.
+                  example:
+                    id: nte_14c18444-a0c7-459a-86b0-ccd70ebcd65c
+              required:
+              - entity
+              - visibility
+              - content
+              additionalProperties: false
+      responses:
+        '200':
+          description: The note created in the workspace.
+          links:
+            updateNote:
+              operationId: updateNote
+              parameters:
+                noteId: $response.body#/data/id
+              description: The id returned by the `POST /v1/notes` operation can be used as an input to the `PATCH /v1/notes/:noteId` operation to update the note.
+            getNote:
+              operationId: getNote
+              parameters:
+                companyId: $response.body#/data/id
+              description: The id returned by the `POST /v1/notes` operation can be used as an input to the `GET /v1/notes/:noteId` operation to retrieve the note.
+            deleteNote:
+              operationId: deleteNote
+              parameters:
+                noteId: $response.body#/data/id
+              description: The id returned by the `POST /v1/notes` operation can be used as an input to the `DELETE /v1/notes/:noteId` operation to delete the note.
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            Retry-After:
+              $ref: '#/components/headers/Retry-After'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Note'
+                  deprecations:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                    - This field is deprecated
+                required:
+                - data
+              example:
+                data:
+                  id: nte_91118b73-5a75-480b-b8e3-a33671c35cdc
+                  entity:
+                    id: per_55175e81-9a52-4ac3-930e-82792c23499b
+                    entityType: person
+                    fullName: John Doe
+                  visibility: public
+                  content: This is a note about John Doe
+                  author:
+                    type: user
+                    id: usr_14c18444-a0c7-459a-86b0-ccd70ebcd65c
+                    fullName: John Doe
+                    email: john.doe@example.com
+                    deleted: false
+                  createdAt: '2021-01-01T00:00:00.000Z'
+                  parentNote:
+                    id: nte_14c18444-a0c7-459a-86b0-ccd70ebcd65c
+                    entity:
+                      id: per_55175e81-9a52-4ac3-930e-82792c23499b
+                      entityType: person
+                      fullName: John Doe
+                    content: This is a parent note about John Doe
+                    visibility: public
+                    author:
+                      type: user
+                      id: usr_14c18444-a0c7-459a-86b0-ccd70ebcd65c
+                      fullName: John Doe
+                      email: john.doe@example.com
+                      deleted: false
+                    createdAt: '2021-01-01T00:00:00.000Z'
+                    deleted: false
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /v1/notes/{noteId}:
+    get:
+      security:
+      - bearerApiKeyAuth: []
+      x-stability-level: alpha
+      operationId: getNote
+      summary: Get a note
+      description: Retrieve an existing note in the workspace.
+      tags:
+      - Notes
+      parameters:
+      - schema:
+          type: string
+          minLength: 40
+          maxLength: 40
+        required: true
+        description: The ID of the note to retrieve.
+        name: noteId
+        in: path
+      responses:
+        '200':
+          description: The retrieved note in the workspace.
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            Retry-After:
+              $ref: '#/components/headers/Retry-After'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Note'
+                  deprecations:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                    - This field is deprecated
+                required:
+                - data
+              example:
+                data:
+                  id: nte_91118b73-5a75-480b-b8e3-a33671c35cdc
+                  entity:
+                    id: per_55175e81-9a52-4ac3-930e-82792c23499b
+                    entityType: person
+                    fullName: John Doe
+                  visibility: public
+                  content: This is a note about John Doe
+                  author:
+                    type: user
+                    id: usr_14c18444-a0c7-459a-86b0-ccd70ebcd65c
+                    fullName: John Doe
+                    email: john.doe@example.com
+                    deleted: false
+                  createdAt: '2021-01-01T00:00:00.000Z'
+                  parentNote:
+                    id: nte_14c18444-a0c7-459a-86b0-ccd70ebcd65c
+                    entity:
+                      id: per_55175e81-9a52-4ac3-930e-82792c23499b
+                      entityType: person
+                      fullName: John Doe
+                    content: This is a parent note about John Doe
+                    visibility: public
+                    author:
+                      type: user
+                      id: usr_14c18444-a0c7-459a-86b0-ccd70ebcd65c
+                      fullName: John Doe
+                      email: john.doe@example.com
+                      deleted: false
+                    createdAt: '2021-01-01T00:00:00.000Z'
+                    deleted: false
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    patch:
+      security:
+      - bearerApiKeyAuth: []
+      x-stability-level: alpha
+      operationId: updateNote
+      summary: Update a note
+      description: Update an existing note in the workspace.
+      tags:
+      - Notes
+      parameters:
+      - schema:
+          type: string
+          minLength: 40
+          maxLength: 40
+        required: true
+        description: The ID of the note to update.
+        name: noteId
+        in: path
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  minLength: 1
+                  maxLength: 100000
+                  description: The content of the note. Can be in plain text or in markdown format.
+                  example: This is a note about **John Doe**
+                visibility:
+                  type: string
+                  enum:
+                  - public
+                  - private
+                  description: "The visibility of the note.\n\n- `public`: The note is visible to all users in the workspace.\n- `private`: The note is visible only to the current user.\n    "
+              additionalProperties: false
+      responses:
+        '200':
+          description: The updated note in the workspace.
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            Retry-After:
+              $ref: '#/components/headers/Retry-After'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Note'
+                  deprecations:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                    - This field is deprecated
+                required:
+                - data
+              example:
+                data:
+                  id: nte_91118b73-5a75-480b-b8e3-a33671c35cdc
+                  entity:
+                    id: per_55175e81-9a52-4ac3-930e-82792c23499b
+                    entityType: person
+                    fullName: John Doe
+                  visibility: public
+                  content: This is a note about John Doe
+                  author:
+                    type: user
+                    id: usr_14c18444-a0c7-459a-86b0-ccd70ebcd65c
+                    fullName: John Doe
+                    email: john.doe@example.com
+                    deleted: false
+                  createdAt: '2021-01-01T00:00:00.000Z'
+                  parentNote:
+                    id: nte_14c18444-a0c7-459a-86b0-ccd70ebcd65c
+                    entity:
+                      id: per_55175e81-9a52-4ac3-930e-82792c23499b
+                      entityType: person
+                      fullName: John Doe
+                    content: This is a parent note about John Doe
+                    visibility: public
+                    author:
+                      type: user
+                      id: usr_14c18444-a0c7-459a-86b0-ccd70ebcd65c
+                      fullName: John Doe
+                      email: john.doe@example.com
+                      deleted: false
+                    createdAt: '2021-01-01T00:00:00.000Z'
+                    deleted: false
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    delete:
+      security:
+      - bearerApiKeyAuth: []
+      operationId: deleteNote
+      summary: Delete a note
+      description: Delete an existing note in the workspace.
+      tags:
+      - Notes
+      parameters:
+      - schema:
+          type: string
+          minLength: 40
+          maxLength: 40
+        required: true
+        description: The ID of the note to delete.
+        name: noteId
+        in: path
+      responses:
+        '200':
+          description: The ID of the deleted note.
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            Retry-After:
+              $ref: '#/components/headers/Retry-After'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                    required:
+                    - id
+                    example:
+                      id: nte_91118b73-5a75-480b-b8e3-a33671c35cdc
+                  deprecations:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                    - This field is deprecated
+                required:
+                - data
+              example:
+                data:
+                  id: nte_91118b73-5a75-480b-b8e3-a33671c35cdc
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+components:
+  responses:
+    Forbidden:
+      description: The API key doesn’t have permissions to perform the request.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: FORBIDDEN
+              message: The API key doesn’t have permissions to perform the request.
+              documentationUrl: https://developer.folk.app/api-reference/errors#forbidden
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    ServiceUnavailable:
+      description: The server is overloaded or down for maintenance.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: SERVICE_UNAVAILABLE
+              message: The service is currently unavailable.
+              documentationUrl: https://developer.folk.app/api-reference/errors#service-unavailable
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    NotFound:
+      description: The requested resource doesn’t exist.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: RESOURCE_NOT_FOUND
+              message: The requested resource was not found.
+              documentationUrl: https://developer.folk.app/api-reference/errors#not-found
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    InternalServerError:
+      description: Something went wrong on our end.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: INTERNAL_SERVER_ERROR
+              message: An internal server error occurred.
+              documentationUrl: https://developer.folk.app/api-reference/errors#internal-server-error
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    UnprocessableEntity:
+      description: The request was unacceptable, often due to missing or invalid parameters.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: UNPROCESSABLE_ENTITY
+              message: Invalid query parameters
+              documentationUrl: https://developer.folk.app/api-reference/errors#unprocessable-entity
+              details:
+                issues:
+                - code: too_small
+                  minimum: 1
+                  type: number
+                  inclusive: true
+                  exact: false
+                  message: Number must be greater than or equal to 1
+                  path:
+                  - limit
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    Unauthorized:
+      description: No valid API key provided.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: UNAUTHORIZED
+              message: No valid API key provided.
+              documentationUrl: https://developer.folk.app/api-reference/errors#unauthorized
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    TooManyRequests:
+      description: Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: RATE_LIMIT_EXCEEDED
+              message: The rate limit has been exceeded.
+              documentationUrl: https://developer.folk.app/api-reference/errors#rate-limiting
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+              details:
+                limit: 1000
+                remaining: 0
+                retryAfter: '2025-10-01T12:00:00Z'
+    BadRequest:
+      description: The request was unacceptable, often due to missing an invalid parameter.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: INVALID_REQUEST
+              message: The request was invalid.
+              documentationUrl: https://developer.folk.app/api-reference/errors#bad-request
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+  headers:
+    X-RateLimit-Limit:
+      schema:
+        type: integer
+        example: 1000
+      description: The maximum number of requests that you can make in the current rate limit window.
+    Retry-After:
+      schema:
+        type: integer
+        example: 60
+      description: The number of seconds to wait before making a new request after hitting the rate limit.
+    X-RateLimit-Reset:
+      schema:
+        type: integer
+        example: 1747322958
+      description: The time at which the current rate limit window resets, in UTC epoch seconds.
+    X-RateLimit-Remaining:
+      schema:
+        type: integer
+        example: 998
+      description: The number of requests remaining in the current rate limit window.
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              example: RATE_LIMIT_EXCEEDED
+            message:
+              type: string
+              example: You have exceeded your rate limit.
+            documentationUrl:
+              type: string
+              format: uri
+              example: https://developer.folk.app/api-reference/errors#rate-limiting
+            requestId:
+              type: string
+              format: uuid
+              example: 123e4567-e89b-12d3-a456-426614174000
+            timestamp:
+              type: string
+              format: date-time
+              example: '2025-10-01T12:00:00Z'
+            details:
+              type: object
+              additionalProperties: true
+              example:
+                limit: 1000
+                remaining: 0
+                retryAfter: '2025-10-01T12:00:00Z'
+          required:
+          - code
+          - message
+          - documentationUrl
+          - requestId
+          - timestamp
+      required:
+      - error
+      description: Error response containing error details.
+    Note:
+      type: object
+      properties:
+        id:
+          type: string
+        entity:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 40
+              maxLength: 40
+              description: The ID of the entity connected to the note.
+              example: per_55175e81-9a52-4ac3-930e-82792c23499b
+            entityType:
+              type: string
+              enum:
+              - person
+              - company
+              - object
+              description: The type of the entity connected to the note. Can be `person`, `company` or `object`.
+              example: person
+            fullName:
+              type: string
+              maxLength: 1000
+              description: The full name of the entity connected to the note.
+              example: John Doe
+          required:
+          - id
+          - entityType
+          - fullName
+        content:
+          type: string
+          minLength: 1
+          maxLength: 100000
+          description: The content of the note. Can be in plain text or in markdown format.
+          example: This is a note about **John Doe**
+        visibility:
+          type: string
+          enum:
+          - public
+          - private
+          description: "The visibility of the note.\n\n- `public`: The note is visible to all users in the workspace.\n- `private`: The note is visible only to the current user.\n    "
+        author:
+          anyOf:
+          - type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - user
+                description: The type of the author of the note, it can be a user or a folk assistant.
+                example: user
+              id:
+                type: string
+                description: The ID of the author of the note.
+                example: usr_55175e81-9a52-4ac3-930e-82792c23499b
+              fullName:
+                type: string
+                maxLength: 1000
+                description: The full name of the author of the note.
+                example: John Doe
+              email:
+                type: string
+                maxLength: 254
+                format: email
+                description: The email of the author of the note.
+                example: john.doe@example.com
+              deleted:
+                type: boolean
+                enum:
+                - false
+                description: Whether the author has been deleted and does not exist anymore.
+                example: false
+            required:
+            - type
+            - id
+            - fullName
+            - email
+            - deleted
+          - type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - assistant
+                description: The type of the author of the note, it can be a user or a folk assistant.
+                example: assistant
+              fullName:
+                type: string
+                maxLength: 1000
+                description: The name of the folk assistant that created the note.
+                example: Research assistant
+            required:
+            - type
+            - fullName
+          - type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - user
+                description: The type of the author of the note, it can be a user or a folk assistant.
+                example: user
+              id:
+                type: string
+              deleted:
+                type: boolean
+                enum:
+                - true
+                description: Whether the author has been deleted and does not exist anymore.
+                example: true
+            required:
+            - type
+            - id
+            - deleted
+        createdAt:
+          type: string
+          minLength: 20
+          maxLength: 40
+          description: The date and time the note was created, in ISO format.
+          example: '2021-01-01T00:00:00.000Z'
+          nullable: true
+        parentNote:
+          oneOf:
+          - type: object
+            properties:
+              id:
+                type: string
+              deleted:
+                type: boolean
+                enum:
+                - true
+                description: Whether the parent note has been deleted and does not exist anymore.
+                example: true
+            required:
+            - id
+            - deleted
+          - type: object
+            properties:
+              id:
+                type: string
+              entity:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    minLength: 40
+                    maxLength: 40
+                    description: The ID of the entity connected to the note.
+                    example: per_55175e81-9a52-4ac3-930e-82792c23499b
+                  entityType:
+                    type: string
+                    enum:
+                    - person
+                    - company
+                    - object
+                    description: The type of the entity connected to the note. Can be `person`, `company` or `object`.
+                    example: person
+                  fullName:
+                    type: string
+                    maxLength: 1000
+                    description: The full name of the entity connected to the note.
+                    example: John Doe
+                required:
+                - id
+                - entityType
+                - fullName
+              content:
+                type: string
+                minLength: 1
+                maxLength: 100000
+                description: The content of the parent note. If the parent note is not visible to the current user, this field will be null.
+                example: This is a parent note about John Doe
+                nullable: true
+              visibility:
+                type: string
+                enum:
+                - public
+                - private
+                description: "The visibility of the note.\n\n- `public`: The note is visible to all users in the workspace.\n- `private`: The note is visible only to the current user.\n    "
+              author:
+                anyOf:
+                - type: object
+                  properties:
+                    type:
+                      type: string
+                      enum:
+                      - user
+                      description: The type of the author of the note, it can be a user or a folk assistant.
+                      example: user
+                    id:
+                      type: string
+                      description: The ID of the author of the note.
+                      example: usr_55175e81-9a52-4ac3-930e-82792c23499b
+                    fullName:
+                      type: string
+                      maxLength: 1000
+                      description: The full name of the author of the note.
+                      example: John Doe
+                    email:
+                      type: string
+                      maxLength: 254
+                      format: email
+                      description: The email of the author of the note.
+                      example: john.doe@example.com
+                    deleted:
+                      type: boolean
+                      enum:
+                      - false
+                      description: Whether the author has been deleted and does not exist anymore.
+                      example: false
+                  required:
+                  - type
+                  - id
+                  - fullName
+                  - email
+                  - deleted
+                - type: object
+                  properties:
+                    type:
+                      type: string
+                      enum:
+                      - assistant
+                      description: The type of the author of the note, it can be a user or a folk assistant.
+                      example: assistant
+                    fullName:
+                      type: string
+                      maxLength: 1000
+                      description: The name of the folk assistant that created the note.
+                      example: Research assistant
+                  required:
+                  - type
+                  - fullName
+                - type: object
+                  properties:
+                    type:
+                      type: string
+                      enum:
+                      - user
+                      description: The type of the author of the note, it can be a user or a folk assistant.
+                      example: user
+                    id:
+                      type: string
+                    deleted:
+                      type: boolean
+                      enum:
+                      - true
+                      description: Whether the author has been deleted and does not exist anymore.
+                      example: true
+                  required:
+                  - type
+                  - id
+                  - deleted
+              createdAt:
+                type: string
+                minLength: 20
+                maxLength: 40
+                description: The date and time the parent note was created, in ISO format.
+                example: '2021-01-01T00:00:00.000Z'
+                nullable: true
+              deleted:
+                type: boolean
+                enum:
+                - false
+                description: Whether the parent note has been deleted and does not exist anymore.
+                example: false
+            required:
+            - id
+            - entity
+            - content
+            - visibility
+            - author
+            - createdAt
+            - deleted
+          - type: 'null'
+          description: The parent note, if this note is a reply to another note.
+          example:
+            id: nte_14c18444-a0c7-459a-86b0-ccd70ebcd65c
+            entity:
+              id: per_55175e81-9a52-4ac3-930e-82792c23499b
+              entityType: person
+              fullName: John Doe
+            content: This is a parent note about John Doe
+            visibility: public
+            author:
+              type: user
+              id: usr_14c18444-a0c7-459a-86b0-ccd70ebcd65c
+              fullName: John Doe
+              email: john.doe@example.com
+              deleted: false
+            createdAt: '2021-01-01T00:00:00.000Z'
+            deleted: false
+      required:
+      - id
+      - entity
+      - content
+      - visibility
+      - author
+      - createdAt
+      - parentNote
+      description: A note linked to an entity.
+      example:
+        id: nte_91118b73-5a75-480b-b8e3-a33671c35cdc
+        entity:
+          id: per_55175e81-9a52-4ac3-930e-82792c23499b
+          entityType: person
+          fullName: John Doe
+        visibility: public
+        content: This is a note about John Doe
+        author:
+          type: user
+          id: usr_14c18444-a0c7-459a-86b0-ccd70ebcd65c
+          fullName: John Doe
+          email: john.doe@example.com
+          deleted: false
+        createdAt: '2021-01-01T00:00:00.000Z'
+        parentNote:
+          id: nte_14c18444-a0c7-459a-86b0-ccd70ebcd65c
+          entity:
+            id: per_55175e81-9a52-4ac3-930e-82792c23499b
+            entityType: person
+            fullName: John Doe
+          content: This is a parent note about John Doe
+          visibility: public
+          author:
+            type: user
+            id: usr_14c18444-a0c7-459a-86b0-ccd70ebcd65c
+            fullName: John Doe
+            email: john.doe@example.com
+            deleted: false
+          createdAt: '2021-01-01T00:00:00.000Z'
+          deleted: false
+  securitySchemes:
+    bearerApiKeyAuth:
+      type: http
+      scheme: bearer
+      description: API key for authentication

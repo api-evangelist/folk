@@ -1,0 +1,989 @@
+openapi: 3.0.3
+info:
+  title: Folk External Companies Webhooks API
+  description: Folk's public REST API lets you manage workspaces, groups, contacts, and real-time triggers.
+  version: '2025-06-09'
+  contact:
+    name: folk
+    email: tech@folk.app
+    url: https://folk.app
+servers:
+- url: https://api.folk.app
+  description: Folk's public API production base URL.
+  x-internal: false
+tags:
+- name: Webhooks
+  description: Operations related to webhooks.
+paths:
+  /v1/webhooks:
+    get:
+      security:
+      - bearerApiKeyAuth: []
+      operationId: listWebhooks
+      summary: List webhooks
+      description: Retrieve a list of webhooks in the workspace.
+      tags:
+      - Webhooks
+      parameters:
+      - schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+        required: false
+        description: The number of items to return.
+        example: 20
+        name: limit
+        in: query
+      - schema:
+          type: string
+          maxLength: 128
+        required: false
+        description: A cursor for pagination across multiple pages of results. Don’t include this parameter on the first call. Use the `pagination.nextLink` value returned in a previous response to request subsequent results.
+        example: eyJvZmZzZXQiOjN9
+        name: cursor
+        in: query
+      responses:
+        '200':
+          description: A paginated list of webhooks in the workspace.
+          links:
+            updateWebhook:
+              operationId: updateWebhook
+              parameters:
+                companyId: $response.body#/data/items/0/id
+              description: The ids returned by the `GET /v1/webhooks` operation can be used as an input to the `PATCH /v1/webhooks/:webhookId` operation to update a webhook.
+            getWebhook:
+              operationId: getWebhook
+              parameters:
+                companyId: $response.body#/data/items/0/id
+              description: The ids returned by the `GET /v1/webhooks` operation can be used as an input to the `GET /v1/webhooks/:webhookId` operation to retrieve a webhook.
+            deleteWebhook:
+              operationId: deleteWebhook
+              parameters:
+                companyId: $response.body#/data/items/0/id
+              description: The ids returned by the `GET /v1/webhooks` operation can be used as an input to the `DELETE /v1/webhooks/:webhookId` operation to delete a webhook.
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            Retry-After:
+              $ref: '#/components/headers/Retry-After'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Webhook'
+                      pagination:
+                        type: object
+                        properties:
+                          nextLink:
+                            type: string
+                    required:
+                    - items
+                    - pagination
+                    example:
+                      items:
+                      - id: wbk_8c18c158-d49e-4ad4-90d4-2b197688bac7
+                        name: My app integration
+                        targetUrl: https://my-app.com/webhook
+                        subscribedEvents:
+                        - eventType: person.created
+                          filter: {}
+                        redactedSigningSecret: whs_fx**********************oVMa
+                        status: active
+                        createdAt: '2025-07-17T09:00:00.000Z'
+                      pagination:
+                        nextLink: https://api.folk.app/v1/webhooks?limit=20&cursor=eyJvZmZzZXQiOjIwfQ%3D%3D
+                  deprecations:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                    - This field is deprecated
+                required:
+                - data
+              example:
+                data:
+                  items:
+                  - id: wbk_8c18c158-d49e-4ad4-90d4-2b197688bac7
+                    name: My app integration
+                    targetUrl: https://my-app.com/webhook
+                    subscribedEvents:
+                    - eventType: person.created
+                      filter: {}
+                    redactedSigningSecret: whs_fx**********************oVMa
+                    status: active
+                    createdAt: '2025-07-17T09:00:00.000Z'
+                  pagination:
+                    nextLink: https://api.folk.app/v1/webhooks?limit=20&cursor=eyJvZmZzZXQiOjIwfQ%3D%3D
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    post:
+      security:
+      - bearerApiKeyAuth: []
+      operationId: createWebhook
+      summary: Create a webhook
+      description: Creates a new webhook listening to workspace events.
+      tags:
+      - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  maxLength: 255
+                  description: A friendly name for the webhook.
+                  example: My app integration
+                targetUrl:
+                  type: string
+                  maxLength: 2048
+                  format: uri
+                  description: The URL of the webhook. It must be a publicly accessible URL using the HTTP or HTTPS protocol.
+                  example: https://my-app.com/webhook
+                subscribedEvents:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      eventType:
+                        type: string
+                        enum:
+                        - person.created
+                        - person.updated
+                        - person.deleted
+                        - person.groups_updated
+                        - person.workspace_interaction_metadata_updated
+                        - company.created
+                        - company.updated
+                        - company.deleted
+                        - company.groups_updated
+                        - object.created
+                        - object.updated
+                        - object.deleted
+                        - note.created
+                        - note.updated
+                        - note.deleted
+                        - reminder.created
+                        - reminder.updated
+                        - reminder.deleted
+                        - reminder.triggered
+                      filter:
+                        type: object
+                        properties:
+                          groupId:
+                            type: string
+                            maxLength: 255
+                          objectType:
+                            type: string
+                            maxLength: 255
+                          path:
+                            type: array
+                            items:
+                              type: string
+                              maxLength: 255
+                            maxItems: 3
+                          value:
+                            type: string
+                            maxLength: 255
+                    required:
+                    - eventType
+                    additionalProperties: false
+                  minItems: 1
+                  maxItems: 20
+                  description: The events the webhook is subscribed to, with optional filters.
+                  example:
+                  - eventType: person.created
+                    filter:
+                      groupId: grp_bc984b3f-0386-434d-82d7-a91eb6badd71
+              required:
+              - name
+              - targetUrl
+              - subscribedEvents
+              additionalProperties: false
+      responses:
+        '200':
+          description: The created webhook.
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            Retry-After:
+              $ref: '#/components/headers/Retry-After'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/WebhookWithSigningSecret'
+                  deprecations:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                    - This field is deprecated
+                required:
+                - data
+              example:
+                data:
+                  id: wbk_8c18c158-d49e-4ad4-90d4-2b197688bac7
+                  name: My app integration
+                  targetUrl: https://my-app.com/webhook
+                  subscribedEvents:
+                  - eventType: person.created
+                    filter: {}
+                  signingSecret: whsec_QWFSUzl1QUVoQW1kdWtpTnJRTUFpbXNlZmxLTg==
+                  status: active
+                  createdAt: '2025-07-17T09:00:00.000Z'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /v1/webhooks/{webhookId}:
+    get:
+      security:
+      - bearerApiKeyAuth: []
+      operationId: getWebhook
+      summary: Get a webhook
+      description: Retrieve an existing webhook in the workspace.
+      tags:
+      - Webhooks
+      parameters:
+      - schema:
+          type: string
+          minLength: 40
+          maxLength: 40
+        required: true
+        description: The ID of the webhook to retrieve.
+        name: webhookId
+        in: path
+      responses:
+        '200':
+          description: The retrieved webhook in the workspace.
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            Retry-After:
+              $ref: '#/components/headers/Retry-After'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Webhook'
+                  deprecations:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                    - This field is deprecated
+                required:
+                - data
+              example:
+                data:
+                  id: wbk_8c18c158-d49e-4ad4-90d4-2b197688bac7
+                  name: My app integration
+                  targetUrl: https://my-app.com/webhook
+                  subscribedEvents:
+                  - eventType: person.created
+                    filter: {}
+                  redactedSigningSecret: whs_fx**********************oVMa
+                  status: active
+                  createdAt: '2025-07-17T09:00:00.000Z'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    patch:
+      security:
+      - bearerApiKeyAuth: []
+      operationId: updateWebhook
+      summary: Update a webhook
+      description: Update an existing webhook in the workspace.
+      tags:
+      - Webhooks
+      parameters:
+      - schema:
+          type: string
+          minLength: 40
+          maxLength: 40
+        required: true
+        description: The ID of the webhook to update.
+        name: webhookId
+        in: path
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  maxLength: 255
+                  description: A friendly name for the webhook.
+                  example: My app integration
+                targetUrl:
+                  type: string
+                  maxLength: 2048
+                  format: uri
+                  description: The URL of the webhook. It must be a publicly accessible URL using the HTTP or HTTPS protocol.
+                  example: https://my-app.com/webhook
+                subscribedEvents:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      eventType:
+                        type: string
+                        enum:
+                        - person.created
+                        - person.updated
+                        - person.deleted
+                        - person.groups_updated
+                        - person.workspace_interaction_metadata_updated
+                        - company.created
+                        - company.updated
+                        - company.deleted
+                        - company.groups_updated
+                        - object.created
+                        - object.updated
+                        - object.deleted
+                        - note.created
+                        - note.updated
+                        - note.deleted
+                        - reminder.created
+                        - reminder.updated
+                        - reminder.deleted
+                        - reminder.triggered
+                      filter:
+                        type: object
+                        properties:
+                          groupId:
+                            type: string
+                            maxLength: 255
+                          objectType:
+                            type: string
+                            maxLength: 255
+                          path:
+                            type: array
+                            items:
+                              type: string
+                              maxLength: 255
+                            maxItems: 3
+                          value:
+                            type: string
+                            maxLength: 255
+                    required:
+                    - eventType
+                    additionalProperties: false
+                  minItems: 1
+                  maxItems: 20
+                  description: The events the webhook is subscribed to, with optional filters.
+                  example:
+                  - eventType: person.created
+                    filter:
+                      groupId: grp_bc984b3f-0386-434d-82d7-a91eb6badd71
+                status:
+                  type: string
+                  enum:
+                  - active
+                  - inactive
+                  description: The status of the webhook.
+                  example: active
+              additionalProperties: false
+      responses:
+        '200':
+          description: The updated webhook in the workspace.
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            Retry-After:
+              $ref: '#/components/headers/Retry-After'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Webhook'
+                  deprecations:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                    - This field is deprecated
+                required:
+                - data
+              example:
+                data:
+                  id: wbk_8c18c158-d49e-4ad4-90d4-2b197688bac7
+                  name: My app integration
+                  targetUrl: https://my-app.com/webhook
+                  subscribedEvents:
+                  - eventType: person.created
+                    filter: {}
+                  redactedSigningSecret: whs_fx**********************oVMa
+                  status: active
+                  createdAt: '2025-07-17T09:00:00.000Z'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    delete:
+      security:
+      - bearerApiKeyAuth: []
+      operationId: deleteWebhook
+      summary: Delete a webhook
+      description: Delete an existing webhook in the workspace.
+      tags:
+      - Webhooks
+      parameters:
+      - schema:
+          type: string
+          minLength: 40
+          maxLength: 40
+        required: true
+        description: The ID of the webhook to delete.
+        name: webhookId
+        in: path
+      responses:
+        '200':
+          description: The ID of the deleted webhook.
+          headers:
+            X-RateLimit-Limit:
+              $ref: '#/components/headers/X-RateLimit-Limit'
+            X-RateLimit-Remaining:
+              $ref: '#/components/headers/X-RateLimit-Remaining'
+            X-RateLimit-Reset:
+              $ref: '#/components/headers/X-RateLimit-Reset'
+            Retry-After:
+              $ref: '#/components/headers/Retry-After'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                    required:
+                    - id
+                    example:
+                      id: wbk_8c18c158-d49e-4ad4-90d4-2b197688bac7
+                  deprecations:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                    - This field is deprecated
+                required:
+                - data
+              example:
+                data:
+                  id: wbk_8c18c158-d49e-4ad4-90d4-2b197688bac7
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+components:
+  responses:
+    Forbidden:
+      description: The API key doesn’t have permissions to perform the request.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: FORBIDDEN
+              message: The API key doesn’t have permissions to perform the request.
+              documentationUrl: https://developer.folk.app/api-reference/errors#forbidden
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    ServiceUnavailable:
+      description: The server is overloaded or down for maintenance.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: SERVICE_UNAVAILABLE
+              message: The service is currently unavailable.
+              documentationUrl: https://developer.folk.app/api-reference/errors#service-unavailable
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    NotFound:
+      description: The requested resource doesn’t exist.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: RESOURCE_NOT_FOUND
+              message: The requested resource was not found.
+              documentationUrl: https://developer.folk.app/api-reference/errors#not-found
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    InternalServerError:
+      description: Something went wrong on our end.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: INTERNAL_SERVER_ERROR
+              message: An internal server error occurred.
+              documentationUrl: https://developer.folk.app/api-reference/errors#internal-server-error
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    UnprocessableEntity:
+      description: The request was unacceptable, often due to missing or invalid parameters.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: UNPROCESSABLE_ENTITY
+              message: Invalid query parameters
+              documentationUrl: https://developer.folk.app/api-reference/errors#unprocessable-entity
+              details:
+                issues:
+                - code: too_small
+                  minimum: 1
+                  type: number
+                  inclusive: true
+                  exact: false
+                  message: Number must be greater than or equal to 1
+                  path:
+                  - limit
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    Unauthorized:
+      description: No valid API key provided.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: UNAUTHORIZED
+              message: No valid API key provided.
+              documentationUrl: https://developer.folk.app/api-reference/errors#unauthorized
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    BadRequest:
+      description: The request was unacceptable, often due to missing an invalid parameter.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: INVALID_REQUEST
+              message: The request was invalid.
+              documentationUrl: https://developer.folk.app/api-reference/errors#bad-request
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    TooManyRequests:
+      description: Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: RATE_LIMIT_EXCEEDED
+              message: The rate limit has been exceeded.
+              documentationUrl: https://developer.folk.app/api-reference/errors#rate-limiting
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+              details:
+                limit: 1000
+                remaining: 0
+                retryAfter: '2025-10-01T12:00:00Z'
+  headers:
+    X-RateLimit-Limit:
+      schema:
+        type: integer
+        example: 1000
+      description: The maximum number of requests that you can make in the current rate limit window.
+    X-RateLimit-Remaining:
+      schema:
+        type: integer
+        example: 998
+      description: The number of requests remaining in the current rate limit window.
+    Retry-After:
+      schema:
+        type: integer
+        example: 60
+      description: The number of seconds to wait before making a new request after hitting the rate limit.
+    X-RateLimit-Reset:
+      schema:
+        type: integer
+        example: 1747322958
+      description: The time at which the current rate limit window resets, in UTC epoch seconds.
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              example: RATE_LIMIT_EXCEEDED
+            message:
+              type: string
+              example: You have exceeded your rate limit.
+            documentationUrl:
+              type: string
+              format: uri
+              example: https://developer.folk.app/api-reference/errors#rate-limiting
+            requestId:
+              type: string
+              format: uuid
+              example: 123e4567-e89b-12d3-a456-426614174000
+            timestamp:
+              type: string
+              format: date-time
+              example: '2025-10-01T12:00:00Z'
+            details:
+              type: object
+              additionalProperties: true
+              example:
+                limit: 1000
+                remaining: 0
+                retryAfter: '2025-10-01T12:00:00Z'
+          required:
+          - code
+          - message
+          - documentationUrl
+          - requestId
+          - timestamp
+      required:
+      - error
+      description: Error response containing error details.
+    WebhookWithSigningSecret:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          maxLength: 255
+          description: A friendly name for the webhook.
+          example: My app integration
+        targetUrl:
+          type: string
+          maxLength: 2048
+          format: uri
+          description: The URL of the webhook.
+          example: https://my-app.com/webhook
+        subscribedEvents:
+          type: array
+          items:
+            type: object
+            properties:
+              eventType:
+                type: string
+              filter:
+                type: object
+                properties:
+                  groupId:
+                    type: string
+                    maxLength: 255
+                  objectType:
+                    type: string
+                    maxLength: 255
+                  path:
+                    type: array
+                    items:
+                      type: string
+                      maxLength: 255
+                    maxItems: 3
+                  value:
+                    type: string
+                    maxLength: 255
+                default: {}
+            required:
+            - eventType
+          maxItems: 20
+          description: The events the webhook is subscribed to, with optional filters. For more information on how to use filters, see the [create webhook documentation](/api-reference/webhooks/create-a-webhook).
+          example:
+          - eventType: person.created
+            filter: {}
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          description: The status of the webhook.
+          example: active
+        createdAt:
+          type: string
+          format: date-time
+          description: The date and time the webhook was created.
+          example: '2025-07-17T09:00:00.000Z'
+        signingSecret:
+          type: string
+          maxLength: 255
+          description: The signing secret of the webhook.
+          example: whsec_QWFSUzl1QUVoQW1kdWtpTnJRTUFpbXNlZmxLTg==
+      required:
+      - id
+      - name
+      - targetUrl
+      - subscribedEvents
+      - status
+      - createdAt
+      - signingSecret
+      description: A webhook with a visible signing secret.
+      example:
+        id: wbk_8c18c158-d49e-4ad4-90d4-2b197688bac7
+        name: My app integration
+        targetUrl: https://my-app.com/webhook
+        subscribedEvents:
+        - eventType: person.created
+          filter: {}
+        signingSecret: whsec_QWFSUzl1QUVoQW1kdWtpTnJRTUFpbXNlZmxLTg==
+        status: active
+        createdAt: '2025-07-17T09:00:00.000Z'
+    Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          maxLength: 255
+          description: A friendly name for the webhook.
+          example: My app integration
+        targetUrl:
+          type: string
+          maxLength: 2048
+          format: uri
+          description: The URL of the webhook.
+          example: https://my-app.com/webhook
+        subscribedEvents:
+          type: array
+          items:
+            type: object
+            properties:
+              eventType:
+                type: string
+              filter:
+                type: object
+                properties:
+                  groupId:
+                    type: string
+                    maxLength: 255
+                  objectType:
+                    type: string
+                    maxLength: 255
+                  path:
+                    type: array
+                    items:
+                      type: string
+                      maxLength: 255
+                    maxItems: 3
+                  value:
+                    type: string
+                    maxLength: 255
+                default: {}
+            required:
+            - eventType
+          maxItems: 20
+          description: The events the webhook is subscribed to, with optional filters. For more information on how to use filters, see the [create webhook documentation](/api-reference/webhooks/create-a-webhook).
+          example:
+          - eventType: person.created
+            filter: {}
+        redactedSigningSecret:
+          type: string
+          maxLength: 255
+          description: The signing secret of the webhook.
+          example: whs_fx**********************oVMa
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          description: The status of the webhook.
+          example: active
+        createdAt:
+          type: string
+          format: date-time
+          description: The date and time the webhook was created.
+          example: '2025-07-17T09:00:00.000Z'
+      required:
+      - id
+      - name
+      - targetUrl
+      - subscribedEvents
+      - redactedSigningSecret
+      - status
+      - createdAt
+      description: A webhook listening to events from the workspace and sending them to a URL.
+      example:
+        id: wbk_8c18c158-d49e-4ad4-90d4-2b197688bac7
+        name: My app integration
+        targetUrl: https://my-app.com/webhook
+        subscribedEvents:
+        - eventType: person.created
+          filter: {}
+        redactedSigningSecret: whs_fx**********************oVMa
+        status: active
+        createdAt: '2025-07-17T09:00:00.000Z'
+  securitySchemes:
+    bearerApiKeyAuth:
+      type: http
+      scheme: bearer
+      description: API key for authentication
