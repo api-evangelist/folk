@@ -11,7 +11,20 @@ description: >
   with 5,000+ tools including Gmail, Outlook, LinkedIn, WhatsApp, and Zapier.
   API access is available on the Premium and Enterprise plans.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/folk.png
 url: https://raw.githubusercontent.com/api-evangelist/folk/refs/heads/main/apis.yml
 created: "2026-06-12"
 modified: "2026-06-12"
@@ -26,34 +39,150 @@ tags:
   - Deals
   - Webhooks
 apis:
-  - name: Folk API
-    description: >
-      The Folk REST API provides full CRUD access to workspace data including
-      people, companies, deals, notes, reminders, interactions, groups, custom
-      fields, users, and webhooks. Authentication uses API key Bearer tokens
-      generated in workspace settings. Rate limits are set at 600 requests per
-      minute per user, with standard rate-limit response headers provided.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://developer.folk.app/
-    baseURL: https://api.folk.app
-    tags:
-      - CRM
-      - Contacts
-      - Deals
-      - Pipelines
-      - Notes
-      - Webhooks
-    properties:
-      - type: Documentation
-        url: https://developer.folk.app/
-      - type: OpenAPI
-        url: https://developer.folk.app/api-reference/openapi.json
-      - type: OpenAPI
-        url: openapi/folk-openapi.yml
-      - type: JSONSchema
-        url: json-schema/folk-schemas.json
-      - type: Examples
-        url: examples/folk-examples.json
+- aid: folk:folk-companies-api
+  name: Folk Companies API
+  description: Operations related to companies.
+  humanURL: https://developer.folk.app/
+  baseURL: https://api.folk.app
+  tags:
+  - Companies
+  properties:
+  - type: OpenAPI
+    url: openapi/folk-companies-api-openapi.yml
+  - type: Documentation
+    url: https://developer.folk.app/
+  - type: JSONSchema
+    url: json-schema/folk-schemas.json
+  - type: Examples
+    url: examples/folk-examples.json
+- aid: folk:folk-deals-api
+  name: Folk Deals API
+  description: Operations related to deals.
+  humanURL: https://developer.folk.app/
+  baseURL: https://api.folk.app
+  tags:
+  - Deals
+  properties:
+  - type: OpenAPI
+    url: openapi/folk-deals-api-openapi.yml
+  - type: Documentation
+    url: https://developer.folk.app/
+  - type: JSONSchema
+    url: json-schema/folk-schemas.json
+  - type: Examples
+    url: examples/folk-examples.json
+- aid: folk:folk-groups-api
+  name: Folk Groups API
+  description: Operations related to groups.
+  humanURL: https://developer.folk.app/
+  baseURL: https://api.folk.app
+  tags:
+  - Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/folk-groups-api-openapi.yml
+  - type: Documentation
+    url: https://developer.folk.app/
+  - type: JSONSchema
+    url: json-schema/folk-schemas.json
+  - type: Examples
+    url: examples/folk-examples.json
+- aid: folk:folk-interactions-api
+  name: Folk Interactions API
+  description: Operations related to interactions.
+  humanURL: https://developer.folk.app/
+  baseURL: https://api.folk.app
+  tags:
+  - Interactions
+  properties:
+  - type: OpenAPI
+    url: openapi/folk-interactions-api-openapi.yml
+  - type: Documentation
+    url: https://developer.folk.app/
+  - type: JSONSchema
+    url: json-schema/folk-schemas.json
+  - type: Examples
+    url: examples/folk-examples.json
+- aid: folk:folk-notes-api
+  name: Folk Notes API
+  description: Operations related to notes.
+  humanURL: https://developer.folk.app/
+  baseURL: https://api.folk.app
+  tags:
+  - Notes
+  properties:
+  - type: OpenAPI
+    url: openapi/folk-notes-api-openapi.yml
+  - type: Documentation
+    url: https://developer.folk.app/
+  - type: JSONSchema
+    url: json-schema/folk-schemas.json
+  - type: Examples
+    url: examples/folk-examples.json
+- aid: folk:folk-people-api
+  name: Folk People API
+  description: Operations related to people.
+  humanURL: https://developer.folk.app/
+  baseURL: https://api.folk.app
+  tags:
+  - People
+  properties:
+  - type: OpenAPI
+    url: openapi/folk-people-api-openapi.yml
+  - type: Documentation
+    url: https://developer.folk.app/
+  - type: JSONSchema
+    url: json-schema/folk-schemas.json
+  - type: Examples
+    url: examples/folk-examples.json
+- aid: folk:folk-reminders-api
+  name: Folk Reminders API
+  description: Operations related to reminders.
+  humanURL: https://developer.folk.app/
+  baseURL: https://api.folk.app
+  tags:
+  - Reminders
+  properties:
+  - type: OpenAPI
+    url: openapi/folk-reminders-api-openapi.yml
+  - type: Documentation
+    url: https://developer.folk.app/
+  - type: JSONSchema
+    url: json-schema/folk-schemas.json
+  - type: Examples
+    url: examples/folk-examples.json
+- aid: folk:folk-users-api
+  name: Folk Users API
+  description: Operations related to users.
+  humanURL: https://developer.folk.app/
+  baseURL: https://api.folk.app
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/folk-users-api-openapi.yml
+  - type: Documentation
+    url: https://developer.folk.app/
+  - type: JSONSchema
+    url: json-schema/folk-schemas.json
+  - type: Examples
+    url: examples/folk-examples.json
+- aid: folk:folk-webhooks-api
+  name: Folk Webhooks API
+  description: Operations related to webhooks.
+  humanURL: https://developer.folk.app/
+  baseURL: https://api.folk.app
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/folk-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://developer.folk.app/
+  - type: JSONSchema
+    url: json-schema/folk-schemas.json
+  - type: Examples
+    url: examples/folk-examples.json
 common:
   - type: AgenticAccess
     url: agentic-access/folk-agentic-access.yml
