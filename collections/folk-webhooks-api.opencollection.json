@@ -1,0 +1,139 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Folk External Companies Webhooks API",
+    "version": "2025-06-09"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.folk.app/v1/webhooks",
+            "params": [
+              {
+                "name": "limit",
+                "value": "20",
+                "type": "query",
+                "description": "The number of items to return."
+              },
+              {
+                "name": "cursor",
+                "value": "eyJvZmZzZXQiOjN9",
+                "type": "query",
+                "description": "A cursor for pagination across multiple pages of results. Don’t include this parameter on the first call. Use the `pagination.nextLink` value returned in a previous response to request subsequent results."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a list of webhooks in the workspace."
+        },
+        {
+          "info": {
+            "name": "Create a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.folk.app/v1/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates a new webhook listening to workspace events."
+        },
+        {
+          "info": {
+            "name": "Get a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.folk.app/v1/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the webhook to retrieve."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve an existing webhook in the workspace."
+        },
+        {
+          "info": {
+            "name": "Update a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.folk.app/v1/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the webhook to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update an existing webhook in the workspace."
+        },
+        {
+          "info": {
+            "name": "Delete a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.folk.app/v1/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the webhook to delete."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete an existing webhook in the workspace."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

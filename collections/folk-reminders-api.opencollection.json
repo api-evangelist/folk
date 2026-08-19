@@ -1,0 +1,145 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Folk External Companies Reminders API",
+    "version": "2025-06-09"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reminders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List reminders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.folk.app/v1/reminders",
+            "params": [
+              {
+                "name": "limit",
+                "value": "20",
+                "type": "query",
+                "description": "The number of items to return."
+              },
+              {
+                "name": "cursor",
+                "value": "eyJvZmZzZXQiOjN9",
+                "type": "query",
+                "description": "A cursor for pagination across multiple pages of results. Don’t include this parameter on the first call. Use the `pagination.nextLink` value returned in a previous response to request subsequent results."
+              },
+              {
+                "name": "entity.id",
+                "value": "per_55175e81-9a52-4ac3-930e-82792c23499b",
+                "type": "query",
+                "description": "Filter reminders by entity. Only reminders linked to the specified entity will be returned."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a list of reminders in the workspace."
+        },
+        {
+          "info": {
+            "name": "Create a reminder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.folk.app/v1/reminders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new reminder in the workspace."
+        },
+        {
+          "info": {
+            "name": "Get a reminder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.folk.app/v1/reminders/:reminderId",
+            "params": [
+              {
+                "name": "reminderId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the reminder to retrieve."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve an existing reminder in the workspace."
+        },
+        {
+          "info": {
+            "name": "Update a reminder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.folk.app/v1/reminders/:reminderId",
+            "params": [
+              {
+                "name": "reminderId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the reminder to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update an existing reminder in the workspace."
+        },
+        {
+          "info": {
+            "name": "Delete a reminder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.folk.app/v1/reminders/:reminderId",
+            "params": [
+              {
+                "name": "reminderId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the reminder to delete."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete an existing reminder in the workspace."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

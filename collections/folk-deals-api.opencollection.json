@@ -1,0 +1,258 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Folk External Companies Deals API",
+    "version": "2025-06-09"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Deals",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List deals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.folk.app/v1/groups/:groupId/:objectType",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "grp_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                "type": "path",
+                "description": "The ID of the group the deals belong to. Can be retrieved from the [List groups](/api-reference/groups/list-groups) endpoint."
+              },
+              {
+                "name": "objectType",
+                "value": "Deals",
+                "type": "path",
+                "description": "The name of a deal custom field that can be retrieved from the [List group custom fields](/api-reference/groups/list-group-custom-fields) endpoint."
+              },
+              {
+                "name": "limit",
+                "value": "20",
+                "type": "query",
+                "description": "The number of items to return."
+              },
+              {
+                "name": "cursor",
+                "value": "eyJvZmZzZXQiOjN9",
+                "type": "query",
+                "description": "A cursor for pagination across multiple pages of results. Don’t include this parameter on the first call. Use the `pagination.nextLink` value returned in a previous response to request subsequent results."
+              },
+              {
+                "name": "combinator",
+                "value": "and",
+                "type": "query",
+                "description": "The logical operator to combine multiple filters."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A record of filters to apply, following the format `filter[attribute][operator]=value`. The `attribute` is the name of the attribute to filter on, and the `operator` is one of the supported filter operators. Refer to [Filterable fields](/api-reference/filtering#filterable-fields) to learn more about the supported attributes and operators."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a list of deals in the workspace."
+        },
+        {
+          "info": {
+            "name": "Create a deal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.folk.app/v1/groups/:groupId/:objectType",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "grp_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                "type": "path",
+                "description": "The ID of the group the deals belong to. Can be retrieved from the [List groups](/api-reference/groups/list-groups) endpoint."
+              },
+              {
+                "name": "objectType",
+                "value": "Deals",
+                "type": "path",
+                "description": "The name of a deal custom field that can be retrieved from the [List group custom fields](/api-reference/groups/list-group-custom-fields) endpoint."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new deal in the workspace."
+        },
+        {
+          "info": {
+            "name": "Get a deal",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.folk.app/v1/groups/:groupId/:objectType/:objectId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "grp_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                "type": "path",
+                "description": "The ID of the group the deals belong to. Can be retrieved from the [List groups](/api-reference/groups/list-groups) endpoint."
+              },
+              {
+                "name": "objectType",
+                "value": "Deals",
+                "type": "path",
+                "description": "The name of a deal custom field that can be retrieved from the [List group custom fields](/api-reference/groups/list-group-custom-fields) endpoint."
+              },
+              {
+                "name": "objectId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the deal to retrieve."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve an existing deal in the workspace."
+        },
+        {
+          "info": {
+            "name": "Update a deal",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.folk.app/v1/groups/:groupId/:objectType/:objectId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "grp_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                "type": "path",
+                "description": "The ID of the group the deals belong to. Can be retrieved from the [List groups](/api-reference/groups/list-groups) endpoint."
+              },
+              {
+                "name": "objectType",
+                "value": "Deals",
+                "type": "path",
+                "description": "The name of a deal custom field that can be retrieved from the [List group custom fields](/api-reference/groups/list-group-custom-fields) endpoint."
+              },
+              {
+                "name": "objectId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the deal to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update an existing deal in the workspace."
+        },
+        {
+          "info": {
+            "name": "Delete a deal",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.folk.app/v1/groups/:groupId/:objectType/:objectId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "grp_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                "type": "path",
+                "description": "The ID of the group the deals belong to. Can be retrieved from the [List groups](/api-reference/groups/list-groups) endpoint."
+              },
+              {
+                "name": "objectType",
+                "value": "Deals",
+                "type": "path",
+                "description": "The name of a deal custom field that can be retrieved from the [List group custom fields](/api-reference/groups/list-group-custom-fields) endpoint."
+              },
+              {
+                "name": "objectId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the deal to delete."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete an existing deal in the workspace."
+        },
+        {
+          "info": {
+            "name": "Search deals",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.folk.app/v1/groups/:groupId/:objectType/search",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "grp_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                "type": "path",
+                "description": "The ID of the group the deals belong to. Can be retrieved from the [List groups](/api-reference/groups/list-groups) endpoint."
+              },
+              {
+                "name": "objectType",
+                "value": "Deals",
+                "type": "path",
+                "description": "The name of a deal custom field that can be retrieved from the [List group custom fields](/api-reference/groups/list-group-custom-fields) endpoint."
+              },
+              {
+                "name": "limit",
+                "value": "20",
+                "type": "query",
+                "description": "The number of items to return."
+              },
+              {
+                "name": "cursor",
+                "value": "eyJvZmZzZXQiOjN9",
+                "type": "query",
+                "description": "A cursor for pagination across multiple pages of results. Don’t include this parameter on the first call. Use the `pagination.nextLink` value returned in a previous response to request subsequent results."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Search deals in the workspace."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

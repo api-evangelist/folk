@@ -1,0 +1,1616 @@
+{
+  "item": [
+    {
+      "id": "068b4fef-ceda-474b-9ebb-3ef5e548a4d4",
+      "name": "Groups",
+      "description": {
+        "content": "Operations related to groups.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "06e7899c-8a58-448b-ab3c-00aa75e93c4a",
+          "name": "List groups",
+          "request": {
+            "name": "List groups",
+            "description": {
+              "content": "Returns a list of workspace groups.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "The number of items to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "A cursor for pagination across multiple pages of results. Don’t include this parameter on the first call. Use the `pagination.nextLink` value returned in a previous response to request subsequent results."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a3e84f76-e13a-406a-b5ad-37558e3fb07f",
+              "name": "A paginated list of groups in the workspace. The `data.items` field contains the list of groups, and the `data.pagination.nextLink` field contains a link to the next page of results, if available.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"items\": [\n      {\n        \"id\": \"grp_bc984b3f-0386-434d-82d7-a91eb6badd71\",\n        \"name\": \"Group Name\"\n      }\n    ],\n    \"pagination\": {\n      \"nextLink\": \"https://api.folk.app/v1/groups?limit=20&cursor=eyJvZmZzZXQiOjIwfQ%3D%3D\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6920f752-0dab-4f7e-9913-5e6b860d27fb",
+              "name": "The request was unacceptable, often due to missing an invalid parameter.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INVALID_REQUEST\",\n    \"message\": \"The request was invalid.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#bad-request\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "744343c4-f999-4a26-ab24-c08ca9e8f30f",
+              "name": "No valid API key provided.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"UNAUTHORIZED\",\n    \"message\": \"No valid API key provided.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#unauthorized\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13ce59f4-cd54-4262-ad64-d18e2c3774bf",
+              "name": "The API key doesn’t have permissions to perform the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"FORBIDDEN\",\n    \"message\": \"The API key doesn’t have permissions to perform the request.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#forbidden\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a6a4ead-e8b1-4dbd-8fa7-c3e05715ac2b",
+              "name": "The requested resource doesn’t exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"RESOURCE_NOT_FOUND\",\n    \"message\": \"The requested resource was not found.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#not-found\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8fc4661-054b-4dc6-9edc-2f16343623c8",
+              "name": "The request was unacceptable, often due to missing or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"UNPROCESSABLE_ENTITY\",\n    \"message\": \"Invalid query parameters\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#unprocessable-entity\",\n    \"details\": {\n      \"issues\": [\n        {\n          \"code\": \"too_small\",\n          \"minimum\": 1,\n          \"type\": \"number\",\n          \"inclusive\": true,\n          \"exact\": false,\n          \"message\": \"Number must be greater than or equal to 1\",\n          \"path\": [\n            \"limit\"\n          ]\n        }\n      ]\n    },\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4bfa2bea-465f-4d43-a599-86e70d8b6ccc",
+              "name": "Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"RATE_LIMIT_EXCEEDED\",\n    \"message\": \"The rate limit has been exceeded.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#rate-limiting\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\",\n    \"details\": {\n      \"limit\": 1000,\n      \"remaining\": 0,\n      \"retryAfter\": \"2025-10-01T12:00:00Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "066d0567-f50b-43e0-9688-64abfc012631",
+              "name": "Something went wrong on our end.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INTERNAL_SERVER_ERROR\",\n    \"message\": \"An internal server error occurred.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#internal-server-error\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66415cbd-6cbb-4207-a09a-e24a4f1cf872",
+              "name": "The server is overloaded or down for maintenance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"SERVICE_UNAVAILABLE\",\n    \"message\": \"The service is currently unavailable.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#service-unavailable\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "707896d9-b639-482f-8222-2759b05829a4",
+          "name": "List group custom fields",
+          "request": {
+            "name": "List group custom fields",
+            "description": {
+              "content": "Returns a list of group custom fields for an entity type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "groups",
+                ":groupId",
+                "custom-fields",
+                ":entityType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "The number of items to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "A cursor for pagination across multiple pages of results. Don’t include this parameter on the first call. Use the `pagination.nextLink` value returned in a previous response to request subsequent results."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "groupId",
+                  "description": "(Required) The identifier of the group. You can retrieve a list of group identifiers using the `/v1/groups` endpoint."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entityType",
+                  "description": "(Required) The entity type the custom fields belong to. It can be `person`, `company`, or a custom object name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f29d49cf-a3f1-4d96-bc45-ac55bd1a12af",
+              "name": "A paginated list of group custom fields for an entity type. The `data.items` field contains the list of group custom fields, and the `data.pagination.nextLink` field contains a link to the next page of results, if available.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "groups",
+                    ":groupId",
+                    "custom-fields",
+                    ":entityType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) The identifier of the group. You can retrieve a list of group identifiers using the `/v1/groups` endpoint."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityType",
+                      "description": "(Required) The entity type the custom fields belong to. It can be `person`, `company`, or a custom object name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"items\": [\n      {\n        \"name\": \"Status\",\n        \"type\": \"singleSelect\",\n        \"options\": [\n          {\n            \"label\": \"Active\",\n            \"color\": \"#ffffff\"\n          },\n          {\n            \"label\": \"Inactive\",\n            \"color\": \"#000000\"\n          }\n        ]\n      },\n      {\n        \"name\": \"Total Revenue\",\n        \"type\": \"numericField\",\n        \"config\": {\n          \"format\": \"currency\",\n          \"currency\": \"USD\"\n        }\n      },\n      {\n        \"name\": \"Details\",\n        \"type\": \"textField\"\n      },\n      {\n        \"name\": \"Tags\",\n        \"type\": \"multipleSelect\",\n        \"options\": [\n          {\n            \"label\": \"Tag 1\",\n            \"color\": \"#ffffff\"\n          },\n          {\n            \"label\": \"Tag 2\",\n            \"color\": \"#000000\"\n          }\n        ]\n      },\n      {\n        \"name\": \"Relationships\",\n        \"type\": \"contactField\"\n      },\n      {\n        \"name\": \"Date\",\n        \"type\": \"dateField\"\n      },\n      {\n        \"name\": \"Assigned to\",\n        \"type\": \"userField\"\n      },\n      {\n        \"name\": \"Deals\",\n        \"type\": \"objectField\"\n      }\n    ],\n    \"pagination\": {\n      \"nextLink\": \"https://api.folk.app/v1/groups/grp_bc984b3f-0386-434d-82d7-a91eb6badd71/custom-fields/person?limit=20&cursor=eyJvZmZzZXQiOjIwfQ%3D%3D\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4bb3c55-76ac-4a1b-a949-d06db93fe9e9",
+              "name": "The request was unacceptable, often due to missing an invalid parameter.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "groups",
+                    ":groupId",
+                    "custom-fields",
+                    ":entityType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) The identifier of the group. You can retrieve a list of group identifiers using the `/v1/groups` endpoint."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityType",
+                      "description": "(Required) The entity type the custom fields belong to. It can be `person`, `company`, or a custom object name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INVALID_REQUEST\",\n    \"message\": \"The request was invalid.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#bad-request\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "822cf17e-dce4-4ed0-93ee-8e84923cdc5b",
+              "name": "No valid API key provided.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "groups",
+                    ":groupId",
+                    "custom-fields",
+                    ":entityType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) The identifier of the group. You can retrieve a list of group identifiers using the `/v1/groups` endpoint."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityType",
+                      "description": "(Required) The entity type the custom fields belong to. It can be `person`, `company`, or a custom object name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"UNAUTHORIZED\",\n    \"message\": \"No valid API key provided.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#unauthorized\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17c5fe3e-a9cf-49fe-9ea3-7e528cc2bfcb",
+              "name": "The API key doesn’t have permissions to perform the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "groups",
+                    ":groupId",
+                    "custom-fields",
+                    ":entityType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) The identifier of the group. You can retrieve a list of group identifiers using the `/v1/groups` endpoint."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityType",
+                      "description": "(Required) The entity type the custom fields belong to. It can be `person`, `company`, or a custom object name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"FORBIDDEN\",\n    \"message\": \"The API key doesn’t have permissions to perform the request.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#forbidden\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cfae10be-15cd-4f1b-aa1e-026e7fb83ec7",
+              "name": "The requested resource doesn’t exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "groups",
+                    ":groupId",
+                    "custom-fields",
+                    ":entityType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) The identifier of the group. You can retrieve a list of group identifiers using the `/v1/groups` endpoint."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityType",
+                      "description": "(Required) The entity type the custom fields belong to. It can be `person`, `company`, or a custom object name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"RESOURCE_NOT_FOUND\",\n    \"message\": \"The requested resource was not found.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#not-found\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e062008-88e7-4dee-ad56-eecb4aebba0e",
+              "name": "The request was unacceptable, often due to missing or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "groups",
+                    ":groupId",
+                    "custom-fields",
+                    ":entityType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) The identifier of the group. You can retrieve a list of group identifiers using the `/v1/groups` endpoint."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityType",
+                      "description": "(Required) The entity type the custom fields belong to. It can be `person`, `company`, or a custom object name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"UNPROCESSABLE_ENTITY\",\n    \"message\": \"Invalid query parameters\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#unprocessable-entity\",\n    \"details\": {\n      \"issues\": [\n        {\n          \"code\": \"too_small\",\n          \"minimum\": 1,\n          \"type\": \"number\",\n          \"inclusive\": true,\n          \"exact\": false,\n          \"message\": \"Number must be greater than or equal to 1\",\n          \"path\": [\n            \"limit\"\n          ]\n        }\n      ]\n    },\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5008e290-1687-4ba2-959d-dea331b65c75",
+              "name": "Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "groups",
+                    ":groupId",
+                    "custom-fields",
+                    ":entityType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) The identifier of the group. You can retrieve a list of group identifiers using the `/v1/groups` endpoint."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityType",
+                      "description": "(Required) The entity type the custom fields belong to. It can be `person`, `company`, or a custom object name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"RATE_LIMIT_EXCEEDED\",\n    \"message\": \"The rate limit has been exceeded.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#rate-limiting\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\",\n    \"details\": {\n      \"limit\": 1000,\n      \"remaining\": 0,\n      \"retryAfter\": \"2025-10-01T12:00:00Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ab0f266-7719-4afb-a070-37bc48d21e50",
+              "name": "Something went wrong on our end.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "groups",
+                    ":groupId",
+                    "custom-fields",
+                    ":entityType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) The identifier of the group. You can retrieve a list of group identifiers using the `/v1/groups` endpoint."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityType",
+                      "description": "(Required) The entity type the custom fields belong to. It can be `person`, `company`, or a custom object name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INTERNAL_SERVER_ERROR\",\n    \"message\": \"An internal server error occurred.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#internal-server-error\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3c67712-aab7-4af8-95da-1bf03b761777",
+              "name": "The server is overloaded or down for maintenance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "groups",
+                    ":groupId",
+                    "custom-fields",
+                    ":entityType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) The identifier of the group. You can retrieve a list of group identifiers using the `/v1/groups` endpoint."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityType",
+                      "description": "(Required) The entity type the custom fields belong to. It can be `person`, `company`, or a custom object name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"SERVICE_UNAVAILABLE\",\n    \"message\": \"The service is currently unavailable.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#service-unavailable\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.folk.app",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c4a48c0e-b418-4c2b-98e8-c033554ff702",
+    "name": "Folk External Companies Groups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Folk's public REST API lets you manage workspaces, groups, contacts, and real-time triggers.\n\nContact Support:\n Name: folk\n Email: tech@folk.app",
+      "type": "text/plain"
+    }
+  }
+}

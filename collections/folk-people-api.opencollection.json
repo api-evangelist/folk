@@ -1,0 +1,184 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Folk External Companies People API",
+    "version": "2025-06-09"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "People",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List people",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.folk.app/v1/people",
+            "params": [
+              {
+                "name": "limit",
+                "value": "20",
+                "type": "query",
+                "description": "The number of items to return."
+              },
+              {
+                "name": "cursor",
+                "value": "eyJvZmZzZXQiOjN9",
+                "type": "query",
+                "description": "A cursor for pagination across multiple pages of results. Don’t include this parameter on the first call. Use the `pagination.nextLink` value returned in a previous response to request subsequent results."
+              },
+              {
+                "name": "combinator",
+                "value": "and",
+                "type": "query",
+                "description": "The logical operator to combine multiple filters."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A record of filters to apply, following the format `filter[attribute][operator]=value`. The `attribute` is the name of the attribute to filter on, and the `operator` is one of the supported filter operators. Refer to [Filterable fields](/api-reference/filtering#filterable-fields) to learn more about the supported attributes and operators."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a list of people in the workspace."
+        },
+        {
+          "info": {
+            "name": "Create a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.folk.app/v1/people",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new person in the workspace."
+        },
+        {
+          "info": {
+            "name": "Get a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.folk.app/v1/people/:personId",
+            "params": [
+              {
+                "name": "personId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the person to retrieve."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve an existing person in the workspace."
+        },
+        {
+          "info": {
+            "name": "Update a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.folk.app/v1/people/:personId",
+            "params": [
+              {
+                "name": "personId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the person to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update an existing person in the workspace."
+        },
+        {
+          "info": {
+            "name": "Delete a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.folk.app/v1/people/:personId",
+            "params": [
+              {
+                "name": "personId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the person to delete."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete an existing person in the workspace."
+        },
+        {
+          "info": {
+            "name": "Search for people",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.folk.app/v1/people/search",
+            "params": [
+              {
+                "name": "limit",
+                "value": "20",
+                "type": "query",
+                "description": "The number of items to return."
+              },
+              {
+                "name": "cursor",
+                "value": "eyJvZmZzZXQiOjN9",
+                "type": "query",
+                "description": "A cursor for pagination across multiple pages of results. Don’t include this parameter on the first call. Use the `pagination.nextLink` value returned in a previous response to request subsequent results."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Search for people in the workspace."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,3648 @@
+{
+  "item": [
+    {
+      "id": "6dd8629e-46a8-41e6-8c9e-d0a295914b2f",
+      "name": "Reminders",
+      "description": {
+        "content": "Operations related to reminders.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "52c49c83-5205-4af0-8762-f997946685b0",
+          "name": "List reminders",
+          "request": {
+            "name": "List reminders",
+            "description": {
+              "content": "Retrieve a list of reminders in the workspace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "reminders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "The number of items to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "A cursor for pagination across multiple pages of results. Don’t include this parameter on the first call. Use the `pagination.nextLink` value returned in a previous response to request subsequent results."
+                },
+                {
+                  "disabled": false,
+                  "key": "entity.id",
+                  "value": "<string>",
+                  "description": "Filter reminders by entity. Only reminders linked to the specified entity will be returned."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1a0e9c89-a0e1-41b6-beb4-a3544a0ce2c4",
+              "name": "A paginated list of reminders in the workspace.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    },
+                    {
+                      "key": "entity.id",
+                      "value": "per_55175e81-9a52-4ac3-930e-82792c23499b"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"items\": [\n      {\n        \"id\": \"rmd_91118b73-5a75-480b-b8e3-a33671c35cdc\",\n        \"name\": \"Reminder on John Doe\",\n        \"entity\": {\n          \"id\": \"per_55175e81-9a52-4ac3-930e-82792c23499b\",\n          \"entityType\": \"person\",\n          \"fullName\": \"John Doe\"\n        },\n        \"recurrenceRule\": \"DTSTART;TZID=Europe/Paris:20250717T090000\\nRRULE:FREQ=WEEKLY;INTERVAL=1\",\n        \"visibility\": \"public\",\n        \"assignedUsers\": [\n          {\n            \"id\": \"usr_a45c30d8-19fc-4939-94c7-17dc5e46f476\",\n            \"fullName\": \"John Doe\",\n            \"email\": \"john.doe@example.com\"\n          }\n        ],\n        \"nextTriggerTime\": \"2025-07-17T09:00:00.000Z\",\n        \"lastTriggerTime\": \"2025-05-17T09:00:00.000Z\",\n        \"createdBy\": {\n          \"id\": \"usr_bc984b3f-0386-434d-82d7-a91eb6badd71\",\n          \"fullName\": \"John Doe\",\n          \"email\": \"john.doe@example.com\"\n        },\n        \"createdAt\": \"2021-01-01T00:00:00.000Z\"\n      }\n    ],\n    \"pagination\": {\n      \"nextLink\": \"https://api.folk.app/v1/reminders?limit=20&cursor=eyJvZmZzZXQiOjIwfQ%3D%3D\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "31259b67-0b63-4e41-b68c-531ac034e69d",
+              "name": "The request was unacceptable, often due to missing an invalid parameter.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    },
+                    {
+                      "key": "entity.id",
+                      "value": "per_55175e81-9a52-4ac3-930e-82792c23499b"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INVALID_REQUEST\",\n    \"message\": \"The request was invalid.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#bad-request\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a308486-489b-4fb8-b02e-70d976b3047b",
+              "name": "No valid API key provided.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    },
+                    {
+                      "key": "entity.id",
+                      "value": "per_55175e81-9a52-4ac3-930e-82792c23499b"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"UNAUTHORIZED\",\n    \"message\": \"No valid API key provided.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#unauthorized\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f150c45b-b2d4-4149-8cf3-e74d68fd1ecf",
+              "name": "The API key doesn’t have permissions to perform the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    },
+                    {
+                      "key": "entity.id",
+                      "value": "per_55175e81-9a52-4ac3-930e-82792c23499b"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"FORBIDDEN\",\n    \"message\": \"The API key doesn’t have permissions to perform the request.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#forbidden\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0fcd87d5-5ccc-45d3-a123-aa526f4edc11",
+              "name": "The requested resource doesn’t exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    },
+                    {
+                      "key": "entity.id",
+                      "value": "per_55175e81-9a52-4ac3-930e-82792c23499b"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"RESOURCE_NOT_FOUND\",\n    \"message\": \"The requested resource was not found.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#not-found\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ccfb112b-f5b9-459a-a4d8-fbb260ecde4c",
+              "name": "The request was unacceptable, often due to missing or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    },
+                    {
+                      "key": "entity.id",
+                      "value": "per_55175e81-9a52-4ac3-930e-82792c23499b"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"UNPROCESSABLE_ENTITY\",\n    \"message\": \"Invalid query parameters\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#unprocessable-entity\",\n    \"details\": {\n      \"issues\": [\n        {\n          \"code\": \"too_small\",\n          \"minimum\": 1,\n          \"type\": \"number\",\n          \"inclusive\": true,\n          \"exact\": false,\n          \"message\": \"Number must be greater than or equal to 1\",\n          \"path\": [\n            \"limit\"\n          ]\n        }\n      ]\n    },\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce5be1ce-9e79-493f-aced-7bcb7c482256",
+              "name": "Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    },
+                    {
+                      "key": "entity.id",
+                      "value": "per_55175e81-9a52-4ac3-930e-82792c23499b"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"RATE_LIMIT_EXCEEDED\",\n    \"message\": \"The rate limit has been exceeded.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#rate-limiting\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\",\n    \"details\": {\n      \"limit\": 1000,\n      \"remaining\": 0,\n      \"retryAfter\": \"2025-10-01T12:00:00Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9b9644f-5b84-4f75-8b9f-e07906abdb0a",
+              "name": "Something went wrong on our end.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    },
+                    {
+                      "key": "entity.id",
+                      "value": "per_55175e81-9a52-4ac3-930e-82792c23499b"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INTERNAL_SERVER_ERROR\",\n    \"message\": \"An internal server error occurred.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#internal-server-error\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5753764-311c-4ce7-b9fd-3a5eb2d894c8",
+              "name": "The server is overloaded or down for maintenance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    },
+                    {
+                      "key": "entity.id",
+                      "value": "per_55175e81-9a52-4ac3-930e-82792c23499b"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"SERVICE_UNAVAILABLE\",\n    \"message\": \"The service is currently unavailable.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#service-unavailable\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ca33d31-5da0-4cce-bc7a-d950f432d488",
+          "name": "Create a reminder",
+          "request": {
+            "name": "Create a reminder",
+            "description": {
+              "content": "Create a new reminder in the workspace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "reminders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entity\": {\n    \"id\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"recurrenceRule\": \"<string>\",\n  \"visibility\": \"<string>\",\n  \"assignedUsers\": [\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "edc2ac05-c091-4916-8d36-018d1c69271f",
+              "name": "The reminder created in the workspace.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity\": {\n    \"id\": \"<string>\"\n  },\n  \"name\": \"Reminder on John Doe\",\n  \"recurrenceRule\": \"DTSTART;TZID=Europe/Paris:20250717T090000\\nRRULE:FREQ=WEEKLY;INTERVAL=1\",\n  \"visibility\": \"<string>\",\n  \"assignedUsers\": [\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"rmd_91118b73-5a75-480b-b8e3-a33671c35cdc\",\n    \"name\": \"Reminder on John Doe\",\n    \"entity\": {\n      \"id\": \"per_55175e81-9a52-4ac3-930e-82792c23499b\",\n      \"entityType\": \"person\",\n      \"fullName\": \"John Doe\"\n    },\n    \"recurrenceRule\": \"DTSTART;TZID=Europe/Paris:20250717T090000\\nRRULE:FREQ=WEEKLY;INTERVAL=1\",\n    \"visibility\": \"public\",\n    \"assignedUsers\": [\n      {\n        \"id\": \"usr_a45c30d8-19fc-4939-94c7-17dc5e46f476\",\n        \"fullName\": \"John Doe\",\n        \"email\": \"john.doe@example.com\"\n      }\n    ],\n    \"nextTriggerTime\": \"2025-07-17T09:00:00.000Z\",\n    \"lastTriggerTime\": \"2025-05-17T09:00:00.000Z\",\n    \"createdBy\": {\n      \"id\": \"usr_bc984b3f-0386-434d-82d7-a91eb6badd71\",\n      \"fullName\": \"John Doe\",\n      \"email\": \"john.doe@example.com\"\n    },\n    \"createdAt\": \"2021-01-01T00:00:00.000Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1161268-d358-4fd6-8ac7-be654c4c6aba",
+              "name": "The request was unacceptable, often due to missing an invalid parameter.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity\": {\n    \"id\": \"<string>\"\n  },\n  \"name\": \"Reminder on John Doe\",\n  \"recurrenceRule\": \"DTSTART;TZID=Europe/Paris:20250717T090000\\nRRULE:FREQ=WEEKLY;INTERVAL=1\",\n  \"visibility\": \"<string>\",\n  \"assignedUsers\": [\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INVALID_REQUEST\",\n    \"message\": \"The request was invalid.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#bad-request\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b77843a4-452b-472b-a6a7-d11dff254c53",
+              "name": "No valid API key provided.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity\": {\n    \"id\": \"<string>\"\n  },\n  \"name\": \"Reminder on John Doe\",\n  \"recurrenceRule\": \"DTSTART;TZID=Europe/Paris:20250717T090000\\nRRULE:FREQ=WEEKLY;INTERVAL=1\",\n  \"visibility\": \"<string>\",\n  \"assignedUsers\": [\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"UNAUTHORIZED\",\n    \"message\": \"No valid API key provided.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#unauthorized\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "36684001-38ca-4c6b-8124-6270c4abf56e",
+              "name": "The API key doesn’t have permissions to perform the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity\": {\n    \"id\": \"<string>\"\n  },\n  \"name\": \"Reminder on John Doe\",\n  \"recurrenceRule\": \"DTSTART;TZID=Europe/Paris:20250717T090000\\nRRULE:FREQ=WEEKLY;INTERVAL=1\",\n  \"visibility\": \"<string>\",\n  \"assignedUsers\": [\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"FORBIDDEN\",\n    \"message\": \"The API key doesn’t have permissions to perform the request.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#forbidden\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "72b29745-8489-4276-856c-270809a7b61f",
+              "name": "The requested resource doesn’t exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity\": {\n    \"id\": \"<string>\"\n  },\n  \"name\": \"Reminder on John Doe\",\n  \"recurrenceRule\": \"DTSTART;TZID=Europe/Paris:20250717T090000\\nRRULE:FREQ=WEEKLY;INTERVAL=1\",\n  \"visibility\": \"<string>\",\n  \"assignedUsers\": [\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"RESOURCE_NOT_FOUND\",\n    \"message\": \"The requested resource was not found.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#not-found\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50404da4-ea82-4915-9e55-123a43728fec",
+              "name": "The request was unacceptable, often due to missing or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity\": {\n    \"id\": \"<string>\"\n  },\n  \"name\": \"Reminder on John Doe\",\n  \"recurrenceRule\": \"DTSTART;TZID=Europe/Paris:20250717T090000\\nRRULE:FREQ=WEEKLY;INTERVAL=1\",\n  \"visibility\": \"<string>\",\n  \"assignedUsers\": [\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"UNPROCESSABLE_ENTITY\",\n    \"message\": \"Invalid query parameters\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#unprocessable-entity\",\n    \"details\": {\n      \"issues\": [\n        {\n          \"code\": \"too_small\",\n          \"minimum\": 1,\n          \"type\": \"number\",\n          \"inclusive\": true,\n          \"exact\": false,\n          \"message\": \"Number must be greater than or equal to 1\",\n          \"path\": [\n            \"limit\"\n          ]\n        }\n      ]\n    },\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66220353-c331-4f4d-9594-c58ad8168a20",
+              "name": "Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity\": {\n    \"id\": \"<string>\"\n  },\n  \"name\": \"Reminder on John Doe\",\n  \"recurrenceRule\": \"DTSTART;TZID=Europe/Paris:20250717T090000\\nRRULE:FREQ=WEEKLY;INTERVAL=1\",\n  \"visibility\": \"<string>\",\n  \"assignedUsers\": [\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"RATE_LIMIT_EXCEEDED\",\n    \"message\": \"The rate limit has been exceeded.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#rate-limiting\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\",\n    \"details\": {\n      \"limit\": 1000,\n      \"remaining\": 0,\n      \"retryAfter\": \"2025-10-01T12:00:00Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5fdd19b5-dceb-40e9-ac95-f5306f04ea08",
+              "name": "Something went wrong on our end.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity\": {\n    \"id\": \"<string>\"\n  },\n  \"name\": \"Reminder on John Doe\",\n  \"recurrenceRule\": \"DTSTART;TZID=Europe/Paris:20250717T090000\\nRRULE:FREQ=WEEKLY;INTERVAL=1\",\n  \"visibility\": \"<string>\",\n  \"assignedUsers\": [\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INTERNAL_SERVER_ERROR\",\n    \"message\": \"An internal server error occurred.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#internal-server-error\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc0115c6-191c-4092-936c-bd744de95f7f",
+              "name": "The server is overloaded or down for maintenance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity\": {\n    \"id\": \"<string>\"\n  },\n  \"name\": \"Reminder on John Doe\",\n  \"recurrenceRule\": \"DTSTART;TZID=Europe/Paris:20250717T090000\\nRRULE:FREQ=WEEKLY;INTERVAL=1\",\n  \"visibility\": \"<string>\",\n  \"assignedUsers\": [\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"SERVICE_UNAVAILABLE\",\n    \"message\": \"The service is currently unavailable.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#service-unavailable\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "473be664-1fb3-4c85-9dc7-59336d53cd78",
+          "name": "Get a reminder",
+          "request": {
+            "name": "Get a reminder",
+            "description": {
+              "content": "Retrieve an existing reminder in the workspace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "reminders",
+                ":reminderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reminderId",
+                  "description": "(Required) The ID of the reminder to retrieve."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2ee32baf-a057-45a3-83b3-d643a6b3dcd4",
+              "name": "The retrieved reminder in the workspace.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders",
+                    ":reminderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reminderId",
+                      "description": "(Required) The ID of the reminder to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"rmd_91118b73-5a75-480b-b8e3-a33671c35cdc\",\n    \"name\": \"Reminder on John Doe\",\n    \"entity\": {\n      \"id\": \"per_55175e81-9a52-4ac3-930e-82792c23499b\",\n      \"entityType\": \"person\",\n      \"fullName\": \"John Doe\"\n    },\n    \"recurrenceRule\": \"DTSTART;TZID=Europe/Paris:20250717T090000\\nRRULE:FREQ=WEEKLY;INTERVAL=1\",\n    \"visibility\": \"public\",\n    \"assignedUsers\": [\n      {\n        \"id\": \"usr_a45c30d8-19fc-4939-94c7-17dc5e46f476\",\n        \"fullName\": \"John Doe\",\n        \"email\": \"john.doe@example.com\"\n      }\n    ],\n    \"nextTriggerTime\": \"2025-07-17T09:00:00.000Z\",\n    \"lastTriggerTime\": \"2025-05-17T09:00:00.000Z\",\n    \"createdBy\": {\n      \"id\": \"usr_bc984b3f-0386-434d-82d7-a91eb6badd71\",\n      \"fullName\": \"John Doe\",\n      \"email\": \"john.doe@example.com\"\n    },\n    \"createdAt\": \"2021-01-01T00:00:00.000Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2118974-1bf9-4b17-97a7-7fb38a2aaad4",
+              "name": "The request was unacceptable, often due to missing an invalid parameter.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders",
+                    ":reminderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reminderId",
+                      "description": "(Required) The ID of the reminder to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INVALID_REQUEST\",\n    \"message\": \"The request was invalid.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#bad-request\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90f4cf96-1b6b-4fb7-8a88-f3671679bf68",
+              "name": "No valid API key provided.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders",
+                    ":reminderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reminderId",
+                      "description": "(Required) The ID of the reminder to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"UNAUTHORIZED\",\n    \"message\": \"No valid API key provided.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#unauthorized\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90a109bb-a598-400e-ad57-536e13767518",
+              "name": "The API key doesn’t have permissions to perform the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders",
+                    ":reminderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reminderId",
+                      "description": "(Required) The ID of the reminder to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"FORBIDDEN\",\n    \"message\": \"The API key doesn’t have permissions to perform the request.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#forbidden\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2bb022d-fb3d-409b-85e7-78275ddaf41b",
+              "name": "The requested resource doesn’t exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders",
+                    ":reminderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reminderId",
+                      "description": "(Required) The ID of the reminder to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"RESOURCE_NOT_FOUND\",\n    \"message\": \"The requested resource was not found.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#not-found\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd1b0694-48b9-4047-b625-3f3ff6847a65",
+              "name": "The request was unacceptable, often due to missing or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders",
+                    ":reminderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reminderId",
+                      "description": "(Required) The ID of the reminder to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"UNPROCESSABLE_ENTITY\",\n    \"message\": \"Invalid query parameters\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#unprocessable-entity\",\n    \"details\": {\n      \"issues\": [\n        {\n          \"code\": \"too_small\",\n          \"minimum\": 1,\n          \"type\": \"number\",\n          \"inclusive\": true,\n          \"exact\": false,\n          \"message\": \"Number must be greater than or equal to 1\",\n          \"path\": [\n            \"limit\"\n          ]\n        }\n      ]\n    },\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae72450d-54bf-41de-9603-f6110c32dd76",
+              "name": "Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders",
+                    ":reminderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reminderId",
+                      "description": "(Required) The ID of the reminder to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"RATE_LIMIT_EXCEEDED\",\n    \"message\": \"The rate limit has been exceeded.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#rate-limiting\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\",\n    \"details\": {\n      \"limit\": 1000,\n      \"remaining\": 0,\n      \"retryAfter\": \"2025-10-01T12:00:00Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c31082d7-c775-444d-967d-dedfc9e87af9",
+              "name": "Something went wrong on our end.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders",
+                    ":reminderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reminderId",
+                      "description": "(Required) The ID of the reminder to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INTERNAL_SERVER_ERROR\",\n    \"message\": \"An internal server error occurred.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#internal-server-error\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "637bab05-560e-4708-a608-f446c2d26cf2",
+              "name": "The server is overloaded or down for maintenance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders",
+                    ":reminderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reminderId",
+                      "description": "(Required) The ID of the reminder to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"SERVICE_UNAVAILABLE\",\n    \"message\": \"The service is currently unavailable.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#service-unavailable\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ece1de0-850e-4b0b-9fc1-1d6f5f22d6a2",
+          "name": "Update a reminder",
+          "request": {
+            "name": "Update a reminder",
+            "description": {
+              "content": "Update an existing reminder in the workspace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "reminders",
+                ":reminderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reminderId",
+                  "description": "(Required) The ID of the reminder to update."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"recurrenceRule\": \"<string>\",\n  \"visibility\": \"<string>\",\n  \"assignedUsers\": [\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "11851a98-df41-4bba-82a8-72ac4babd520",
+              "name": "The updated reminder in the workspace.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders",
+                    ":reminderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reminderId",
+                      "description": "(Required) The ID of the reminder to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Reminder on John Doe\",\n  \"recurrenceRule\": \"DTSTART;TZID=Europe/Paris:20250717T090000\\nRRULE:FREQ=WEEKLY;INTERVAL=1\",\n  \"visibility\": \"<string>\",\n  \"assignedUsers\": [\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"rmd_91118b73-5a75-480b-b8e3-a33671c35cdc\",\n    \"name\": \"Reminder on John Doe\",\n    \"entity\": {\n      \"id\": \"per_55175e81-9a52-4ac3-930e-82792c23499b\",\n      \"entityType\": \"person\",\n      \"fullName\": \"John Doe\"\n    },\n    \"recurrenceRule\": \"DTSTART;TZID=Europe/Paris:20250717T090000\\nRRULE:FREQ=WEEKLY;INTERVAL=1\",\n    \"visibility\": \"public\",\n    \"assignedUsers\": [\n      {\n        \"id\": \"usr_a45c30d8-19fc-4939-94c7-17dc5e46f476\",\n        \"fullName\": \"John Doe\",\n        \"email\": \"john.doe@example.com\"\n      }\n    ],\n    \"nextTriggerTime\": \"2025-07-17T09:00:00.000Z\",\n    \"lastTriggerTime\": \"2025-05-17T09:00:00.000Z\",\n    \"createdBy\": {\n      \"id\": \"usr_bc984b3f-0386-434d-82d7-a91eb6badd71\",\n      \"fullName\": \"John Doe\",\n      \"email\": \"john.doe@example.com\"\n    },\n    \"createdAt\": \"2021-01-01T00:00:00.000Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "423ec863-8740-4f67-afb8-5f4132ec26dd",
+              "name": "The request was unacceptable, often due to missing an invalid parameter.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders",
+                    ":reminderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reminderId",
+                      "description": "(Required) The ID of the reminder to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Reminder on John Doe\",\n  \"recurrenceRule\": \"DTSTART;TZID=Europe/Paris:20250717T090000\\nRRULE:FREQ=WEEKLY;INTERVAL=1\",\n  \"visibility\": \"<string>\",\n  \"assignedUsers\": [\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INVALID_REQUEST\",\n    \"message\": \"The request was invalid.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#bad-request\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c0a8114-359d-43cf-9e4b-03608a87951a",
+              "name": "No valid API key provided.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders",
+                    ":reminderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reminderId",
+                      "description": "(Required) The ID of the reminder to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Reminder on John Doe\",\n  \"recurrenceRule\": \"DTSTART;TZID=Europe/Paris:20250717T090000\\nRRULE:FREQ=WEEKLY;INTERVAL=1\",\n  \"visibility\": \"<string>\",\n  \"assignedUsers\": [\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"UNAUTHORIZED\",\n    \"message\": \"No valid API key provided.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#unauthorized\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f68aca4-210a-4c6d-9d3a-5bc2d92f0ec5",
+              "name": "The API key doesn’t have permissions to perform the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders",
+                    ":reminderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reminderId",
+                      "description": "(Required) The ID of the reminder to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Reminder on John Doe\",\n  \"recurrenceRule\": \"DTSTART;TZID=Europe/Paris:20250717T090000\\nRRULE:FREQ=WEEKLY;INTERVAL=1\",\n  \"visibility\": \"<string>\",\n  \"assignedUsers\": [\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"FORBIDDEN\",\n    \"message\": \"The API key doesn’t have permissions to perform the request.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#forbidden\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "371fa4ea-3817-4b89-9c47-bbf75c75057c",
+              "name": "The requested resource doesn’t exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders",
+                    ":reminderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reminderId",
+                      "description": "(Required) The ID of the reminder to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Reminder on John Doe\",\n  \"recurrenceRule\": \"DTSTART;TZID=Europe/Paris:20250717T090000\\nRRULE:FREQ=WEEKLY;INTERVAL=1\",\n  \"visibility\": \"<string>\",\n  \"assignedUsers\": [\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"RESOURCE_NOT_FOUND\",\n    \"message\": \"The requested resource was not found.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#not-found\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25122dd2-b076-4b47-bbfe-619344e53738",
+              "name": "The request was unacceptable, often due to missing or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders",
+                    ":reminderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reminderId",
+                      "description": "(Required) The ID of the reminder to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Reminder on John Doe\",\n  \"recurrenceRule\": \"DTSTART;TZID=Europe/Paris:20250717T090000\\nRRULE:FREQ=WEEKLY;INTERVAL=1\",\n  \"visibility\": \"<string>\",\n  \"assignedUsers\": [\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"UNPROCESSABLE_ENTITY\",\n    \"message\": \"Invalid query parameters\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#unprocessable-entity\",\n    \"details\": {\n      \"issues\": [\n        {\n          \"code\": \"too_small\",\n          \"minimum\": 1,\n          \"type\": \"number\",\n          \"inclusive\": true,\n          \"exact\": false,\n          \"message\": \"Number must be greater than or equal to 1\",\n          \"path\": [\n            \"limit\"\n          ]\n        }\n      ]\n    },\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0439d2e8-4d80-4e9b-ac38-64c6ad5c6683",
+              "name": "Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders",
+                    ":reminderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reminderId",
+                      "description": "(Required) The ID of the reminder to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Reminder on John Doe\",\n  \"recurrenceRule\": \"DTSTART;TZID=Europe/Paris:20250717T090000\\nRRULE:FREQ=WEEKLY;INTERVAL=1\",\n  \"visibility\": \"<string>\",\n  \"assignedUsers\": [\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"RATE_LIMIT_EXCEEDED\",\n    \"message\": \"The rate limit has been exceeded.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#rate-limiting\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\",\n    \"details\": {\n      \"limit\": 1000,\n      \"remaining\": 0,\n      \"retryAfter\": \"2025-10-01T12:00:00Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "95be5181-14b7-4090-beab-70f6d96aca1e",
+              "name": "Something went wrong on our end.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders",
+                    ":reminderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reminderId",
+                      "description": "(Required) The ID of the reminder to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Reminder on John Doe\",\n  \"recurrenceRule\": \"DTSTART;TZID=Europe/Paris:20250717T090000\\nRRULE:FREQ=WEEKLY;INTERVAL=1\",\n  \"visibility\": \"<string>\",\n  \"assignedUsers\": [\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INTERNAL_SERVER_ERROR\",\n    \"message\": \"An internal server error occurred.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#internal-server-error\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8238fb3-1a20-42f9-b91b-7c839835f4d5",
+              "name": "The server is overloaded or down for maintenance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders",
+                    ":reminderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reminderId",
+                      "description": "(Required) The ID of the reminder to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Reminder on John Doe\",\n  \"recurrenceRule\": \"DTSTART;TZID=Europe/Paris:20250717T090000\\nRRULE:FREQ=WEEKLY;INTERVAL=1\",\n  \"visibility\": \"<string>\",\n  \"assignedUsers\": [\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"SERVICE_UNAVAILABLE\",\n    \"message\": \"The service is currently unavailable.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#service-unavailable\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4ccc0048-a127-4f9a-a7fb-8ffa348b8f50",
+          "name": "Delete a reminder",
+          "request": {
+            "name": "Delete a reminder",
+            "description": {
+              "content": "Delete an existing reminder in the workspace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "reminders",
+                ":reminderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reminderId",
+                  "description": "(Required) The ID of the reminder to delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ae659987-3ea8-4aef-a52e-6357e1bfd20e",
+              "name": "The ID of the deleted reminder.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders",
+                    ":reminderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reminderId",
+                      "description": "(Required) The ID of the reminder to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"rmd_91118b73-5a75-480b-b8e3-a33671c35cdc\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "875d4a73-87cc-47fb-8bd1-95cddeb33cad",
+              "name": "The request was unacceptable, often due to missing an invalid parameter.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders",
+                    ":reminderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reminderId",
+                      "description": "(Required) The ID of the reminder to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INVALID_REQUEST\",\n    \"message\": \"The request was invalid.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#bad-request\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "edc95fe6-84af-4cf2-91fc-38b2d12704e6",
+              "name": "No valid API key provided.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders",
+                    ":reminderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reminderId",
+                      "description": "(Required) The ID of the reminder to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"UNAUTHORIZED\",\n    \"message\": \"No valid API key provided.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#unauthorized\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b451779b-32a9-4336-a8b0-9ced1a3e7954",
+              "name": "The API key doesn’t have permissions to perform the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders",
+                    ":reminderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reminderId",
+                      "description": "(Required) The ID of the reminder to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"FORBIDDEN\",\n    \"message\": \"The API key doesn’t have permissions to perform the request.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#forbidden\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65c578d5-ce26-4694-bd1b-9248244779b8",
+              "name": "The requested resource doesn’t exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders",
+                    ":reminderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reminderId",
+                      "description": "(Required) The ID of the reminder to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"RESOURCE_NOT_FOUND\",\n    \"message\": \"The requested resource was not found.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#not-found\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50b652b5-cba5-4f72-86aa-a49a438b2887",
+              "name": "The request was unacceptable, often due to missing or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders",
+                    ":reminderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reminderId",
+                      "description": "(Required) The ID of the reminder to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"UNPROCESSABLE_ENTITY\",\n    \"message\": \"Invalid query parameters\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#unprocessable-entity\",\n    \"details\": {\n      \"issues\": [\n        {\n          \"code\": \"too_small\",\n          \"minimum\": 1,\n          \"type\": \"number\",\n          \"inclusive\": true,\n          \"exact\": false,\n          \"message\": \"Number must be greater than or equal to 1\",\n          \"path\": [\n            \"limit\"\n          ]\n        }\n      ]\n    },\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ac58e30-c8be-4280-acc0-0a63d27c4482",
+              "name": "Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders",
+                    ":reminderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reminderId",
+                      "description": "(Required) The ID of the reminder to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"RATE_LIMIT_EXCEEDED\",\n    \"message\": \"The rate limit has been exceeded.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#rate-limiting\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\",\n    \"details\": {\n      \"limit\": 1000,\n      \"remaining\": 0,\n      \"retryAfter\": \"2025-10-01T12:00:00Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9640ddac-74c2-4bd0-9b1a-ea1d7a4b0b23",
+              "name": "Something went wrong on our end.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders",
+                    ":reminderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reminderId",
+                      "description": "(Required) The ID of the reminder to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INTERNAL_SERVER_ERROR\",\n    \"message\": \"An internal server error occurred.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#internal-server-error\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b660703-57ac-49de-92b4-dc42fbe89d9a",
+              "name": "The server is overloaded or down for maintenance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reminders",
+                    ":reminderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reminderId",
+                      "description": "(Required) The ID of the reminder to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"SERVICE_UNAVAILABLE\",\n    \"message\": \"The service is currently unavailable.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#service-unavailable\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.folk.app",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e3ee4b7e-3703-440b-8a5a-8a26637a7e11",
+    "name": "Folk External Companies Reminders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Folk's public REST API lets you manage workspaces, groups, contacts, and real-time triggers.\n\nContact Support:\n Name: folk\n Email: tech@folk.app",
+      "type": "text/plain"
+    }
+  }
+}

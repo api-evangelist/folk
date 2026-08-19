@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Folk External Companies Groups API",
+    "version": "2025-06-09"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.folk.app/v1/groups",
+            "params": [
+              {
+                "name": "limit",
+                "value": "20",
+                "type": "query",
+                "description": "The number of items to return."
+              },
+              {
+                "name": "cursor",
+                "value": "eyJvZmZzZXQiOjN9",
+                "type": "query",
+                "description": "A cursor for pagination across multiple pages of results. Don’t include this parameter on the first call. Use the `pagination.nextLink` value returned in a previous response to request subsequent results."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns a list of workspace groups."
+        },
+        {
+          "info": {
+            "name": "List group custom fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.folk.app/v1/groups/:groupId/custom-fields/:entityType",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "grp_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                "type": "path",
+                "description": "The identifier of the group. You can retrieve a list of group identifiers using the `/v1/groups` endpoint."
+              },
+              {
+                "name": "entityType",
+                "value": "person",
+                "type": "path",
+                "description": "The entity type the custom fields belong to. It can be `person`, `company`, or a custom object name."
+              },
+              {
+                "name": "limit",
+                "value": "20",
+                "type": "query",
+                "description": "The number of items to return."
+              },
+              {
+                "name": "cursor",
+                "value": "eyJvZmZzZXQiOjN9",
+                "type": "query",
+                "description": "A cursor for pagination across multiple pages of results. Don’t include this parameter on the first call. Use the `pagination.nextLink` value returned in a previous response to request subsequent results."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns a list of group custom fields for an entity type."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

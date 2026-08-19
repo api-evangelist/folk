@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Folk External Companies Users API",
+    "version": "2025-06-09"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.folk.app/v1/users",
+            "params": [
+              {
+                "name": "limit",
+                "value": "20",
+                "type": "query",
+                "description": "The number of items to return."
+              },
+              {
+                "name": "cursor",
+                "value": "eyJvZmZzZXQiOjN9",
+                "type": "query",
+                "description": "A cursor for pagination across multiple pages of results. Don’t include this parameter on the first call. Use the `pagination.nextLink` value returned in a previous response to request subsequent results."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns a list of workspace users."
+        },
+        {
+          "info": {
+            "name": "Get the current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.folk.app/v1/users/me",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the current workspace user."
+        },
+        {
+          "info": {
+            "name": "Get a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.folk.app/v1/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "usr_bc984b3f-0386-434d-82d7-a91eb6badd71",
+                "type": "path",
+                "description": "The ID of the user to retrieve."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns a workspace user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

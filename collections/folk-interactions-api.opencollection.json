@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Folk External Companies Interactions API",
+    "version": "2025-06-09"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Interactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an interaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.folk.app/v1/interactions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates a new [interaction](https://help.folk.app/en/articles/7012167-log-a-new-interaction) with a person or a company."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

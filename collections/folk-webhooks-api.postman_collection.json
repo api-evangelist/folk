@@ -1,0 +1,3606 @@
+{
+  "item": [
+    {
+      "id": "c01396cd-c117-4907-8518-5ed102c7fa04",
+      "name": "Webhooks",
+      "description": {
+        "content": "Operations related to webhooks.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7e8ce5fd-f1c5-4681-bbd3-7c2448ec5da9",
+          "name": "List webhooks",
+          "request": {
+            "name": "List webhooks",
+            "description": {
+              "content": "Retrieve a list of webhooks in the workspace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "webhooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "The number of items to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "A cursor for pagination across multiple pages of results. Don’t include this parameter on the first call. Use the `pagination.nextLink` value returned in a previous response to request subsequent results."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8eae7caa-0ca7-4327-931b-d2df7c42759d",
+              "name": "A paginated list of webhooks in the workspace.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"items\": [\n      {\n        \"id\": \"wbk_8c18c158-d49e-4ad4-90d4-2b197688bac7\",\n        \"name\": \"My app integration\",\n        \"targetUrl\": \"https://my-app.com/webhook\",\n        \"subscribedEvents\": [\n          {\n            \"eventType\": \"person.created\",\n            \"filter\": {}\n          }\n        ],\n        \"redactedSigningSecret\": \"whs_fx**********************oVMa\",\n        \"status\": \"active\",\n        \"createdAt\": \"2025-07-17T09:00:00.000Z\"\n      }\n    ],\n    \"pagination\": {\n      \"nextLink\": \"https://api.folk.app/v1/webhooks?limit=20&cursor=eyJvZmZzZXQiOjIwfQ%3D%3D\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d4834f8-bc25-4ac8-8b52-026226fab2b3",
+              "name": "The request was unacceptable, often due to missing an invalid parameter.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INVALID_REQUEST\",\n    \"message\": \"The request was invalid.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#bad-request\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f290fdc4-d487-454a-86f2-1521c69776cc",
+              "name": "No valid API key provided.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"UNAUTHORIZED\",\n    \"message\": \"No valid API key provided.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#unauthorized\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0f6ddd0-b39d-44c2-b425-270543caf9e8",
+              "name": "The API key doesn’t have permissions to perform the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"FORBIDDEN\",\n    \"message\": \"The API key doesn’t have permissions to perform the request.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#forbidden\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ba3c3b2-8fe4-45f5-ac9b-af42a2734316",
+              "name": "The requested resource doesn’t exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"RESOURCE_NOT_FOUND\",\n    \"message\": \"The requested resource was not found.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#not-found\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ebf624ff-9f77-4c7d-8d0f-eebeb610546a",
+              "name": "The request was unacceptable, often due to missing or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"UNPROCESSABLE_ENTITY\",\n    \"message\": \"Invalid query parameters\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#unprocessable-entity\",\n    \"details\": {\n      \"issues\": [\n        {\n          \"code\": \"too_small\",\n          \"minimum\": 1,\n          \"type\": \"number\",\n          \"inclusive\": true,\n          \"exact\": false,\n          \"message\": \"Number must be greater than or equal to 1\",\n          \"path\": [\n            \"limit\"\n          ]\n        }\n      ]\n    },\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f2eb0582-9d6b-45d5-973b-3546a9cf29a5",
+              "name": "Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"RATE_LIMIT_EXCEEDED\",\n    \"message\": \"The rate limit has been exceeded.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#rate-limiting\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\",\n    \"details\": {\n      \"limit\": 1000,\n      \"remaining\": 0,\n      \"retryAfter\": \"2025-10-01T12:00:00Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2230daf-ce00-4c56-8210-5f0f6aab7611",
+              "name": "Something went wrong on our end.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INTERNAL_SERVER_ERROR\",\n    \"message\": \"An internal server error occurred.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#internal-server-error\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "119c1825-308b-4870-8e2b-d213ab694347",
+              "name": "The server is overloaded or down for maintenance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "eyJvZmZzZXQiOjN9"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"SERVICE_UNAVAILABLE\",\n    \"message\": \"The service is currently unavailable.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#service-unavailable\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38ad85ab-8081-4230-8d76-bf9fef404919",
+          "name": "Create a webhook",
+          "request": {
+            "name": "Create a webhook",
+            "description": {
+              "content": "Creates a new webhook listening to workspace events.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "webhooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"targetUrl\": \"<uri>\",\n  \"subscribedEvents\": [\n    {\n      \"eventType\": \"<string>\",\n      \"filter\": {\n        \"groupId\": \"<string>\",\n        \"objectType\": \"<string>\",\n        \"path\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"value\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ff6a64df-6848-484a-bae5-aae56aca5cca",
+              "name": "The created webhook.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My app integration\",\n  \"targetUrl\": \"https://my-app.com/webhook\",\n  \"subscribedEvents\": [\n    {\n      \"eventType\": \"person.created\",\n      \"filter\": {\n        \"groupId\": \"grp_bc984b3f-0386-434d-82d7-a91eb6badd71\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"wbk_8c18c158-d49e-4ad4-90d4-2b197688bac7\",\n    \"name\": \"My app integration\",\n    \"targetUrl\": \"https://my-app.com/webhook\",\n    \"subscribedEvents\": [\n      {\n        \"eventType\": \"person.created\",\n        \"filter\": {}\n      }\n    ],\n    \"signingSecret\": \"whsec_QWFSUzl1QUVoQW1kdWtpTnJRTUFpbXNlZmxLTg==\",\n    \"status\": \"active\",\n    \"createdAt\": \"2025-07-17T09:00:00.000Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e658739a-72a5-45af-9463-e04f2600ea24",
+              "name": "The request was unacceptable, often due to missing an invalid parameter.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My app integration\",\n  \"targetUrl\": \"https://my-app.com/webhook\",\n  \"subscribedEvents\": [\n    {\n      \"eventType\": \"person.created\",\n      \"filter\": {\n        \"groupId\": \"grp_bc984b3f-0386-434d-82d7-a91eb6badd71\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INVALID_REQUEST\",\n    \"message\": \"The request was invalid.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#bad-request\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f127d3a-67d6-4970-896d-3a3b1a722767",
+              "name": "No valid API key provided.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My app integration\",\n  \"targetUrl\": \"https://my-app.com/webhook\",\n  \"subscribedEvents\": [\n    {\n      \"eventType\": \"person.created\",\n      \"filter\": {\n        \"groupId\": \"grp_bc984b3f-0386-434d-82d7-a91eb6badd71\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"UNAUTHORIZED\",\n    \"message\": \"No valid API key provided.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#unauthorized\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eaca1a57-4c31-4909-8043-803815c2ce98",
+              "name": "The API key doesn’t have permissions to perform the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My app integration\",\n  \"targetUrl\": \"https://my-app.com/webhook\",\n  \"subscribedEvents\": [\n    {\n      \"eventType\": \"person.created\",\n      \"filter\": {\n        \"groupId\": \"grp_bc984b3f-0386-434d-82d7-a91eb6badd71\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"FORBIDDEN\",\n    \"message\": \"The API key doesn’t have permissions to perform the request.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#forbidden\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f7eddf5-2e78-4010-9cd0-0d7af259dc0a",
+              "name": "The requested resource doesn’t exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My app integration\",\n  \"targetUrl\": \"https://my-app.com/webhook\",\n  \"subscribedEvents\": [\n    {\n      \"eventType\": \"person.created\",\n      \"filter\": {\n        \"groupId\": \"grp_bc984b3f-0386-434d-82d7-a91eb6badd71\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"RESOURCE_NOT_FOUND\",\n    \"message\": \"The requested resource was not found.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#not-found\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "acf9f865-74f1-4eb2-865c-003915a3c8c5",
+              "name": "The request was unacceptable, often due to missing or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My app integration\",\n  \"targetUrl\": \"https://my-app.com/webhook\",\n  \"subscribedEvents\": [\n    {\n      \"eventType\": \"person.created\",\n      \"filter\": {\n        \"groupId\": \"grp_bc984b3f-0386-434d-82d7-a91eb6badd71\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"UNPROCESSABLE_ENTITY\",\n    \"message\": \"Invalid query parameters\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#unprocessable-entity\",\n    \"details\": {\n      \"issues\": [\n        {\n          \"code\": \"too_small\",\n          \"minimum\": 1,\n          \"type\": \"number\",\n          \"inclusive\": true,\n          \"exact\": false,\n          \"message\": \"Number must be greater than or equal to 1\",\n          \"path\": [\n            \"limit\"\n          ]\n        }\n      ]\n    },\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8820f0aa-b5e1-4f14-a56f-fff24a6a6dab",
+              "name": "Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My app integration\",\n  \"targetUrl\": \"https://my-app.com/webhook\",\n  \"subscribedEvents\": [\n    {\n      \"eventType\": \"person.created\",\n      \"filter\": {\n        \"groupId\": \"grp_bc984b3f-0386-434d-82d7-a91eb6badd71\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"RATE_LIMIT_EXCEEDED\",\n    \"message\": \"The rate limit has been exceeded.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#rate-limiting\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\",\n    \"details\": {\n      \"limit\": 1000,\n      \"remaining\": 0,\n      \"retryAfter\": \"2025-10-01T12:00:00Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "623a92b8-86a8-4e39-90c1-3bef90094137",
+              "name": "Something went wrong on our end.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My app integration\",\n  \"targetUrl\": \"https://my-app.com/webhook\",\n  \"subscribedEvents\": [\n    {\n      \"eventType\": \"person.created\",\n      \"filter\": {\n        \"groupId\": \"grp_bc984b3f-0386-434d-82d7-a91eb6badd71\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INTERNAL_SERVER_ERROR\",\n    \"message\": \"An internal server error occurred.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#internal-server-error\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8d974f0-a407-4e39-ae65-9bf812f5c0a5",
+              "name": "The server is overloaded or down for maintenance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My app integration\",\n  \"targetUrl\": \"https://my-app.com/webhook\",\n  \"subscribedEvents\": [\n    {\n      \"eventType\": \"person.created\",\n      \"filter\": {\n        \"groupId\": \"grp_bc984b3f-0386-434d-82d7-a91eb6badd71\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"SERVICE_UNAVAILABLE\",\n    \"message\": \"The service is currently unavailable.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#service-unavailable\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eefd7198-e3bd-40e4-9721-1c64f5f49808",
+          "name": "Get a webhook",
+          "request": {
+            "name": "Get a webhook",
+            "description": {
+              "content": "Retrieve an existing webhook in the workspace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "webhooks",
+                ":webhookId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "webhookId",
+                  "description": "(Required) The ID of the webhook to retrieve."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3e41de7a-72f5-4549-8179-86a78205fa9a",
+              "name": "The retrieved webhook in the workspace.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The ID of the webhook to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"wbk_8c18c158-d49e-4ad4-90d4-2b197688bac7\",\n    \"name\": \"My app integration\",\n    \"targetUrl\": \"https://my-app.com/webhook\",\n    \"subscribedEvents\": [\n      {\n        \"eventType\": \"person.created\",\n        \"filter\": {}\n      }\n    ],\n    \"redactedSigningSecret\": \"whs_fx**********************oVMa\",\n    \"status\": \"active\",\n    \"createdAt\": \"2025-07-17T09:00:00.000Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e49539f0-55b8-4901-bacb-e40b8eea0a0b",
+              "name": "The request was unacceptable, often due to missing an invalid parameter.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The ID of the webhook to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INVALID_REQUEST\",\n    \"message\": \"The request was invalid.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#bad-request\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a2bd646-94ad-4368-9ed8-397c3e342048",
+              "name": "No valid API key provided.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The ID of the webhook to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"UNAUTHORIZED\",\n    \"message\": \"No valid API key provided.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#unauthorized\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e3ef93d-1e7c-4aaf-9e16-073cbe69be11",
+              "name": "The API key doesn’t have permissions to perform the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The ID of the webhook to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"FORBIDDEN\",\n    \"message\": \"The API key doesn’t have permissions to perform the request.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#forbidden\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a593d53a-8746-4985-895e-5cfb3d72d2bd",
+              "name": "The requested resource doesn’t exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The ID of the webhook to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"RESOURCE_NOT_FOUND\",\n    \"message\": \"The requested resource was not found.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#not-found\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65b546ce-6d33-4b01-a150-82e69505d5ae",
+              "name": "The request was unacceptable, often due to missing or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The ID of the webhook to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"UNPROCESSABLE_ENTITY\",\n    \"message\": \"Invalid query parameters\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#unprocessable-entity\",\n    \"details\": {\n      \"issues\": [\n        {\n          \"code\": \"too_small\",\n          \"minimum\": 1,\n          \"type\": \"number\",\n          \"inclusive\": true,\n          \"exact\": false,\n          \"message\": \"Number must be greater than or equal to 1\",\n          \"path\": [\n            \"limit\"\n          ]\n        }\n      ]\n    },\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38402b0d-8fce-416e-b095-b20a2c90dcfa",
+              "name": "Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The ID of the webhook to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"RATE_LIMIT_EXCEEDED\",\n    \"message\": \"The rate limit has been exceeded.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#rate-limiting\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\",\n    \"details\": {\n      \"limit\": 1000,\n      \"remaining\": 0,\n      \"retryAfter\": \"2025-10-01T12:00:00Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9fb040eb-5e8e-4bd1-9b72-9258b1888594",
+              "name": "Something went wrong on our end.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The ID of the webhook to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INTERNAL_SERVER_ERROR\",\n    \"message\": \"An internal server error occurred.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#internal-server-error\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e4b2417b-8106-4564-8a2c-7f3d2f234d28",
+              "name": "The server is overloaded or down for maintenance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The ID of the webhook to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"SERVICE_UNAVAILABLE\",\n    \"message\": \"The service is currently unavailable.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#service-unavailable\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3a855342-c763-4f95-9431-0662fe8a8e67",
+          "name": "Update a webhook",
+          "request": {
+            "name": "Update a webhook",
+            "description": {
+              "content": "Update an existing webhook in the workspace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "webhooks",
+                ":webhookId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "webhookId",
+                  "description": "(Required) The ID of the webhook to update."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"targetUrl\": \"<uri>\",\n  \"subscribedEvents\": [\n    {\n      \"eventType\": \"<string>\",\n      \"filter\": {\n        \"groupId\": \"<string>\",\n        \"objectType\": \"<string>\",\n        \"path\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"value\": \"<string>\"\n      }\n    }\n  ],\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "253d67a8-4722-4f42-847c-35135e199afb",
+              "name": "The updated webhook in the workspace.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The ID of the webhook to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My app integration\",\n  \"targetUrl\": \"https://my-app.com/webhook\",\n  \"subscribedEvents\": [\n    {\n      \"eventType\": \"person.created\",\n      \"filter\": {\n        \"groupId\": \"grp_bc984b3f-0386-434d-82d7-a91eb6badd71\"\n      }\n    }\n  ],\n  \"status\": \"active\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"wbk_8c18c158-d49e-4ad4-90d4-2b197688bac7\",\n    \"name\": \"My app integration\",\n    \"targetUrl\": \"https://my-app.com/webhook\",\n    \"subscribedEvents\": [\n      {\n        \"eventType\": \"person.created\",\n        \"filter\": {}\n      }\n    ],\n    \"redactedSigningSecret\": \"whs_fx**********************oVMa\",\n    \"status\": \"active\",\n    \"createdAt\": \"2025-07-17T09:00:00.000Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70c1c83e-abca-4db5-8701-2e0ac3831377",
+              "name": "The request was unacceptable, often due to missing an invalid parameter.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The ID of the webhook to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My app integration\",\n  \"targetUrl\": \"https://my-app.com/webhook\",\n  \"subscribedEvents\": [\n    {\n      \"eventType\": \"person.created\",\n      \"filter\": {\n        \"groupId\": \"grp_bc984b3f-0386-434d-82d7-a91eb6badd71\"\n      }\n    }\n  ],\n  \"status\": \"active\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INVALID_REQUEST\",\n    \"message\": \"The request was invalid.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#bad-request\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f705b858-3883-42ce-8ab3-1b20d9a8f339",
+              "name": "No valid API key provided.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The ID of the webhook to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My app integration\",\n  \"targetUrl\": \"https://my-app.com/webhook\",\n  \"subscribedEvents\": [\n    {\n      \"eventType\": \"person.created\",\n      \"filter\": {\n        \"groupId\": \"grp_bc984b3f-0386-434d-82d7-a91eb6badd71\"\n      }\n    }\n  ],\n  \"status\": \"active\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"UNAUTHORIZED\",\n    \"message\": \"No valid API key provided.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#unauthorized\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9ebf504-75bf-4ce2-aced-9028c64bd9c6",
+              "name": "The API key doesn’t have permissions to perform the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The ID of the webhook to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My app integration\",\n  \"targetUrl\": \"https://my-app.com/webhook\",\n  \"subscribedEvents\": [\n    {\n      \"eventType\": \"person.created\",\n      \"filter\": {\n        \"groupId\": \"grp_bc984b3f-0386-434d-82d7-a91eb6badd71\"\n      }\n    }\n  ],\n  \"status\": \"active\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"FORBIDDEN\",\n    \"message\": \"The API key doesn’t have permissions to perform the request.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#forbidden\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ea945f6-00de-46b0-8926-6e33dec1df22",
+              "name": "The requested resource doesn’t exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The ID of the webhook to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My app integration\",\n  \"targetUrl\": \"https://my-app.com/webhook\",\n  \"subscribedEvents\": [\n    {\n      \"eventType\": \"person.created\",\n      \"filter\": {\n        \"groupId\": \"grp_bc984b3f-0386-434d-82d7-a91eb6badd71\"\n      }\n    }\n  ],\n  \"status\": \"active\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"RESOURCE_NOT_FOUND\",\n    \"message\": \"The requested resource was not found.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#not-found\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d94692a2-3fbd-495d-bd4a-d62ab804c330",
+              "name": "The request was unacceptable, often due to missing or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The ID of the webhook to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My app integration\",\n  \"targetUrl\": \"https://my-app.com/webhook\",\n  \"subscribedEvents\": [\n    {\n      \"eventType\": \"person.created\",\n      \"filter\": {\n        \"groupId\": \"grp_bc984b3f-0386-434d-82d7-a91eb6badd71\"\n      }\n    }\n  ],\n  \"status\": \"active\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"UNPROCESSABLE_ENTITY\",\n    \"message\": \"Invalid query parameters\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#unprocessable-entity\",\n    \"details\": {\n      \"issues\": [\n        {\n          \"code\": \"too_small\",\n          \"minimum\": 1,\n          \"type\": \"number\",\n          \"inclusive\": true,\n          \"exact\": false,\n          \"message\": \"Number must be greater than or equal to 1\",\n          \"path\": [\n            \"limit\"\n          ]\n        }\n      ]\n    },\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06597245-4e91-482f-a43d-a3c79007993e",
+              "name": "Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The ID of the webhook to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My app integration\",\n  \"targetUrl\": \"https://my-app.com/webhook\",\n  \"subscribedEvents\": [\n    {\n      \"eventType\": \"person.created\",\n      \"filter\": {\n        \"groupId\": \"grp_bc984b3f-0386-434d-82d7-a91eb6badd71\"\n      }\n    }\n  ],\n  \"status\": \"active\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"RATE_LIMIT_EXCEEDED\",\n    \"message\": \"The rate limit has been exceeded.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#rate-limiting\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\",\n    \"details\": {\n      \"limit\": 1000,\n      \"remaining\": 0,\n      \"retryAfter\": \"2025-10-01T12:00:00Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eac41b38-ee5e-43b7-acdb-3785a778df5e",
+              "name": "Something went wrong on our end.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The ID of the webhook to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My app integration\",\n  \"targetUrl\": \"https://my-app.com/webhook\",\n  \"subscribedEvents\": [\n    {\n      \"eventType\": \"person.created\",\n      \"filter\": {\n        \"groupId\": \"grp_bc984b3f-0386-434d-82d7-a91eb6badd71\"\n      }\n    }\n  ],\n  \"status\": \"active\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INTERNAL_SERVER_ERROR\",\n    \"message\": \"An internal server error occurred.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#internal-server-error\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c6a3b2d9-5bed-4cc9-8045-59c996c568b7",
+              "name": "The server is overloaded or down for maintenance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The ID of the webhook to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My app integration\",\n  \"targetUrl\": \"https://my-app.com/webhook\",\n  \"subscribedEvents\": [\n    {\n      \"eventType\": \"person.created\",\n      \"filter\": {\n        \"groupId\": \"grp_bc984b3f-0386-434d-82d7-a91eb6badd71\"\n      }\n    }\n  ],\n  \"status\": \"active\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"SERVICE_UNAVAILABLE\",\n    \"message\": \"The service is currently unavailable.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#service-unavailable\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f0819bec-0b6c-4920-a0fe-8a4d12e7e25f",
+          "name": "Delete a webhook",
+          "request": {
+            "name": "Delete a webhook",
+            "description": {
+              "content": "Delete an existing webhook in the workspace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "webhooks",
+                ":webhookId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "webhookId",
+                  "description": "(Required) The ID of the webhook to delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "878c7134-a15f-4bc1-b136-3911e3159ca9",
+              "name": "The ID of the deleted webhook.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The ID of the webhook to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"wbk_8c18c158-d49e-4ad4-90d4-2b197688bac7\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29837b2f-1c1c-4528-accf-d87bc4d81c4b",
+              "name": "The request was unacceptable, often due to missing an invalid parameter.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The ID of the webhook to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INVALID_REQUEST\",\n    \"message\": \"The request was invalid.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#bad-request\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97fbdb44-3f0f-4b4d-b98e-8d3b24148242",
+              "name": "No valid API key provided.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The ID of the webhook to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"UNAUTHORIZED\",\n    \"message\": \"No valid API key provided.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#unauthorized\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "067a0bbe-5ff5-4a31-ae57-1f3617ff7e80",
+              "name": "The API key doesn’t have permissions to perform the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The ID of the webhook to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"FORBIDDEN\",\n    \"message\": \"The API key doesn’t have permissions to perform the request.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#forbidden\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26eac0a0-b7bb-4e65-9838-b03a334663f6",
+              "name": "The requested resource doesn’t exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The ID of the webhook to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"RESOURCE_NOT_FOUND\",\n    \"message\": \"The requested resource was not found.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#not-found\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06f6db3e-575a-4f63-ba63-f87c4a48d113",
+              "name": "The request was unacceptable, often due to missing or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The ID of the webhook to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"UNPROCESSABLE_ENTITY\",\n    \"message\": \"Invalid query parameters\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#unprocessable-entity\",\n    \"details\": {\n      \"issues\": [\n        {\n          \"code\": \"too_small\",\n          \"minimum\": 1,\n          \"type\": \"number\",\n          \"inclusive\": true,\n          \"exact\": false,\n          \"message\": \"Number must be greater than or equal to 1\",\n          \"path\": [\n            \"limit\"\n          ]\n        }\n      ]\n    },\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85e11e3c-56c6-4ebd-b6f6-08e227ef0ebb",
+              "name": "Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The ID of the webhook to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that you can make in the current rate limit window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "998"
+                },
+                {
+                  "disabled": false,
+                  "description": "The time at which the current rate limit window resets, in UTC epoch seconds.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "1747322958"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of seconds to wait before making a new request after hitting the rate limit.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"RATE_LIMIT_EXCEEDED\",\n    \"message\": \"The rate limit has been exceeded.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#rate-limiting\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\",\n    \"details\": {\n      \"limit\": 1000,\n      \"remaining\": 0,\n      \"retryAfter\": \"2025-10-01T12:00:00Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f13c906a-53fc-4873-8d5d-f52292d2cf0a",
+              "name": "Something went wrong on our end.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The ID of the webhook to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INTERNAL_SERVER_ERROR\",\n    \"message\": \"An internal server error occurred.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#internal-server-error\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ea442db-e1ec-4909-8679-c85f3ade656f",
+              "name": "The server is overloaded or down for maintenance.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The ID of the webhook to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"SERVICE_UNAVAILABLE\",\n    \"message\": \"The service is currently unavailable.\",\n    \"documentationUrl\": \"https://developer.folk.app/api-reference/errors#service-unavailable\",\n    \"requestId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"timestamp\": \"2025-10-01T12:00:00Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.folk.app",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d4c29b3c-f381-4d7e-b4bc-62113254ae84",
+    "name": "Folk External Companies Webhooks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Folk's public REST API lets you manage workspaces, groups, contacts, and real-time triggers.\n\nContact Support:\n Name: folk\n Email: tech@folk.app",
+      "type": "text/plain"
+    }
+  }
+}
