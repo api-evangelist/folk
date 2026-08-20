@@ -37,6 +37,15 @@ tags:
   - Relationships
   - Notes
   - Deals
+  - Webhook
+tags_raw:
+  - CRM
+  - Contacts
+  - Pipelines
+  - Sales
+  - Relationships
+  - Notes
+  - Deals
   - Webhooks
 apis:
 - aid: folk:folk-companies-api
@@ -77,6 +86,8 @@ apis:
   humanURL: https://developer.folk.app/
   baseURL: https://api.folk.app
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
@@ -157,6 +168,8 @@ apis:
   humanURL: https://developer.folk.app/
   baseURL: https://api.folk.app
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -173,6 +186,8 @@ apis:
   humanURL: https://developer.folk.app/
   baseURL: https://api.folk.app
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
