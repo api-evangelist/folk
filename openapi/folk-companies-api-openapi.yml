@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Folk External Companies API
   description: Folk's public REST API lets you manage workspaces, groups, contacts, and real-time triggers.
@@ -433,19 +433,21 @@ paths:
                   - type: 'null'
                   - type: 'null'
                 lastFundingDate:
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   minLength: 10
                   maxLength: 10
                   format: date
                   description: The date of the last funding round for the company, in YYYY-MM-DD format.
                   example: '1990-01-01'
-                  nullable: true
                 industry:
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   maxLength: 1000
                   description: The industry the company operates in.
                   example: Technology
-                  nullable: true
                 foundationYear:
                   anyOf:
                   - type: string
@@ -462,7 +464,9 @@ paths:
                   - type: 'null'
                   - type: 'null'
                 employeeRange:
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   enum:
                   - 1-10
                   - 11-50
@@ -474,7 +478,6 @@ paths:
                   - 10000+
                   description: The employee range of the company.
                   example: 51-200
-                  nullable: true
                 groups:
                   type: array
                   items:
@@ -860,19 +863,21 @@ paths:
                   - type: 'null'
                   - type: 'null'
                 lastFundingDate:
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   minLength: 10
                   maxLength: 10
                   format: date
                   description: The date of the last funding round for the company, in YYYY-MM-DD format.
                   example: '1990-01-01'
-                  nullable: true
                 industry:
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   maxLength: 1000
                   description: The industry the company operates in.
                   example: Technology
-                  nullable: true
                 foundationYear:
                   anyOf:
                   - type: string
@@ -889,7 +894,9 @@ paths:
                   - type: 'null'
                   - type: 'null'
                 employeeRange:
-                  type: string
+                  type:
+                  - string
+                  - 'null'
                   enum:
                   - 1-10
                   - 11-50
@@ -901,7 +908,6 @@ paths:
                   - 10000+
                   description: The employee range of the company.
                   example: 51-200
-                  nullable: true
                 groups:
                   type: array
                   items:
@@ -1401,198 +1407,28 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
 components:
-  responses:
-    Forbidden:
-      description: The API key doesn’t have permissions to perform the request.
-      headers:
-        X-RateLimit-Limit:
-          $ref: '#/components/headers/X-RateLimit-Limit'
-        X-RateLimit-Remaining:
-          $ref: '#/components/headers/X-RateLimit-Remaining'
-        X-RateLimit-Reset:
-          $ref: '#/components/headers/X-RateLimit-Reset'
-        Retry-After:
-          $ref: '#/components/headers/Retry-After'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error:
-              code: FORBIDDEN
-              message: The API key doesn’t have permissions to perform the request.
-              documentationUrl: https://developer.folk.app/api-reference/errors#forbidden
-              requestId: 123e4567-e89b-12d3-a456-426614174000
-              timestamp: '2025-10-01T12:00:00Z'
-    ServiceUnavailable:
-      description: The server is overloaded or down for maintenance.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error:
-              code: SERVICE_UNAVAILABLE
-              message: The service is currently unavailable.
-              documentationUrl: https://developer.folk.app/api-reference/errors#service-unavailable
-              requestId: 123e4567-e89b-12d3-a456-426614174000
-              timestamp: '2025-10-01T12:00:00Z'
-    NotFound:
-      description: The requested resource doesn’t exist.
-      headers:
-        X-RateLimit-Limit:
-          $ref: '#/components/headers/X-RateLimit-Limit'
-        X-RateLimit-Remaining:
-          $ref: '#/components/headers/X-RateLimit-Remaining'
-        X-RateLimit-Reset:
-          $ref: '#/components/headers/X-RateLimit-Reset'
-        Retry-After:
-          $ref: '#/components/headers/Retry-After'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error:
-              code: RESOURCE_NOT_FOUND
-              message: The requested resource was not found.
-              documentationUrl: https://developer.folk.app/api-reference/errors#not-found
-              requestId: 123e4567-e89b-12d3-a456-426614174000
-              timestamp: '2025-10-01T12:00:00Z'
-    InternalServerError:
-      description: Something went wrong on our end.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error:
-              code: INTERNAL_SERVER_ERROR
-              message: An internal server error occurred.
-              documentationUrl: https://developer.folk.app/api-reference/errors#internal-server-error
-              requestId: 123e4567-e89b-12d3-a456-426614174000
-              timestamp: '2025-10-01T12:00:00Z'
-    UnprocessableEntity:
-      description: The request was unacceptable, often due to missing or invalid parameters.
-      headers:
-        X-RateLimit-Limit:
-          $ref: '#/components/headers/X-RateLimit-Limit'
-        X-RateLimit-Remaining:
-          $ref: '#/components/headers/X-RateLimit-Remaining'
-        X-RateLimit-Reset:
-          $ref: '#/components/headers/X-RateLimit-Reset'
-        Retry-After:
-          $ref: '#/components/headers/Retry-After'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error:
-              code: UNPROCESSABLE_ENTITY
-              message: Invalid query parameters
-              documentationUrl: https://developer.folk.app/api-reference/errors#unprocessable-entity
-              details:
-                issues:
-                - code: too_small
-                  minimum: 1
-                  type: number
-                  inclusive: true
-                  exact: false
-                  message: Number must be greater than or equal to 1
-                  path:
-                  - limit
-              requestId: 123e4567-e89b-12d3-a456-426614174000
-              timestamp: '2025-10-01T12:00:00Z'
-    Unauthorized:
-      description: No valid API key provided.
-      headers:
-        X-RateLimit-Limit:
-          $ref: '#/components/headers/X-RateLimit-Limit'
-        X-RateLimit-Remaining:
-          $ref: '#/components/headers/X-RateLimit-Remaining'
-        X-RateLimit-Reset:
-          $ref: '#/components/headers/X-RateLimit-Reset'
-        Retry-After:
-          $ref: '#/components/headers/Retry-After'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error:
-              code: UNAUTHORIZED
-              message: No valid API key provided.
-              documentationUrl: https://developer.folk.app/api-reference/errors#unauthorized
-              requestId: 123e4567-e89b-12d3-a456-426614174000
-              timestamp: '2025-10-01T12:00:00Z'
-    TooManyRequests:
-      description: Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.
-      headers:
-        X-RateLimit-Limit:
-          $ref: '#/components/headers/X-RateLimit-Limit'
-        X-RateLimit-Remaining:
-          $ref: '#/components/headers/X-RateLimit-Remaining'
-        X-RateLimit-Reset:
-          $ref: '#/components/headers/X-RateLimit-Reset'
-        Retry-After:
-          $ref: '#/components/headers/Retry-After'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error:
-              code: RATE_LIMIT_EXCEEDED
-              message: The rate limit has been exceeded.
-              documentationUrl: https://developer.folk.app/api-reference/errors#rate-limiting
-              requestId: 123e4567-e89b-12d3-a456-426614174000
-              timestamp: '2025-10-01T12:00:00Z'
-              details:
-                limit: 1000
-                remaining: 0
-                retryAfter: '2025-10-01T12:00:00Z'
-    BadRequest:
-      description: The request was unacceptable, often due to missing an invalid parameter.
-      headers:
-        X-RateLimit-Limit:
-          $ref: '#/components/headers/X-RateLimit-Limit'
-        X-RateLimit-Remaining:
-          $ref: '#/components/headers/X-RateLimit-Remaining'
-        X-RateLimit-Reset:
-          $ref: '#/components/headers/X-RateLimit-Reset'
-        Retry-After:
-          $ref: '#/components/headers/Retry-After'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error:
-              code: INVALID_REQUEST
-              message: The request was invalid.
-              documentationUrl: https://developer.folk.app/api-reference/errors#bad-request
-              requestId: 123e4567-e89b-12d3-a456-426614174000
-              timestamp: '2025-10-01T12:00:00Z'
+  headers:
+    X-RateLimit-Limit:
+      schema:
+        type: integer
+        example: 1000
+      description: The maximum number of requests that you can make in the current rate limit window.
+    Retry-After:
+      schema:
+        type: integer
+        example: 60
+      description: The number of seconds to wait before making a new request after hitting the rate limit.
+    X-RateLimit-Remaining:
+      schema:
+        type: integer
+        example: 998
+      description: The number of requests remaining in the current rate limit window.
+    X-RateLimit-Reset:
+      schema:
+        type: integer
+        example: 1747322958
+      description: The time at which the current rate limit window resets, in UTC epoch seconds.
   schemas:
-    User:
-      type: object
-      properties:
-        id:
-          type: string
-        fullName:
-          type: string
-        email:
-          type: string
-      required:
-      - id
-      - fullName
-      - email
-      description: A user in the workspace.
-      example:
-        id: usr_bc984b3f-0386-434d-82d7-a91eb6badd71
-        fullName: John Doe
-        email: john.doe@example.com
     Error:
       type: object
       properties:
@@ -1633,6 +1469,24 @@ components:
       required:
       - error
       description: Error response containing error details.
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        fullName:
+          type: string
+        email:
+          type: string
+      required:
+      - id
+      - fullName
+      - email
+      description: A user in the workspace.
+      example:
+        id: usr_bc984b3f-0386-434d-82d7-a91eb6badd71
+        fullName: John Doe
+        email: john.doe@example.com
     Company:
       type: object
       properties:
@@ -1647,33 +1501,38 @@ components:
           description: A short description of the company.
           example: A brief description of the company.
         fundingRaised:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The amount in USD of funding raised by the company.
           example: '5000000'
-          nullable: true
         lastFundingDate:
-          type: string
+          type:
+          - string
+          - 'null'
           minLength: 10
           maxLength: 10
           format: date
           description: The date of the last funding round for the company, in YYYY-MM-DD format.
           example: '1990-01-01'
-          nullable: true
         industry:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The industry the company operates in.
           example: Technology
-          nullable: true
         foundationYear:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The foundation year of the company, in YYYY format.
           example: '1990'
-          nullable: true
         employeeRange:
-          type: string
+          type:
+          - string
+          - 'null'
           description: 'The employee range of the company. Possible values are: "1-10", "11-50", "51-200", "201-500", "501-1000", "1001-5000", "5001-10000", "10000+".'
           example: 51-200
-          nullable: true
         groups:
           type: array
           items:
@@ -1715,12 +1574,13 @@ components:
             description: A URL associated with the company. The first URL in the list is the company's primary URL.
             example: https://example.com
         createdAt:
-          type: string
+          type:
+          - string
+          - 'null'
           minLength: 20
           maxLength: 40
           description: The date and time the company was created, in ISO format.
           example: '2021-01-01T00:00:00.000Z'
-          nullable: true
         createdBy:
           $ref: '#/components/schemas/User'
         customFieldValues:
@@ -1872,27 +1732,179 @@ components:
             - id: usr_c3606e3b-0a92-4849-90e5-88a8d3f388d6
               fullName: Jane Doe
               email: jane@example.com
-  headers:
-    X-RateLimit-Limit:
-      schema:
-        type: integer
-        example: 1000
-      description: The maximum number of requests that you can make in the current rate limit window.
-    Retry-After:
-      schema:
-        type: integer
-        example: 60
-      description: The number of seconds to wait before making a new request after hitting the rate limit.
-    X-RateLimit-Reset:
-      schema:
-        type: integer
-        example: 1747322958
-      description: The time at which the current rate limit window resets, in UTC epoch seconds.
-    X-RateLimit-Remaining:
-      schema:
-        type: integer
-        example: 998
-      description: The number of requests remaining in the current rate limit window.
+  responses:
+    ServiceUnavailable:
+      description: The server is overloaded or down for maintenance.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: SERVICE_UNAVAILABLE
+              message: The service is currently unavailable.
+              documentationUrl: https://developer.folk.app/api-reference/errors#service-unavailable
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    Unauthorized:
+      description: No valid API key provided.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: UNAUTHORIZED
+              message: No valid API key provided.
+              documentationUrl: https://developer.folk.app/api-reference/errors#unauthorized
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    BadRequest:
+      description: The request was unacceptable, often due to missing an invalid parameter.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: INVALID_REQUEST
+              message: The request was invalid.
+              documentationUrl: https://developer.folk.app/api-reference/errors#bad-request
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    UnprocessableEntity:
+      description: The request was unacceptable, often due to missing or invalid parameters.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: UNPROCESSABLE_ENTITY
+              message: Invalid query parameters
+              documentationUrl: https://developer.folk.app/api-reference/errors#unprocessable-entity
+              details:
+                issues:
+                - code: too_small
+                  minimum: 1
+                  type: number
+                  inclusive: true
+                  exact: false
+                  message: Number must be greater than or equal to 1
+                  path:
+                  - limit
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    InternalServerError:
+      description: Something went wrong on our end.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: INTERNAL_SERVER_ERROR
+              message: An internal server error occurred.
+              documentationUrl: https://developer.folk.app/api-reference/errors#internal-server-error
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    Forbidden:
+      description: The API key doesn’t have permissions to perform the request.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: FORBIDDEN
+              message: The API key doesn’t have permissions to perform the request.
+              documentationUrl: https://developer.folk.app/api-reference/errors#forbidden
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+    TooManyRequests:
+      description: Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: RATE_LIMIT_EXCEEDED
+              message: The rate limit has been exceeded.
+              documentationUrl: https://developer.folk.app/api-reference/errors#rate-limiting
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
+              details:
+                limit: 1000
+                remaining: 0
+                retryAfter: '2025-10-01T12:00:00Z'
+    NotFound:
+      description: The requested resource doesn’t exist.
+      headers:
+        X-RateLimit-Limit:
+          $ref: '#/components/headers/X-RateLimit-Limit'
+        X-RateLimit-Remaining:
+          $ref: '#/components/headers/X-RateLimit-Remaining'
+        X-RateLimit-Reset:
+          $ref: '#/components/headers/X-RateLimit-Reset'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: RESOURCE_NOT_FOUND
+              message: The requested resource was not found.
+              documentationUrl: https://developer.folk.app/api-reference/errors#not-found
+              requestId: 123e4567-e89b-12d3-a456-426614174000
+              timestamp: '2025-10-01T12:00:00Z'
   securitySchemes:
     bearerApiKeyAuth:
       type: http

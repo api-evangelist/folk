@@ -1,15 +1,7 @@
 {
   "provider": "folk",
   "sources": [
-    "folk-companies-api-openapi.yml",
-    "folk-deals-api-openapi.yml",
-    "folk-groups-api-openapi.yml",
-    "folk-interactions-api-openapi.yml",
-    "folk-notes-api-openapi.yml",
-    "folk-people-api-openapi.yml",
-    "folk-reminders-api-openapi.yml",
-    "folk-users-api-openapi.yml",
-    "folk-webhooks-api-openapi.yml"
+    "_original/folk-openapi.yml"
   ],
   "outputs": [
     "folk-companies-api-openapi.yml",
@@ -25,6 +17,20 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "folk-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "folk-companies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "folk-deals-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "folk-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "folk-interactions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "folk-notes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "folk-people-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "folk-reminders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "folk-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "folk-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
