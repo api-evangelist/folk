@@ -42,6 +42,9 @@ url: https://raw.githubusercontent.com/api-evangelist/folk/refs/heads/main/apis.
 created: "2026-06-12"
 modified: "2026-06-12"
 specificationVersion: '0.23'
+x-docs-platform: mintlify
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-10-03
 tags:
   - CRM
   - Contacts
@@ -212,6 +215,9 @@ apis:
   - type: Examples
     url: examples/folk-examples.json
 common:
+  - type: CapabilityMap
+    url: capabilities/folk-capability-edges.yml
+    name: Folk Business Capability Map
   - type: AgenticAccess
     url: agentic-access/folk-agentic-access.yml
   - type: DomainSecurity
