@@ -122,3 +122,28 @@ plans:
       - name: API access
         amount: true
         unit: included
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - negotiated
+  units: []
+  plans:
+  - name: Standard
+    access: paid
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Premium
+    access: paid
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Enterprise
+    access: enterprise
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
