@@ -1,0 +1,477 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/folk/integrations
+- https://composio.dev/toolkits/folk
+checked:
+- https://composio.dev/toolkits/folk
+- https://monid.ai/tools/folk
+- https://n8n.io/integrations/folk/
+- https://zapier.com/apps/folk/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: folk
+  url: https://zapier.com/apps/folk/integrations
+  external_url: https://app.folk.app/?utm_source=zapier&utm_campaign=directory
+  partner_tier: SILVER
+  triggers:
+  - key: companyCreated
+    label: Company Added
+  - key: companyCustomFieldUpdated
+    label: Company Custom Field Updated
+  - key: companyDeleted
+    label: Company Removed
+  - key: companyUpdated
+    label: Company Updated
+  - key: personCreated
+    label: Person Added
+  - key: personCustomFieldUpdated
+    label: Person Custom Field Updated
+  - key: personDeleted
+    label: Person Removed
+  - key: personUpdated
+    label: Person Updated
+  actions:
+  - key: company
+    label: Create Company
+  - key: person
+    label: Create Person
+  - key: updateCompany
+    label: Update Company
+  - key: updatePerson
+    label: Update Person
+  searches:
+  - key: findACompany
+    label: Find a Company
+  - key: findAPerson
+    label: Find a Person
+  - key: getACompany
+    label: Get a Company
+  - key: getAPerson
+    label: Get a Person
+- marketplace: composio
+  channel: agent-gateway
+  app: folk
+  url: https://composio.dev/toolkits/folk
+  identity: action-prefix
+  actions:
+  - key: FOLK_CREATE_COMPANY
+  - key: FOLK_CREATE_NOTE
+  - key: FOLK_CREATE_PERSON
+  - key: FOLK_DELETE_COMPANY
+  - key: FOLK_DELETE_NOTE
+  - key: FOLK_DELETE_PERSON
+  - key: FOLK_DELETE_REMINDER
+  - key: FOLK_FOLK_DELETE_PERSON
+  - key: FOLK_FOLK_LIST_COMPANIES
+  - key: FOLK_GET_COMPANY
+  - key: FOLK_GET_CURRENT_WORKSPACE_USER
+  - key: FOLK_GET_NOTE
+  - key: FOLK_GET_PERSON
+  - key: FOLK_GET_USER
+  - key: FOLK_LIST_COMPANIES
+  - key: FOLK_LIST_GROUPS
+  - key: FOLK_LIST_GROUP_CUSTOM_FIELDS
+  - key: FOLK_LIST_NOTES
+  - key: FOLK_LIST_PEOPLE
+  - key: FOLK_LIST_REMINDERS
+  - key: FOLK_LIST_USERS
+  - key: FOLK_LIST_WEBHOOKS
+  - key: FOLK_UPDATE_COMPANY
+  - key: FOLK_UPDATE_NOTE
+  - key: FOLK_UPDATE_PERSON
+edges:
+- partner_name: Calendly
+  partner: calendly
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/calendly
+  direction: third-party
+  category: Scheduling & Booking
+  partner_url: https://calendly.com/?utm_medium=partner&utm_source=zapier&utm_campaign=main_partner_page&utm_content=main_inbound_link
+- partner_name: Notion
+  partner: notion
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/notion
+  direction: third-party
+  category: Task Management
+  partner_url: https://www.notion.so/
+- partner_name: Gmail
+  partner: gmail
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/gmail
+  direction: third-party
+  category: Email
+  partner_url: https://mail.google.com/
+- partner_name: Slack
+  partner: slack
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/slack
+  direction: third-party
+  category: Team Chat
+  partner_url: https://slack.com/
+- partner_name: Google Forms
+  partner: google-forms
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/google-forms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://google.com/
+- partner_name: Facebook Lead Ads
+  partner: facebook-lead-ads
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/facebook-lead-ads
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://www.facebook.com/business/ads/lead-ads
+- partner_name: Squarespace Forms
+  partner: squarespace
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/squarespace-forms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.squarespace.com/
+- partner_name: Airtable
+  partner: airtable
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/airtable
+  direction: third-party
+  category: Databases
+  partner_url: https://airtable.com/
+- partner_name: Microsoft Outlook
+  partner: microsoft-outlook
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/microsoft-outlook
+  direction: third-party
+  category: Calendar
+  partner_url: https://outlook.live.com/
+- partner_name: Instantly
+  partner: instantly-ai
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/instantly
+  direction: third-party
+  category: Email
+  partner_url: https://instantly.ai/
+- partner_name: Google Calendar
+  partner: google-calendar
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/google-calendar
+  direction: third-party
+  category: Calendar
+  partner_url: https://calendar.google.com/
+- partner_name: Clay
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/clay
+  direction: third-party
+  category: Spreadsheets
+  partner_url: https://clay.run/
+- partner_name: Apollo
+  partner: apollo
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/apollo
+  direction: third-party
+  category: Sales & CRM
+  partner_url: https://www.apollo.io/
+- partner_name: Fillout Forms
+  partner: fillout
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/fillout
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.fillout.com/?ref=zapier
+- partner_name: Google Sheets
+  partner: google-sheets
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/google-sheets
+  direction: third-party
+  category: Google
+  partner_url: http://sheets.google.com/
+- partner_name: Flodesk
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/flodesk
+  direction: third-party
+  category: Email Newsletters
+  partner_url: https://flodesk.com/
+- partner_name: Cal.com
+  partner: cal-com
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/calcom
+  direction: third-party
+  category: Scheduling & Booking
+  partner_url: http://go.cal.com/zapier
+- partner_name: WordPress
+  partner: wordpress
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/wordpress
+  direction: third-party
+  category: Website Builders
+  partner_url: https://wordpress.org/
+- partner_name: Kit
+  partner: convertkit
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/kit
+  direction: third-party
+  category: Drip Emails
+  partner_url: https://kit.com/
+- partner_name: Stripe (Legacy)
+  partner: stripe
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/stripe-legacy
+  direction: third-party
+  category: Payment Processing
+  partner_url: https://stripe.com/
+- partner_name: monday.com
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/monday
+  direction: third-party
+  category: Project Management
+  partner_url: https://monday.com/
+- partner_name: Wrike
+  partner: wrike
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/wrike
+  direction: third-party
+  category: Project Management
+  partner_url: http://www.wrike.com/
+- partner_name: Granola
+  partner: granola
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/granola
+  direction: third-party
+  category: AI Assistants
+  partner_url: https://granola.so/
+- partner_name: DocSend
+  partner: docsend
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/docsend
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://www.docsend.com/
+- partner_name: HiHello
+  partner: hihello
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/hihello
+  direction: third-party
+  category: Contact Management
+  partner_url: https://www.hihello.me/
+- partner_name: Trello
+  partner: trello
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/trello
+  direction: third-party
+  category: Project Management
+  partner_url: https://trello.com/
+- partner_name: Campaign Monitor
+  partner: campaignmonitor
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/campaign-monitor
+  direction: third-party
+  category: Email Newsletters
+  partner_url: https://go.campaignmonitor.com/partner-referral?referring_partner=Zapier
+- partner_name: Superhuman Docs
+  partner: superhuman
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/superhuman-docs
+  direction: third-party
+  category: Documents
+  partner_url: https://id.superhuman.com/signup
+- partner_name: LaGrowthMachine
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/lagrowthmachine
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://lagrowthmachine.com/
+- partner_name: Hunter
+  partner: hunter
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/hunter
+  direction: third-party
+  category: Contact Management
+  partner_url: https://hunter.io/
+templates:
+- title: Add new Calendly meetings participants to folk
+  url: https://zapier.com/apps/calendly/integrations/folk/974403/add-new-calendly-meetings-participants-to-folk
+  apps:
+  - calendly
+  - folk
+- title: Add people to folk groups from new Typeform entries
+  url: https://zapier.com/apps/folk/integrations/typeform/974400/add-people-to-folk-groups-from-new-typeform-entries
+  apps:
+  - typeform
+  - folk
+- title: Add people to folk groups from new Webflow form submissions
+  url: https://zapier.com/apps/folk/integrations/webflow/974405/add-people-to-folk-groups-from-new-webflow-form-submissions
+  apps:
+  - webflow
+  - folk
+- title: Add new clients in Stripe to folk
+  url: https://zapier.com/apps/folk/integrations/stripe-legacy/974411/add-new-clients-in-stripe-to-folk
+  apps:
+  - stripe-legacy
+  - folk
+- title: Add new Mailchimp subscribers as folk people
+  url: https://zapier.com/apps/folk/integrations/mailchimp/976148/add-new-mailchimp-subscribers-as-folk-people
+  apps:
+  - mailchimp
+  - folk
+- title: Send channel messages in Slack when new contacts are added in folk
+  url: https://zapier.com/apps/folk/integrations/slack/1600602/send-channel-messages-in-slack-when-new-contacts-are-added-in-folk
+  apps:
+  - folk
+  - slack
+- title: Add new Notion database items as people in folk
+  url: https://zapier.com/apps/folk/integrations/notion/1242310/add-new-notion-database-items-as-people-in-folk
+  apps:
+  - notion
+  - folk
+- title: Create new persons in folk from new emails in Gmail
+  url: https://zapier.com/apps/folk/integrations/gmail/1623472/create-new-persons-in-folk-from-new-emails-in-gmail
+  apps:
+  - gmail
+  - folk
+- title: Create new folk people when new Intercom users register
+  url: https://zapier.com/apps/folk/integrations/intercom/255689227/create-new-folk-people-when-new-intercom-users-register
+  apps:
+  - intercom
+  - folk
+- title: Create spreadsheet rows in Google Sheets for new people added in folk
+  url: https://zapier.com/apps/folk/integrations/google-sheets/1688254/create-spreadsheet-rows-in-google-sheets-for-new-people-added-in-folk
+  apps:
+  - folk
+  - google-sheets
+- title: Create people in folk from new events matching search in Google Calendar
+  url: https://zapier.com/apps/folk/integrations/google-calendar/1329378/create-people-in-folk-from-new-events-matching-search-in-google-calendar
+  apps:
+  - google-calendar
+  - folk
+- title: Create people in folk from new leads in Hunter
+  url: https://zapier.com/apps/folk/integrations/hunter/1573115/create-people-in-folk-from-new-leads-in-hunter
+  apps:
+  - hunter
+  - folk
+template_total: 245
