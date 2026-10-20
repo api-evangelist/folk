@@ -15,6 +15,7 @@
   evidence: https://zapier.com/apps/calendly/integrations/folk/974403/add-new-calendly-meetings-participants-to-folk
   template: https://zapier.com/apps/calendly/integrations/folk/974403/add-new-calendly-meetings-participants-to-folk
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: folk-add-new-clients-in-stripe-to-folk
@@ -29,6 +30,7 @@
   evidence: https://zapier.com/apps/folk/integrations/stripe-legacy/974411/add-new-clients-in-stripe-to-folk
   template: https://zapier.com/apps/folk/integrations/stripe-legacy/974411/add-new-clients-in-stripe-to-folk
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: folk-send-channel-messages-in-slack-when-new-contacts-are-added-in-folk
@@ -43,6 +45,7 @@
   evidence: https://zapier.com/apps/folk/integrations/slack/1600602/send-channel-messages-in-slack-when-new-contacts-are-added-in-folk
   template: https://zapier.com/apps/folk/integrations/slack/1600602/send-channel-messages-in-slack-when-new-contacts-are-added-in-folk
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: folk-add-new-notion-database-items-as-people-in-folk
@@ -57,6 +60,7 @@
   evidence: https://zapier.com/apps/folk/integrations/notion/1242310/add-new-notion-database-items-as-people-in-folk
   template: https://zapier.com/apps/folk/integrations/notion/1242310/add-new-notion-database-items-as-people-in-folk
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: folk-create-new-persons-in-folk-from-new-emails-in-gmail
@@ -71,6 +75,7 @@
   evidence: https://zapier.com/apps/folk/integrations/gmail/1623472/create-new-persons-in-folk-from-new-emails-in-gmail
   template: https://zapier.com/apps/folk/integrations/gmail/1623472/create-new-persons-in-folk-from-new-emails-in-gmail
   source: template
+  relationship: ipaas-bridge
   status: pending-partner-spec
   arazzo: null
 - slug: folk-create-spreadsheet-rows-in-google-sheets-for-new-people-added-in-folk
@@ -85,6 +90,7 @@
   evidence: https://zapier.com/apps/folk/integrations/google-sheets/1688254/create-spreadsheet-rows-in-google-sheets-for-new-people-added-in-folk
   template: https://zapier.com/apps/folk/integrations/google-sheets/1688254/create-spreadsheet-rows-in-google-sheets-for-new-people-added-in-folk
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: folk-create-people-in-folk-from-new-events-matching-search-in-google-calendar
@@ -99,6 +105,7 @@
   evidence: https://zapier.com/apps/folk/integrations/google-calendar/1329378/create-people-in-folk-from-new-events-matching-search-in-google-calendar
   template: https://zapier.com/apps/folk/integrations/google-calendar/1329378/create-people-in-folk-from-new-events-matching-search-in-google-calendar
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: folk-create-people-in-folk-from-new-leads-in-hunter
@@ -113,267 +120,8 @@
   evidence: https://zapier.com/apps/folk/integrations/hunter/1573115/create-people-in-folk-from-new-leads-in-hunter
   template: https://zapier.com/apps/folk/integrations/hunter/1573115/create-people-in-folk-from-new-leads-in-hunter
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
-  arazzo: null
-- slug: folk-google-forms
-  label: Google Forms
-  partner: google-forms
-  partner_name: Google Forms
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/folk/integrations/google-forms
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: folk-facebook-lead-ads
-  label: Facebook Lead Ads
-  partner: facebook-lead-ads
-  partner_name: Facebook Lead Ads
-  category: Ads & Conversion
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/folk/integrations/facebook-lead-ads
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: folk-squarespace-forms
-  label: Squarespace Forms
-  partner: squarespace
-  partner_name: Squarespace Forms
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/folk/integrations/squarespace-forms
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: folk-airtable
-  label: Airtable
-  partner: airtable
-  partner_name: Airtable
-  category: Databases
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/folk/integrations/airtable
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: folk-microsoft-outlook
-  label: Microsoft Outlook
-  partner: microsoft-outlook
-  partner_name: Microsoft Outlook
-  category: Calendar
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/folk/integrations/microsoft-outlook
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: folk-instantly
-  label: Instantly
-  partner: instantly-ai
-  partner_name: Instantly
-  category: Email
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/folk/integrations/instantly
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: folk-clay
-  label: Clay
-  partner_name: Clay
-  category: Spreadsheets
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/folk/integrations/clay
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: folk-apollo
-  label: Apollo
-  partner: apollo
-  partner_name: Apollo
-  category: Sales & CRM
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/folk/integrations/apollo
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: folk-fillout-forms
-  label: Fillout Forms
-  partner: fillout
-  partner_name: Fillout Forms
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/folk/integrations/fillout
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: folk-flodesk
-  label: Flodesk
-  partner_name: Flodesk
-  category: Email Newsletters
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/folk/integrations/flodesk
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: folk-cal-com
-  label: Cal.com
-  partner: cal-com
-  partner_name: Cal.com
-  category: Scheduling & Booking
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/folk/integrations/calcom
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: folk-wordpress
-  label: WordPress
-  partner: wordpress
-  partner_name: WordPress
-  category: Website Builders
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/folk/integrations/wordpress
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: folk-kit
-  label: Kit
-  partner: convertkit
-  partner_name: Kit
-  category: Drip Emails
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/folk/integrations/kit
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: folk-monday-com
-  label: monday.com
-  partner_name: monday.com
-  category: Project Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/folk/integrations/monday
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: folk-wrike
-  label: Wrike
-  partner: wrike
-  partner_name: Wrike
-  category: Project Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/folk/integrations/wrike
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: folk-granola
-  label: Granola
-  partner: granola
-  partner_name: Granola
-  category: AI Assistants
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/folk/integrations/granola
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: folk-docsend
-  label: DocSend
-  partner: docsend
-  partner_name: DocSend
-  category: Ads & Conversion
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/folk/integrations/docsend
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: folk-hihello
-  label: HiHello
-  partner: hihello
-  partner_name: HiHello
-  category: Contact Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/folk/integrations/hihello
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: folk-trello
-  label: Trello
-  partner: trello
-  partner_name: Trello
-  category: Project Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/folk/integrations/trello
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: folk-campaign-monitor
-  label: Campaign Monitor
-  partner: campaignmonitor
-  partner_name: Campaign Monitor
-  category: Email Newsletters
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/folk/integrations/campaign-monitor
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: folk-superhuman-docs
-  label: Superhuman Docs
-  partner: superhuman
-  partner_name: Superhuman Docs
-  category: Documents
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/folk/integrations/superhuman-docs
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: folk-lagrowthmachine
-  label: LaGrowthMachine
-  partner_name: LaGrowthMachine
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/folk/integrations/lagrowthmachine
-  source: edge
-  status: pending-partner-spec
   arazzo: null
 - slug: folk-zapier
   label: Zapier
@@ -399,4 +147,287 @@
     beta: false
     builder: unknown (not in the directory record)
   status: not-a-workflow
+  arazzo: null
+- slug: folk-google-forms
+  label: Google Forms
+  partner: google-forms
+  partner_name: Google Forms
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/google-forms
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: folk-facebook-lead-ads
+  label: Facebook Lead Ads
+  partner: facebook-lead-ads
+  partner_name: Facebook Lead Ads
+  category: Ads & Conversion
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/facebook-lead-ads
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: folk-squarespace-forms
+  label: Squarespace Forms
+  partner: squarespace
+  partner_name: Squarespace Forms
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/squarespace-forms
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: folk-airtable
+  label: Airtable
+  partner: airtable
+  partner_name: Airtable
+  category: Databases
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/airtable
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: folk-microsoft-outlook
+  label: Microsoft Outlook
+  partner: microsoft-outlook
+  partner_name: Microsoft Outlook
+  category: Calendar
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/microsoft-outlook
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: folk-instantly
+  label: Instantly
+  partner: instantly-ai
+  partner_name: Instantly
+  category: Email
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/instantly
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: folk-clay
+  label: Clay
+  partner_name: Clay
+  category: Spreadsheets
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/clay
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: folk-apollo
+  label: Apollo
+  partner: apollo-io
+  partner_name: Apollo
+  category: Sales & CRM
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/apollo
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: folk-fillout-forms
+  label: Fillout Forms
+  partner: fillout
+  partner_name: Fillout Forms
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/fillout
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: folk-flodesk
+  label: Flodesk
+  partner_name: Flodesk
+  category: Email Newsletters
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/flodesk
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: folk-cal-com
+  label: Cal.com
+  partner: cal-com
+  partner_name: Cal.com
+  category: Scheduling & Booking
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/calcom
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: folk-wordpress
+  label: WordPress
+  partner: wordpress
+  partner_name: WordPress
+  category: Website Builders
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/wordpress
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: folk-kit
+  label: Kit
+  partner: convertkit
+  partner_name: Kit
+  category: Drip Emails
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/kit
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: folk-monday-com
+  label: monday.com
+  partner: monday-com
+  partner_name: monday.com
+  category: Project Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/monday
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: folk-granola
+  label: Granola
+  partner: granola
+  partner_name: Granola
+  category: AI Assistants
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/granola
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: folk-wrike
+  label: Wrike
+  partner: wrike
+  partner_name: Wrike
+  category: Project Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/wrike
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: folk-docsend
+  label: DocSend
+  partner: docsend
+  partner_name: DocSend
+  category: Ads & Conversion
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/docsend
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: folk-lagrowthmachine
+  label: LaGrowthMachine
+  partner_name: LaGrowthMachine
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/lagrowthmachine
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: folk-hihello
+  label: HiHello
+  partner: hihello
+  partner_name: HiHello
+  category: Contact Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/hihello
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: folk-trello
+  label: Trello
+  partner: trello
+  partner_name: Trello
+  category: Project Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/trello
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: folk-campaign-monitor
+  label: Campaign Monitor
+  partner: campaignmonitor
+  partner_name: Campaign Monitor
+  category: Email Newsletters
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/campaign-monitor
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: folk-superhuman-docs
+  label: Superhuman Docs
+  partner: superhuman
+  partner_name: Superhuman Docs
+  category: Documents
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/folk/integrations/superhuman-docs
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
   arazzo: null
