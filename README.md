@@ -1,4 +1,4 @@
-# Folk (folk)
+# Folk
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,58 +66,171 @@
 
 Folk is a collaborative CRM platform designed for agencies, investors, and sales teams who need to manage relationships at scale. It provides a REST API organized around predictable resource-oriented URLs, accepting and returning JSON-encoded payloads with standard HTTP response codes. The API enables developers to manage contacts (people and companies), pipelines and deals, notes, reminders, interactions, and custom fields programmatically. Webhooks are supported for real-time event notifications, and the platform integrates with 5,000+ tools including Gmail, Outlook, LinkedIn, WhatsApp, and Zapier. API access is available on the Premium and Enterprise plans.
 
-- **APIs.json:** https://raw.githubusercontent.com/api-evangelist/folk/refs/heads/main/apis.yml
-- **Naftiko:** https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=folk-api-evangelist&utm_content=repo
+**Areas:** CRM · Contacts · Pipelines · Sales · Relationships · Notes · Deals · Webhook
 
-## Tags
+## Folk on APIs.io
 
-CRM, Contacts, Pipelines, Sales, Relationships, Notes, Deals, Webhooks
+Everything profiled for Folk is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/folk/](https://apis.io/providers/folk/)** — or go straight to one of the APIs or properties below.
 
-## APIs
+### APIs (9)
 
-| Name | Description | Base URL |
-|------|-------------|----------|
-| Folk API | REST API for managing people, companies, deals, notes, reminders, interactions, groups, webhooks, and users | https://api.folk.app |
+- [Folk Companies API](https://apis.io/apis/folk/folk-companies-api/) — Operations related to companies.
+- [Folk Deals API](https://apis.io/apis/folk/folk-deals-api/) — Operations related to deals.
+- [Folk Groups API](https://apis.io/apis/folk/folk-groups-api/) — Operations related to groups.
+- [Folk Interactions API](https://apis.io/apis/folk/folk-interactions-api/) — Operations related to interactions.
+- [Folk Notes API](https://apis.io/apis/folk/folk-notes-api/) — Operations related to notes.
+- [Folk People API](https://apis.io/apis/folk/folk-people-api/) — Operations related to people.
+- [Folk Reminders API](https://apis.io/apis/folk/folk-reminders-api/) — Operations related to reminders.
+- [Folk Users API](https://apis.io/apis/folk/folk-users-api/) — Operations related to users.
+- [Folk Webhooks API](https://apis.io/apis/folk/folk-webhooks-api/) — Operations related to webhooks.
 
-## Plans / Rate Limits / FinOps
+### Published properties
 
-| Resource | Path |
-|----------|------|
-| Plans & Pricing | [plans/folk-plans-pricing.yml](plans/folk-plans-pricing.yml) |
-| Rate Limits | [rate-limits/folk-rate-limits.yml](rate-limits/folk-rate-limits.yml) |
-| FinOps | [finops/folk-finops.yml](finops/folk-finops.yml) |
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-**Pricing summary:**
-- Standard: $24/user/month (annual) — no API access
-- Premium: $48/user/month (annual) — API access included
-- Enterprise: from $80/user/month (annual) — API access, custom limits, dedicated support
+#### MCP servers (1)
 
-**Rate limits:** 600 requests/minute per user; headers: `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`; HTTP 429 with `Retry-After` on exceeded limits.
+Model Context Protocol servers that expose the API to agents.
 
-## Timestamps
+- [folk](https://apis.io/servers/folk/folk/)
 
-| Field | Value |
-|-------|-------|
-| Created | 2026-06-12 |
-| Modified | 2026-06-12 |
+#### Agentic access (1)
 
-## Common
+Which operations an agent can call, which act, and which need a human in the loop.
 
-| Type | URL |
-|------|-----|
-| Website | https://www.folk.app/ |
-| Documentation | https://developer.folk.app/ |
-| GitHub Org | https://github.com/folk-js |
-| LinkedIn | https://www.linkedin.com/company/folkhq/ |
-| Blog | https://www.folk.app/blog |
-| Pricing | https://www.folk.app/pricing |
-| Status Page | https://status.folk.app/ |
-| X | https://twitter.com/FolkHQ |
-| OpenAPI | https://developer.folk.app/api-reference/openapi.json |
-| Changelog | https://www.folk.app/changelog |
+- [Folk Agentic Access](https://apis.io/agentic-access/folk/folk-agentic-access/)
 
-## Maintainers
+#### JSON Schema (1)
 
-| Name | Email |
-|------|-------|
-| Kin Lane | kin@apievangelist.com |
+The data models the API reads and writes.
+
+- [Folk API Schemas](https://apis.io/schemas/folk/folk-schemas/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Folk Context](https://apis.io/jsonld/folk/folk-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Folk Vocabulary](https://apis.io/vocabularies/folk/folk-vocabulary/)
+
+#### Examples (1)
+
+Example requests and responses.
+
+- [Folk Examples](https://apis.io/examples/folk/folk-examples/)
+
+#### Collections (10)
+
+Postman and Open Collection request collections.
+
+- [Folk External API](https://apis.io/collections/folk/open-folk-app/)
+- [Folk External Companies API](https://apis.io/collections/folk/open-folk-companies-api/)
+- [Folk External Companies Deals API](https://apis.io/collections/folk/open-folk-deals-api/)
+- [Folk External Companies Groups API](https://apis.io/collections/folk/open-folk-groups-api/)
+- [Folk External Companies Interactions API](https://apis.io/collections/folk/open-folk-interactions-api/)
+- [Folk External Companies Notes API](https://apis.io/collections/folk/open-folk-notes-api/)
+- [Folk External Companies People API](https://apis.io/collections/folk/open-folk-people-api/)
+- [Folk External Companies Reminders API](https://apis.io/collections/folk/open-folk-reminders-api/)
+- [Folk External Companies Users API](https://apis.io/collections/folk/open-folk-users-api/)
+- [Folk External Companies Webhooks API](https://apis.io/collections/folk/open-folk-webhooks-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Folk — jsonschema rules](https://apis.io/rules/folk/folk-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Folk Authentication](https://apis.io/security/folk/folk-authentication/)
+- [Folk Domain Security](https://apis.io/security/folk/folk-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Folk Plans Pricing](https://apis.io/plans/folk/folk-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Folk Rate Limits](https://apis.io/rate-limits/folk/folk-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Folk Finops](https://apis.io/finops/folk/folk-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.folk.app/)
+- [Documentation](https://developer.folk.app/)
+- [Pricing](https://www.folk.app/pricing)
+- [Blog](https://www.folk.app/blog)
+- [Status](https://status.folk.app/)
+
+## API Evangelist rating
+
+**Kin Score 38.5** — thin · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 68.3 |
+| Contract quality | 69.9 |
+| Contract governance | 23.5 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 18.4 |
+
+**Agent readiness 53.2** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | verified |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/folk/](https://apis.io/providers/folk/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Folk: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/folk/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
